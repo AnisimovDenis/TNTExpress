@@ -12,7 +12,7 @@
         TextOptions.TextRenderingMode="Auto"
         Background="{DynamicResource MaterialDesignPaper}"
         FontFamily="{DynamicResource MaterialDesignFont}"
-        Title="WinAutorization" Height="500" Width="400"
+        Title="Авторизация" Height="500" Width="400"
         WindowStartupLocation="CenterScreen"
         WindowStyle="None"
         ResizeMode="NoResize">
@@ -25,7 +25,7 @@
         <Grid>
             <Grid.Background>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                    <GradientStop Color="#FFACACAC" Offset="0.008"/>
+                    <GradientStop Color="#FFDEDEDE" Offset="0.008"/>
                     <GradientStop Color="#FF4B4B4B" Offset="1"/>
                 </LinearGradientBrush>
             </Grid.Background>
@@ -53,12 +53,69 @@
             </Grid>
 
             <Image x:Name="imgLogo" 
-                   Source="/TNTExpress;component/Resources/TNT_Logo.png"
+                   Source="/TNTExpress;component/Resources/TNT_logo_express.png"
                    Width="150"
                    Height="75"
                    Margin="0 0 0 75"/>
         </Grid>
 
-        
+        <Grid Grid.RowSpan="2"
+              Margin="50 150 50 100">
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <Rectangle Grid.RowSpan="4"
+                       Fill="White"
+                       Stroke="Black"
+                       RadiusX="25"
+                       RadiusY="25">
+                
+                <Rectangle.Effect>
+                    <DropShadowEffect BlurRadius="25" 
+                                      Color="Black"
+                                      Opacity="10"
+                                      RenderingBias="Quality"/>
+                </Rectangle.Effect>
+            </Rectangle>
+
+            <TextBlock x:Name="tbHeadLine"
+                       Text="Авторизация"
+                       Style="{DynamicResource TextBlockHeadLine}"/>
+
+            <TextBox x:Name="tbLogin"
+                     Grid.Row="1"
+                     FontSize="20"
+                     Margin="15 0"
+                     VerticalAlignment="Bottom"
+                     Style="{DynamicResource MaterialDesignFloatingHintTextBox}"
+                     CaretBrush="Black"
+                     materialDesign:HintAssist.Hint="Логин"
+                     materialDesign:HintAssist.Foreground="{DynamicResource Orange}"
+                     materialDesign:TextFieldAssist.UnderlineBrush="{DynamicResource Orange}"
+                     materialDesign:TextFieldAssist.HasClearButton="True"/>
+
+            <PasswordBox x:Name="pbPassword"
+                         Grid.Row="2"
+                         Margin="15 0"
+                         FontSize="20"
+                         VerticalAlignment="Center"
+                         Style="{DynamicResource MaterialDesignFloatingHintPasswordBox}"
+                         CaretBrush="Black"
+                         materialDesign:HintAssist.Hint="Пароль"
+                         materialDesign:HintAssist.Foreground="{DynamicResource Orange}"
+                         materialDesign:TextFieldAssist.UnderlineBrush="{DynamicResource Orange}"
+                         materialDesign:TextFieldAssist.HasClearButton="True"/>
+
+            <Button x:Name="btnEnter"
+                    Content="Войти"
+                    Grid.Row="3"
+                    Width="150"
+                    Background="{DynamicResource Orange}"
+                    BorderBrush="Black"
+                    Style="{DynamicResource MaterialDesignRaisedButton}"/>
+        </Grid>
     </Grid>
 </Window>

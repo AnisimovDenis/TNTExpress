@@ -16,4 +16,10 @@
         <Setter Property="Background" Value="Transparent"/>
         <Setter Property="BorderBrush" Value="Transparent"/>
     </Style>
+
+    <Style x:Key="TextBlockHeadLine" TargetType="TextBlock" BasedOn="{StaticResource MaterialDesignHeadline5TextBlock}">
+        <Setter Property="FontWeight" Value="Bold"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="HorizontalAlignment" Value="Center"/>
+    </Style>
 </ResourceDictionary>
