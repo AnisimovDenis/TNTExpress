@@ -22,6 +22,8 @@ namespace TNTExpress.Windows.Autorization
         public WinAutorization()
         {
             InitializeComponent();
+
+            tbDragger.MouseDown += delegate { this.DragMove(); };
         }
     }
 }
