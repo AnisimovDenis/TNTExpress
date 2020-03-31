@@ -1,0 +1,30 @@
+﻿<Window x:Class="TNTExpress.Windows.Autorization.WinAutorization"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="13"
+        TextOptions.TextFormattingMode="Ideal"
+        TextOptions.TextRenderingMode="Auto"
+        Background="{DynamicResource MaterialDesignPaper}"
+        FontFamily="{DynamicResource MaterialDesignFont}"
+        Title="WinAutorization" Height="550" Width="450">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        
+        <Grid>
+            <StackPanel Height="25"
+                        VerticalAlignment="Top">
+                <Button x:Name="btnClose"
+                        Content="X"/>
+            </StackPanel>
+            <Image x:Name="imgLogo" />
+        </Grid>
+    </Grid>
+</Window>
