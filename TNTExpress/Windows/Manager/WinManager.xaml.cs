@@ -22,6 +22,14 @@ namespace TNTExpress.Windows.Manager
         public WinManager()
         {
             InitializeComponent();
+
+            snack.IsActive = true;
+            snackMessage.Content = "Проверка";
+        }
+
+        private void snackMessage_ActionClick(object sender, RoutedEventArgs e)
+        {
+            snack.IsActive = false;
         }
     }
 }
