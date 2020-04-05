@@ -67,6 +67,11 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="TNTExpressDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TNTExpressDataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Windows\Autorization\WinAutorization.xaml.cs">
       <DependentUpon>WinAutorization.xaml</DependentUpon>
     </Compile>
@@ -96,6 +101,17 @@
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="TNTExpressDataSet.xsc">
+      <DependentUpon>TNTExpressDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="TNTExpressDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>TNTExpressDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="TNTExpressDataSet.xss">
+      <DependentUpon>TNTExpressDataSet.xsd</DependentUpon>
     </None>
   </ItemGroup>
   <ItemGroup>
