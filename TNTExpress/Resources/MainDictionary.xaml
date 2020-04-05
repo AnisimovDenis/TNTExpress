@@ -53,4 +53,8 @@
         <Setter Property="VerticalAlignment" Value="Center"/>
         <Setter Property="HorizontalAlignment" Value="Center"/>
     </Style>
+
+    <Style TargetType="DataGrid" BasedOn="{StaticResource MaterialDesignDataGrid}">
+        <Setter Property="CanUserReorderColumns" Value="False"/>
+    </Style>
 </ResourceDictionary>

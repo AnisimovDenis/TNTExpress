@@ -68,10 +68,15 @@
                    Width="150"
                    Height="75"/>
             </Grid>
-            
+
             <StackPanel Grid.Row="1">
-                <Button Content="Обработка"
-                        Style="{DynamicResource MainMenuButton}"/>
+                <Button Style="{DynamicResource MainMenuButton}">
+                    <TextBlock TextAlignment="Center">
+                        Пользователи
+                        <LineBreak/>
+                        системы
+                    </TextBlock>
+                </Button>
                 <Button Content="Сортировка"
                         Style="{DynamicResource MainMenuButton}"/>
                 <Button Content="Парковка"
@@ -106,7 +111,7 @@
 
             <TextBlock x:Name="tbHeadLine"
                        Style="{DynamicResource TextBlockHeadLine}">
-                Обработка
+                Пользователи системы
             </TextBlock>
 
             <Grid Grid.Row="1">
@@ -118,10 +123,11 @@
 
                 <DataGrid>
                     <DataGrid.Columns>
-                        <DataGridTextColumn Header="Login"/>
+                        <DataGridTextColumn Header="Login"
+                                            CellStyle="{DynamicResource MaterialDesignDataGridCell}"/>
                         <DataGridTextColumn Header="Password"/>
                         <DataGridTextColumn Header="Role"/>
-                    </DataGrid.Columns>    
+                    </DataGrid.Columns>
                 </DataGrid>
 
                 <materialDesign:DrawerHost HorizontalAlignment="Center"
@@ -138,7 +144,7 @@
                                 <ColumnDefinition />
                                 <ColumnDefinition Width="auto"/>
                             </Grid.ColumnDefinitions>
-                            
+
                             <TextBlock Margin="4"
                                        HorizontalAlignment="Center"
                                        Grid.ColumnSpan="2">
@@ -158,7 +164,7 @@
                                         Content="Удалить"
                                         Style="{DynamicResource ActionButton}"/>
                             </StackPanel>
-                            
+
                             <Button Grid.Column="1"
                                     Command="{x:Static materialDesign:DrawerHost.CloseDrawerCommand}"
                                     CommandParameter="{x:Static Dock.Bottom}"
