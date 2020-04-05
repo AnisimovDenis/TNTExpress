@@ -11,6 +11,8 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using TNTExpress.Classes;
+using TNTExpress.Classes.SnackBarMessage;
 
 namespace TNTExpress.Windows.Manager
 {
@@ -19,17 +21,17 @@ namespace TNTExpress.Windows.Manager
     /// </summary>
     public partial class WinManager : Window
     {
+        DG dG;
         public WinManager()
         {
             InitializeComponent();
 
-            snack.IsActive = true;
-            snackMessage.Content = "Проверка";
+            dG = new DG(dgUser, snack, snackMessage);
+
+            dG.Loader("SELECT * FROM dbo.[UserRole]");
+
+            snackMessage.ActionClick += delegate { dG.CloseSnackbar(); };
         }
 
-        private void snackMessage_ActionClick(object sender, RoutedEventArgs e)
-        {
-            snack.IsActive = false;
-        }
     }
 }
