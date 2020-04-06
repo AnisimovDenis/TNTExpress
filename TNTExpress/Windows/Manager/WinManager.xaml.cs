@@ -23,9 +23,11 @@ namespace TNTExpress.Windows.Manager
     /// </summary>
     public partial class WinManager : Window
     {
+        readonly SB sB;
         readonly DG dG;
         readonly DataBaseQuery dataBaseQuery;
         readonly MyListBox myListBox;
+
         public WinManager()
         {
             InitializeComponent();
@@ -36,6 +38,8 @@ namespace TNTExpress.Windows.Manager
 
             myListBox = new MyListBox(lbRole, snack, snackMessage);
 
+            sB = new SB(snack, snackMessage);
+
             dG.Loader("SELECT * FROM dbo.[UserRole]");
 
             snackMessage.ActionClick += delegate { dG.CloseSnackbar(); };
@@ -45,8 +49,17 @@ namespace TNTExpress.Windows.Manager
 
         private void btnAddRole_Click(object sender, RoutedEventArgs e)
         {
-            dataBaseQuery.InsertData("Role", new string[] { "NameRole" }, new string[] { tbAddRole.Text });
-            tbAddRole.Clear();
+            if (string.IsNullOrEmpty(tbAddRole.Text))
+            {
+                sB.Info("Введите роль");
+            }
+            else
+            {
+                dataBaseQuery.InsertData("Role", new string[] { "NameRole" }, 
+                    new string[] { tbAddRole.Text }, "Данная роль уже есть");
+                tbAddRole.Clear();
+                myListBox.Loader("Role", "NameRole");
+            }
         }
     }
 }

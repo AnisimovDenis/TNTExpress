@@ -33,9 +33,13 @@ namespace TNTExpress.Classes.ListWork
             try
             {
                 connection.Open();
+
                 string sqlCommand = $"SELECT [{column}] FROM dbo.[{table}]";
                 cmd = new SqlCommand(sqlCommand, connection);
                 reader = cmd.ExecuteReader();
+
+                listBox.Items.Clear();
+
                 while (reader.Read())
                 {
                     listBox.Items.Add(reader[0].ToString());

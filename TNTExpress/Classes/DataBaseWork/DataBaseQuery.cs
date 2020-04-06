@@ -22,7 +22,7 @@ namespace TNTExpress.Classes.DataBaseWork
             sB = new SB(snackbar, snackbarMessage);
         }
 
-        public void InsertData(string table, string[] columns, string[] data)
+        public void InsertData(string table, string[] columns, string[] data, string exceptionMessage)
         {
             if (columns.Length != data.Length)
                 throw new ArgumentOutOfRangeException("Различное " +
@@ -62,9 +62,9 @@ namespace TNTExpress.Classes.DataBaseWork
                 cmd = new SqlCommand(sqlCommand, connection);
                 cmd.ExecuteNonQuery();
             }
-            catch (SqlException sqlEx)
+            catch
             {
-                sB.Info(sqlEx.Message);
+                sB.Info(exceptionMessage);
             }
             finally
             {
