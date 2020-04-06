@@ -31,7 +31,8 @@ namespace TNTExpress.Windows.Manager
             dG.Loader("SELECT * FROM dbo.[UserRole]");
 
             snackMessage.ActionClick += delegate { dG.CloseSnackbar(); };
-        }
 
+            btnAddRole.Click += delegate { MessageBox.Show(" "); };
+        }
     }
 }

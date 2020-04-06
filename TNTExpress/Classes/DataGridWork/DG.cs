@@ -13,14 +13,14 @@ namespace TNTExpress.Classes
 {
     public class DG
     {
-        SB sB;
+        readonly SB sB;
         readonly SqlConnection connection = 
             new SqlConnection(@"Data Source=DENIS-PC;
                                 Initial Catalog=TNTExpress;
                                 Integrated Security=True");
         SqlDataAdapter adapter;
         DataTable dataTable;
-        DataGrid dataGrid;
+        readonly DataGrid dataGrid;
 
         public DG(DataGrid dataGrid, 
             Snackbar snackbar, SnackbarMessage snackbarMessage)

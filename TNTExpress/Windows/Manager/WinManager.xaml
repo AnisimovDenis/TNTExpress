@@ -6,6 +6,7 @@
         xmlns:local="clr-namespace:TNTExpress.Windows.Manager"
         mc:Ignorable="d"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:dragablz="clr-namespace:Dragablz;assembly=Dragablz"
         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
         TextElement.FontWeight="Regular"
         TextElement.FontSize="13"
@@ -138,15 +139,79 @@
 
                 <UniformGrid Grid.Row="1"
                              Columns="2">
-                    <TabControl>
-                        <TabItem Header="Добавить  пользователя"
-                                 >
+                    <dragablz:TabablzControl>
+                        <TabItem Header="Добавить  пользователя">
 
                         </TabItem>
                         <TabItem Header="Изменить пользователя">
 
                         </TabItem>
-                    </TabControl>
+                    </dragablz:TabablzControl>
+
+                    <materialDesign:DialogHost Style="{StaticResource MaterialDesignEmbeddedDialogHost}"
+                                               DialogMargin="8">
+                        <materialDesign:DialogHost.DialogContent>
+                            <StackPanel Margin="16">
+                                <TextBlock>
+                                    Добавить роль
+                                </TextBlock>
+                                <TextBox Margin="0 8 0 0"
+                                         HorizontalAlignment="Stretch"/>
+                                <StackPanel Orientation="Horizontal"
+                                            HorizontalAlignment="Right">
+                                    <Button x:Name="btnAddRole"
+                                            Style="{DynamicResource ActionButton}"
+                                            Margin="0 8 8 0"
+                                            Command="materialDesign:DialogHost.CloseDialogCommand">
+                                        Добавлю
+                                    </Button>
+                                    <Button Style="{DynamicResource ActionButton}"
+                                            IsCancel="True"
+                                            Margin="0 8 8 0"
+                                            Command="materialDesign:DialogHost.CloseDialogCommand">
+                                        <Button.CommandParameter>
+                                            <system:Boolean xmlns:system="clr-namespace:System;assembly=mscorlib">
+                                                False
+                                            </system:Boolean>
+                                        </Button.CommandParameter>
+                                        Закрыть
+                                    </Button>
+                                </StackPanel>
+                            </StackPanel>
+                        </materialDesign:DialogHost.DialogContent>
+                        <Border BorderThickness="1"
+                                BorderBrush="Gray"
+                                ClipToBounds="True"
+                                HorizontalAlignment="Stretch">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*" />
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+                                
+                                <materialDesign:ColorZone Background="Gray"
+                                                          BorderBrush="Gray"
+                                                          Grid.Row="1"
+                                                          Effect="{DynamicResource MaterialDesignShadowDepth5}">
+                                    <TextBlock Margin="16"
+                                               Style="{DynamicResource TextBlock}"
+                                               HorizontalAlignment="Left">
+                                        Роли
+                                    </TextBlock>
+                                </materialDesign:ColorZone>
+                                <Button Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}"
+                                        Command="{x:Static materialDesign:DialogHost.OpenDialogCommand}"
+                                        VerticalAlignment="Bottom"
+                                        HorizontalAlignment="Right"
+                                        Grid.Row="0"
+                                        Margin="0 0 28 -20">
+                                    <materialDesign:PackIcon Kind="Plus"
+                                                             Height="22"
+                                                             Width="22" />
+                                </Button>
+                            </Grid>
+                        </Border>
+                    </materialDesign:DialogHost>
                 </UniformGrid>
 
                 <materialDesign:Snackbar x:Name="snack" 
