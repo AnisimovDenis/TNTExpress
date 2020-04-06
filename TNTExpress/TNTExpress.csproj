@@ -72,6 +72,7 @@
     </Compile>
     <Compile Include="Classes\DataBaseWork\DataBaseQuery.cs" />
     <Compile Include="Classes\DataGridWork\DG.cs" />
+    <Compile Include="Classes\ListWork\MyListBox.cs" />
     <Compile Include="Classes\SnackBarMessage\SB.cs" />
     <Compile Include="TNTExpressDataSet.Designer.cs">
       <AutoGen>True</AutoGen>

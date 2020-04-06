@@ -152,18 +152,24 @@
                                                DialogMargin="8">
                         <materialDesign:DialogHost.DialogContent>
                             <StackPanel Margin="16">
-                                <TextBlock>
-                                    Добавить роль
-                                </TextBlock>
-                                <TextBox Margin="0 8 0 0"
-                                         HorizontalAlignment="Stretch"/>
+                                <TextBox x:Name="tbAddRole"
+                                         Style="{StaticResource MaterialDesignFilledTextFieldTextBox}"
+                                         VerticalAlignment="Top"
+                                         AcceptsReturn="True"
+                                         TextWrapping="Wrap"
+                                         MaxWidth="400"
+                                         CaretBrush="{DynamicResource Black}"
+                                         materialDesign:HintAssist.Hint="Добавить роль"
+                                         materialDesign:HintAssist.Foreground="{DynamicResource Black}"
+                                         materialDesign:TextFieldAssist.UnderlineBrush="{DynamicResource Orange}"/>
                                 <StackPanel Orientation="Horizontal"
                                             HorizontalAlignment="Right">
                                     <Button x:Name="btnAddRole"
                                             Style="{DynamicResource ActionButton}"
                                             Margin="0 8 8 0"
-                                            Command="materialDesign:DialogHost.CloseDialogCommand">
-                                        Добавлю
+                                            Command="materialDesign:DialogHost.CloseDialogCommand"
+                                            Click="btnAddRole_Click">
+                                        Добавить
                                     </Button>
                                     <Button Style="{DynamicResource ActionButton}"
                                             IsCancel="True"
@@ -188,7 +194,8 @@
                                     <RowDefinition Height="*" />
                                     <RowDefinition Height="Auto" />
                                 </Grid.RowDefinitions>
-                                
+                                <ListBox x:Name="lbRole"/>
+
                                 <materialDesign:ColorZone Background="Gray"
                                                           BorderBrush="Gray"
                                                           Grid.Row="1"

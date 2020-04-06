@@ -24,6 +24,11 @@ namespace TNTExpress.Classes.DataBaseWork
 
         public void InsertData(string table, string[] columns, string[] data)
         {
+            if (columns.Length != data.Length)
+                throw new ArgumentOutOfRangeException("Различное " +
+                    "количетсво столбцов и данных");
+
+
             string sqlCommand = $"INSERT INTO dbo.[{table}] (";
             try
             {
@@ -55,6 +60,7 @@ namespace TNTExpress.Classes.DataBaseWork
                 }
 
                 cmd = new SqlCommand(sqlCommand, connection);
+                cmd.ExecuteNonQuery();
             }
             catch (SqlException sqlEx)
             {

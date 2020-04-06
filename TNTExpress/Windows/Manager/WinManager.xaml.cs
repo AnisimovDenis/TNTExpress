@@ -12,6 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using TNTExpress.Classes;
+using TNTExpress.Classes.DataBaseWork;
+using TNTExpress.Classes.ListWork;
 using TNTExpress.Classes.SnackBarMessage;
 
 namespace TNTExpress.Windows.Manager
@@ -21,18 +23,30 @@ namespace TNTExpress.Windows.Manager
     /// </summary>
     public partial class WinManager : Window
     {
-        DG dG;
+        readonly DG dG;
+        readonly DataBaseQuery dataBaseQuery;
+        readonly MyListBox myListBox;
         public WinManager()
         {
             InitializeComponent();
 
             dG = new DG(dgUser, snack, snackMessage);
 
+            dataBaseQuery = new DataBaseQuery(snack, snackMessage);
+
+            myListBox = new MyListBox(lbRole, snack, snackMessage);
+
             dG.Loader("SELECT * FROM dbo.[UserRole]");
 
             snackMessage.ActionClick += delegate { dG.CloseSnackbar(); };
 
-            btnAddRole.Click += delegate { MessageBox.Show(" "); };
+            myListBox.Loader("Role", "NameRole");
+        }
+
+        private void btnAddRole_Click(object sender, RoutedEventArgs e)
+        {
+            dataBaseQuery.InsertData("Role", new string[] { "NameRole" }, new string[] { tbAddRole.Text });
+            tbAddRole.Clear();
         }
     }
 }
