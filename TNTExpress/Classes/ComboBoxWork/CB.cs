@@ -5,36 +5,49 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows;
+using System.Windows.Controls;
 using TNTExpress.Classes.SnackBarMessage;
 
-namespace TNTExpress.Classes.DataBaseWork
+namespace TNTExpress.Classes.ComboBoxWork
 {
-    public class DataBaseQuery
+    class CB
     {
-        SB sB;
+        readonly SB sB;
         readonly SqlConnection connection =
             new SqlConnection(@"Data Source=DENIS-PC;
                                 Initial Catalog=TNTExpress;
                                 Integrated Security=True");
         SqlCommand cmd;
-        public DataBaseQuery(Snackbar snackbar, SnackbarMessage snackbarMessage)
+        SqlDataReader reader;
+        ComboBox comboBox;
+
+        public CB(ComboBox comboBox,
+            Snackbar snackbar, SnackbarMessage snackbarMessage)
         {
+            this.comboBox = comboBox;
             sB = new SB(snackbar, snackbarMessage);
         }
 
-        public void InsertData(string sqlCommand, string exceptionMessage)
+        public void Loader(string table, string column)
         {
             try
             {
                 connection.Open();
+
+                string sqlCommand = $"SELECT [{column}] FROM dbo.[{table}]";
                 cmd = new SqlCommand(sqlCommand, connection);
-                cmd.ExecuteNonQuery();
-                sB.Info("Данные успешно добавлены");
+                reader = cmd.ExecuteReader();
+
+                comboBox.Items.Clear();
+
+                while (reader.Read())
+                {
+                    comboBox.Items.Add(reader[0].ToString());
+                }
             }
-            catch (Exception ex)
+            catch (SqlException sqlEx)
             {
-                sB.Info(exceptionMessage);
+                sB.Info(sqlEx.Message);
             }
             finally
             {
