@@ -23,18 +23,19 @@ namespace TNTExpress.Classes.DataBaseWork
             sB = new SB(snackbar, snackbarMessage);
         }
 
-        public void InsertData(string sqlCommand, string exceptionMessage)
+        public void SqlQuery(string sqlCommand, string infoSuccess, string exceptionMessage)
         {
             try
             {
                 connection.Open();
                 cmd = new SqlCommand(sqlCommand, connection);
                 cmd.ExecuteNonQuery();
-                sB.Info("Данные успешно добавлены");
+                sB.Info(infoSuccess);
             }
             catch (Exception ex)
             {
                 sB.Info(exceptionMessage);
+                sB.Info(ex.Message);
             }
             finally
             {

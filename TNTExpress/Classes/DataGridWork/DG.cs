@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -21,6 +22,16 @@ namespace TNTExpress.Classes
         SqlDataAdapter adapter;
         DataTable dataTable;
         readonly DataGrid dataGrid;
+
+        private string firstColumn;
+        public string FirstColumn
+        {
+            get
+            {
+                firstColumn = SelectColumn(0);
+                return firstColumn;
+            }
+        }
 
         public DG(DataGrid dataGrid, 
             Snackbar snackbar, SnackbarMessage snackbarMessage)
@@ -42,6 +53,25 @@ namespace TNTExpress.Classes
             {
                 sB.Info(sqlEx.Message);
             }
+        }
+
+        public string SelectColumn(int numColumn)
+        {
+            string id = null;
+            if (dataGrid != null)
+            {
+                DataRowView dataRowView = dataGrid.SelectedItem as DataRowView;
+                if (dataRowView != null)
+                {
+                    DataRow dataRow = (DataRow)dataRowView.Row;
+                    foreach (var item in dataRow.ItemArray)
+                    {
+                        Debug.WriteLine(item);
+                    }
+                    id = dataRow.ItemArray[numColumn].ToString();
+                }
+            }
+            return id;
         }
 
         public void CloseSnackbar()
