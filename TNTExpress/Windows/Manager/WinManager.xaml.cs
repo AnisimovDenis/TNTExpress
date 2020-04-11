@@ -17,7 +17,7 @@ using TNTExpress.Classes.DataBaseWork;
 using TNTExpress.Classes.Extra;
 using TNTExpress.Classes.ListWork;
 using TNTExpress.Classes.SnackBarMessage;
-using TNTExpress.Windows.Autorization;
+using TNTExpress.Windows.Autotification;
 
 namespace TNTExpress.Windows.Manager
 {
@@ -33,6 +33,10 @@ namespace TNTExpress.Windows.Manager
             tbDragger.MouseDown += delegate { this.DragMove(); };
 
             btnBack.Click += delegate { ExtraClass.OpenWinAutorization(this); };
+
+            btnHidde.Click += delegate { ExtraClass.MinimizedWindow(this); };
+
+            btnClose.Click += delegate { ExtraClass.Shutdown(); };
         }
     }
 }

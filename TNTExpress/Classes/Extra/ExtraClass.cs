@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
-using TNTExpress.Windows.Autorization;
+using TNTExpress.Windows.Autotification;
 
 namespace TNTExpress.Classes.Extra
 {
@@ -25,6 +25,16 @@ namespace TNTExpress.Classes.Extra
                     break;
             }
             
+        }
+
+        public static void MinimizedWindow(Window window)
+        {
+            window.WindowState = WindowState.Minimized;
+        }
+
+        public static void Shutdown()
+        {
+            Application.Current.Shutdown();
         }
     }
 }

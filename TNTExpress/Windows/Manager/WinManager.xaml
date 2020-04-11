@@ -19,7 +19,7 @@
         WindowStartupLocation="CenterScreen"
         WindowStyle="None"
         ResizeMode="NoResize"
-        Icon="/TNTExpress;component/Resources/truck_icon-icons.com_52347.png">
+        Icon="/TNTExpress;component/Resources/TNTExpress_logo_menu.png">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
@@ -67,7 +67,7 @@
 
             <Grid Background="{DynamicResource MightOrange}">
                 <Image x:Name="imgLogo" 
-                   Source="/TNTExpress;component/Resources/TNT_logo_express.png"
+                   Source="/TNTExpress;component/Resources/TNTExpress_logo.png"
                    Width="150"
                    Height="75"/>
             </Grid>
