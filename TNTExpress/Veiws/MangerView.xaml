@@ -65,13 +65,10 @@
                             Orientation="Horizontal"
                             Margin="0 0 10 0">
                     <TextBox x:Name="tbSearch"
-                             VerticalAlignment="Center"
-                             HorizontalAlignment="Center"
                              Width="150"
                              Height="25"
                              Margin="10"
                              CaretBrush="{DynamicResource Black}"
-                             IsEnabled="{Binding Path=IsChecked, ElementName=MaterialDesignFilledPasswordFieldPasswordBoxEnabledComboBox}"
                              materialDesign:HintAssist.Hint="Поиск по логину"
                              materialDesign:HintAssist.Foreground="{DynamicResource Black}"
                              materialDesign:TextFieldAssist.UnderlineBrush="{DynamicResource Transparent}"
@@ -94,13 +91,13 @@
                 <UniformGrid Grid.Row="1"
                              Columns="2">
                     <dragablz:TabablzControl>
-                        <TabItem Header="Добавить  пользователя">
+                        <TabItem Header="Добавить пользователя">
                             <StackPanel Margin="10">
                                 <TextBox x:Name="tbLogin"
                                          Style="{StaticResource MaterialDesignFilledTextFieldTextBox}"
                                          VerticalAlignment="Top"
                                          MaxWidth="400"
-                                         Margin="0 5"
+                                         Margin="0 10"
                                          CaretBrush="{DynamicResource Black}"
                                          materialDesign:HintAssist.Hint="Логин"
                                          materialDesign:HintAssist.Foreground="{DynamicResource Black}"
@@ -108,9 +105,8 @@
                                 <TextBox x:Name="tbPassword"
                                          Style="{StaticResource MaterialDesignFilledTextFieldTextBox}"
                                          VerticalAlignment="Top"
-                                         Margin="0 5"
+                                         Margin="0 10"
                                          CaretBrush="{DynamicResource Black}"
-                                         IsEnabled="{Binding Path=IsChecked, ElementName=MaterialDesignFilledPasswordFieldPasswordBoxEnabledComboBox}"
                                          materialDesign:HintAssist.Hint="Пароль"
                                          materialDesign:HintAssist.Foreground="{DynamicResource Black}"
                                          materialDesign:TextFieldAssist.UnderlineBrush="{DynamicResource Orange}"/>
@@ -119,7 +115,7 @@
                                           materialDesign:HintAssist.Foreground="{DynamicResource Black}"
                                           materialDesign:TextFieldAssist.UnderlineBrush="{DynamicResource Orange}"
                                           MinWidth="72"
-                                          Margin="15 5"
+                                          Margin="15 10"
                                           ItemsSource="{Binding LongListToTestComboVirtualization}"
                                           Style="{StaticResource MaterialDesignFloatingHintComboBox}">
                                     <ComboBox.ItemsPanel>
@@ -143,7 +139,7 @@
                                          Text="{Binding SelectedItem.Login, ElementName=dgUser}"
                                          VerticalAlignment="Top"
                                          MaxWidth="400"
-                                         Margin="0 5"
+                                         Margin="0 10"
                                          CaretBrush="{DynamicResource Black}"
                                          materialDesign:HintAssist.Hint="Логин"
                                          materialDesign:HintAssist.Foreground="{DynamicResource Black}"
@@ -152,10 +148,8 @@
                                          Style="{StaticResource MaterialDesignFilledTextFieldTextBox}"
                                          Text="{Binding SelectedItem.Password, ElementName=dgUser}"
                                          VerticalAlignment="Top"
-                                         Margin="0 5"
-                                         CaretBrush="{DynamicResource Black}"
-                                         IsEnabled="{Binding Path=IsChecked, ElementName=MaterialDesignFilledPasswordFieldPasswordBoxEnabledComboBox}"
-                                         materialDesign:HintAssist.Hint="Пароль"
+                                         Margin="0 10"
+                                         CaretBrush="{DynamicResource Black}" materialDesign:HintAssist.Hint="Пароль"
                                          materialDesign:HintAssist.Foreground="{DynamicResource Black}"
                                          materialDesign:TextFieldAssist.UnderlineBrush="{DynamicResource Orange}"/>
                                 <ComboBox x:Name="cbEditRole"
@@ -164,7 +158,7 @@
                                           materialDesign:HintAssist.Foreground="{DynamicResource Black}"
                                           materialDesign:TextFieldAssist.UnderlineBrush="{DynamicResource Orange}"
                                           MinWidth="72"
-                                          Margin="15 5"
+                                          Margin="15 10"
                                           ItemsSource="{Binding LongListToTestComboVirtualization}"
                                           Style="{StaticResource MaterialDesignFloatingHintComboBox}">
                                     <ComboBox.ItemsPanel>

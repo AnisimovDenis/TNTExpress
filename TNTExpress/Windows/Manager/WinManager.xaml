@@ -19,7 +19,7 @@
         WindowStartupLocation="CenterScreen"
         WindowStyle="None"
         ResizeMode="NoResize"
-        Icon="/TNTExpress;component/Resources/TNT_logo_menu.png">
+        Icon="/TNTExpress;component/Resources/truck_icon-icons.com_52347.png">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
@@ -91,7 +91,8 @@
             <UniformGrid Grid.Row="2"
                          Rows="0"
                          Columns="2">
-                <Button Style="{DynamicResource ExtraMenuButton}">
+                <Button x:Name="btnBack" 
+                        Style="{DynamicResource ExtraMenuButton}">
                     <materialDesign:PackIcon Kind="ArrowLeft"
                                              Height="25"
                                              Width="30"/>
@@ -119,9 +120,9 @@
             </materialDesign:Snackbar>
         </Grid>
 
-        <!--<Border BorderBrush="{DynamicResource Black}"
+        <Border BorderBrush="{DynamicResource Black}"
                 BorderThickness="1"
                 Grid.RowSpan="2"
-                Grid.ColumnSpan="2"/>-->
+                Grid.ColumnSpan="2"/>
     </Grid>
 </Window>

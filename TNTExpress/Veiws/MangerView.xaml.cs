@@ -74,6 +74,10 @@ namespace TNTExpress.Veiws
             {
                 sB.Info("Введите пароль");
             }
+            else if (string.IsNullOrEmpty(cbRole.Text))
+            {
+                sB.Info("Введите роль");
+            }
             else
             {
                 dataBaseQuery.SqlQuery("INSERT INTO dbo.[User] (Login, Password, IdRole) " +
@@ -89,14 +93,29 @@ namespace TNTExpress.Veiws
 
         private void btnEditUser_Click(object sender, RoutedEventArgs e)
         {
-            dataBaseQuery.SqlQuery("UPDATE dbo.[User] " +
+            if (string.IsNullOrEmpty(tbEditLogin.Text))
+            {
+                sB.Info("Введите логин");
+            }
+            else if (string.IsNullOrEmpty(tbEditPassword.Text))
+            {
+                sB.Info("Введите пароль");
+            }
+            else if (string.IsNullOrEmpty(cbEditRole.Text))
+            {
+                sB.Info("Введите роль");
+            }
+            else
+            {
+                dataBaseQuery.SqlQuery("UPDATE dbo.[User] " +
                 $"SET [Login] = '{tbEditLogin.Text}'," +
                 $"[Password] = '{tbEditPassword.Text}'," +
                 $"[IdRole] = (SELECT Id FROM dbo.[Role] " +
                 $"WHERE NameRole = '{cbEditRole.Text}')" +
                 $"WHERE [Login] = '{dG.FirstColumn}'", "Данные успешно изменены",
                 "Пользователь с таким логином уже есть");
-            dG.Loader("SELECT * FROM dbo.[UserRole]");
+                dG.Loader("SELECT * FROM dbo.[UserRole]");
+            }
         }
 
         private void dgUser_SelectionChanged(object sender, SelectionChangedEventArgs e)
