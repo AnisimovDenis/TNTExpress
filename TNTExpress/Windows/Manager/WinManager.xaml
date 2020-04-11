@@ -6,6 +6,8 @@
         xmlns:local="clr-namespace:TNTExpress.Windows.Manager"
         mc:Ignorable="d"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:dragablz="clr-namespace:Dragablz;assembly=Dragablz"
+        xmlns:view="clr-namespace:TNTExpress.Veiws"
         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
         TextElement.FontWeight="Regular"
         TextElement.FontSize="13"
@@ -13,10 +15,11 @@
         TextOptions.TextRenderingMode="Auto"
         Background="{DynamicResource MaterialDesignPaper}"
         FontFamily="{DynamicResource MaterialDesignFont}"
-        Title="Авторизация" Height="700" Width="900"
+        Title="Авторизация" Height="750" Width="900"
         WindowStartupLocation="CenterScreen"
         WindowStyle="None"
-        ResizeMode="NoResize">
+        ResizeMode="NoResize"
+        Icon="/TNTExpress;component/Resources/TNT_logo_menu.png">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
@@ -102,103 +105,21 @@
         </Grid>
 
         <Grid Grid.Row="1"
-              Grid.Column="1"
-              Background="GhostWhite">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="75"/>
-                <RowDefinition />
-            </Grid.RowDefinitions>
+              Grid.Column="1">
 
-            <TextBlock x:Name="tbHeadLine"
-                       Style="{DynamicResource TextBlockHeadLine}">
-                Пользователи системы
-            </TextBlock>
+            <view:MangerView Grid.Row="1"
+              Grid.Column="1"/>
 
-            <Grid Grid.Row="1">
-                <Grid.RowDefinitions>
-                    <RowDefinition />
-                    <RowDefinition Height="auto"/>
-                    <RowDefinition Height="auto"/>
-                </Grid.RowDefinitions>
-
-                <DataGrid>
-                    <DataGrid.Columns>
-                        <DataGridTextColumn Header="Login"
-                                            CellStyle="{DynamicResource MaterialDesignDataGridCell}"/>
-                        <DataGridTextColumn Header="Password"/>
-                        <DataGridTextColumn Header="Role"/>
-                    </DataGrid.Columns>
-                </DataGrid>
-
-                <materialDesign:DrawerHost HorizontalAlignment="Center"
-                                           VerticalAlignment="Center"
-                                           BorderThickness="2"
-                                           Grid.Row="1">
-                    <materialDesign:DrawerHost.BottomDrawerContent>
-                        <Grid Margin="16">
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="auto"/>
-                                <RowDefinition />
-                            </Grid.RowDefinitions>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition />
-                                <ColumnDefinition Width="auto"/>
-                            </Grid.ColumnDefinitions>
-
-                            <TextBlock Margin="4"
-                                       HorizontalAlignment="Center"
-                                       Grid.ColumnSpan="2">
-                                Меню
-                            </TextBlock>
-
-                            <StackPanel Orientation="Horizontal"
-                                        Grid.ColumnSpan="2"
-                                        Grid.Row="1">
-                                <Button x:Name="btnAdd"
-                                        Content="Добавить"
-                                        Style="{DynamicResource ActionButton}"/>
-                                <Button x:Name="btnEdit"
-                                        Content="Изменить"
-                                        Style="{DynamicResource ActionButton}"/>
-                                <Button x:Name="btnDelete"
-                                        Content="Удалить"
-                                        Style="{DynamicResource ActionButton}"/>
-                            </StackPanel>
-
-                            <Button Grid.Column="1"
-                                    Command="{x:Static materialDesign:DrawerHost.CloseDrawerCommand}"
-                                    CommandParameter="{x:Static Dock.Bottom}"
-                                    Margin="4"
-                                    HorizontalAlignment="Right"
-                                    VerticalAlignment="Top"
-                                    Style="{DynamicResource SmallButtons}"
-                                    Foreground="{DynamicResource Black}">
-                                <materialDesign:PackIcon Kind="Close"/>
-                            </Button>
-                        </Grid>
-                    </materialDesign:DrawerHost.BottomDrawerContent>
-
-                    <Button Command="{x:Static materialDesign:DrawerHost.OpenDrawerCommand}"
-                            CommandParameter="{x:Static Dock.Bottom}"
-                            Style="{DynamicResource ExtraMenuButton}"
-                            Grid.Row="1"
-                            Grid.Column="2"
-                            Margin="4">
-                        <materialDesign:PackIcon Kind="Plus" />
-                    </Button>
-                </materialDesign:DrawerHost>
-
-                <materialDesign:Snackbar x:Name="snack" 
-                                         IsActive="False"
-                                         Grid.Row="2">
-                    <materialDesign:SnackbarMessage x:Name="snackMessage"
-                                                    ActionContent="OK"
-                                                    ActionClick="snackMessage_ActionClick"/>
-                </materialDesign:Snackbar>
-            </Grid>
+            <materialDesign:Snackbar x:Name="snack"
+                                     MessageQueue="{materialDesign:MessageQueue}"
+                                     IsActive="False"
+                                     Grid.Row="2">
+                <materialDesign:SnackbarMessage x:Name="snackMessage"
+                                                ActionContent="OK"/>
+            </materialDesign:Snackbar>
         </Grid>
 
-        <!--<Border BorderBrush="Black"
+        <!--<Border BorderBrush="{DynamicResource Black}"
                 BorderThickness="1"
                 Grid.RowSpan="2"
                 Grid.ColumnSpan="2"/>-->

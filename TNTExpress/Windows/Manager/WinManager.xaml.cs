@@ -11,6 +11,11 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using TNTExpress.Classes;
+using TNTExpress.Classes.ComboBoxWork;
+using TNTExpress.Classes.DataBaseWork;
+using TNTExpress.Classes.ListWork;
+using TNTExpress.Classes.SnackBarMessage;
 
 namespace TNTExpress.Windows.Manager
 {
@@ -23,13 +28,6 @@ namespace TNTExpress.Windows.Manager
         {
             InitializeComponent();
 
-            snack.IsActive = true;
-            snackMessage.Content = "Проверка";
-        }
-
-        private void snackMessage_ActionClick(object sender, RoutedEventArgs e)
-        {
-            snack.IsActive = false;
         }
     }
 }
