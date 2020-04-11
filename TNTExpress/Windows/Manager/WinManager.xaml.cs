@@ -14,6 +14,7 @@ using System.Windows.Shapes;
 using TNTExpress.Classes;
 using TNTExpress.Classes.ComboBoxWork;
 using TNTExpress.Classes.DataBaseWork;
+using TNTExpress.Classes.Extra;
 using TNTExpress.Classes.ListWork;
 using TNTExpress.Classes.SnackBarMessage;
 using TNTExpress.Windows.Autorization;
@@ -31,12 +32,7 @@ namespace TNTExpress.Windows.Manager
 
             tbDragger.MouseDown += delegate { this.DragMove(); };
 
-            btnBack.Click += delegate
-            {
-                WinAutorization winAutorization = new WinAutorization();
-                winAutorization.Show();
-                this.Close();
-            };
+            btnBack.Click += delegate { ExtraClass.OpenWinAutorization(this); };
         }
     }
 }
