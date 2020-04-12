@@ -73,14 +73,16 @@
             </Grid>
 
             <StackPanel Grid.Row="1">
-                <Button Style="{DynamicResource MainMenuButton}">
+                <Button x:Name="btnUser"
+ Style="{DynamicResource MainMenuButton}">
                     <TextBlock TextAlignment="Center">
                         Пользователи
                         <LineBreak/>
                         системы
                     </TextBlock>
                 </Button>
-                <Button Content="Сортировка"
+                
+                <Button x:Name="btnEmployee" Content="Сотрудники"
                         Style="{DynamicResource MainMenuButton}"/>
                 <Button Content="Парковка"
                         Style="{DynamicResource MainMenuButton}"/>
@@ -108,8 +110,12 @@
         <Grid Grid.Row="1"
               Grid.Column="1">
 
-            <view:MangerView Grid.Row="1"
-              Grid.Column="1"/>
+            <view:MangerView x:Name="managerView"
+                             Visibility="Hidden"
+                             Grid.Row="1"
+                             Grid.Column="1"/>
+            
+            
 
             <materialDesign:Snackbar x:Name="snack"
                                      MessageQueue="{materialDesign:MessageQueue}"
@@ -120,9 +126,9 @@
             </materialDesign:Snackbar>
         </Grid>
 
-        <Border BorderBrush="{DynamicResource Black}"
+        <!--<Border BorderBrush="{DynamicResource Black}"
                 BorderThickness="1"
                 Grid.RowSpan="2"
-                Grid.ColumnSpan="2"/>
+                Grid.ColumnSpan="2"/>-->
     </Grid>
 </Window>
