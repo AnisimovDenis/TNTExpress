@@ -15,7 +15,7 @@
         TextOptions.TextRenderingMode="Auto"
         Background="{DynamicResource MaterialDesignPaper}"
         FontFamily="{DynamicResource MaterialDesignFont}"
-        Title="Авторизация" Height="840" Width="1080"
+        Title="Авторизация" Height="950" Width="1250"
         WindowStartupLocation="CenterScreen"
         WindowStyle="None"
         ResizeMode="NoResize"
@@ -68,13 +68,13 @@
             <Grid Background="{DynamicResource MightOrange}">
                 <Image x:Name="imgLogo" 
                    Source="/TNTExpress;component/Resources/TNTExpress_logo.png"
-                   Width="150"
+                   Width="125"
                    Height="75"/>
             </Grid>
 
             <StackPanel Grid.Row="1">
                 <Button x:Name="btnUser"
- Style="{DynamicResource MainMenuButton}">
+ Style="{DynamicResource MainMenuButton}" Click="btnUser_Click">
                     <TextBlock TextAlignment="Center">
                         Пользователи
                         <LineBreak/>
@@ -109,69 +109,69 @@
 
         <Grid Grid.Row="1"
               Grid.Column="1">
-
-
-
-            <Grid.RowDefinitions>
-                <RowDefinition Height="75"/>
-                <RowDefinition />
-            </Grid.RowDefinitions>
-
-            <TextBlock x:Name="tbHeadLine"
-                   Style="{DynamicResource TextBlockHeadLine}">
-                Сотрудники
-            </TextBlock>
-
-            <view:MangerView x:Name="managerView"
+            
+            <view:UserView x:Name="userView"
                              Visibility="Hidden"
                              Grid.Row="1"
                              Grid.Column="1"/>
 
-
-            <Grid Grid.Row="1">
+            <Grid x:Name="gEmployee">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="0.5*"/>
-                    <RowDefinition Height="0.5*"/>
+                    <RowDefinition Height="75"/>
+                    <RowDefinition />
                 </Grid.RowDefinitions>
 
-                <DataGrid x:Name="dgEmployee"
+                <TextBlock x:Name="tbHeadLine"
+                   Style="{DynamicResource TextBlockHeadLine}">
+                Сотрудники
+                </TextBlock>
+
+
+
+
+                <Grid Grid.Row="1">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="0.5*"/>
+                        <RowDefinition Height="0.5*"/>
+                    </Grid.RowDefinitions>
+
+                    <DataGrid x:Name="dgEmployee"
                           AutoGenerateColumns="False"
-                          IsReadOnly="True" SelectionChanged="dgUser_SelectionChanged">
-                    <DataGrid.Columns>
-                        <DataGridTextColumn Header="Имя"
-                                        Binding="{Binding FirstName}"
-                                        Width="125"
-                                        MinWidth="150"/>
-                        <DataGridTextColumn Header="Фамилия"
-                                        Binding="{Binding LastName}"
-                                        Width="125"
-                                        MinWidth="150"/>
-                        <DataGridTextColumn Header="Логин"
+                          IsReadOnly="True">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Логин"
                                         Binding="{Binding Login}"
+                                        Width="100"
+                                        MinWidth="100"/>
+                            <DataGridTextColumn Header="Роль"
+                                        Binding="{Binding NameRole}"
                                         Width="125"
+                                        MinWidth="125"/>
+                            <DataGridTextColumn Header="Сотрудник"
+                                        Binding="{Binding Employee}"
+                                        Width="150"
                                         MinWidth="150"/>
-                        <DataGridTextColumn Header="Номер телефона"
+                            <DataGridTextColumn Header="Номер телефона"
                                         Binding="{Binding PhoneNumber}"
-                                        Width="125"
-                                        MinWidth="150"/>
-                        <DataGridTextColumn Header="Почта"
+                                        Width="130"
+                                        MinWidth="135"/>
+                            <DataGridTextColumn Header="Почта"
                                         Binding="{Binding Email}"
                                         Width="*"
-                                        MinWidth="150"/>
-                    </DataGrid.Columns>
-                    <DataGrid.ContextMenu>
-                        <ContextMenu>
-                            <MenuItem Header="Удалить"
-                                  Click="MenuItem_Click"/>
-                        </ContextMenu>
-                    </DataGrid.ContextMenu>
-                </DataGrid>
+                                        MinWidth="400"/>
+                        </DataGrid.Columns>
+                        <DataGrid.ContextMenu>
+                            <ContextMenu>
+                                <MenuItem Header="Удалить"/>
+                            </ContextMenu>
+                        </DataGrid.ContextMenu>
+                    </DataGrid>
 
-                <StackPanel VerticalAlignment="Top"
+                    <StackPanel VerticalAlignment="Top"
                         HorizontalAlignment="Right"
                         Orientation="Horizontal"
                         Margin="0 0 10 0">
-                    <TextBox x:Name="tbSearch"
+                        <TextBox x:Name="tbSearch"
                          Width="150"
                          Height="25"
                          Margin="10"
@@ -180,89 +180,36 @@
                          materialDesign:HintAssist.Foreground="{DynamicResource Black}"
                          materialDesign:TextFieldAssist.UnderlineBrush="{DynamicResource Transparent}"
                          BorderBrush="Transparent"/>
-                    <materialDesign:PackIcon Kind="Search"
+                        <materialDesign:PackIcon Kind="Search"
                                          VerticalAlignment="Center"
                                          HorizontalAlignment="Center"
                                          Height="20"
                                          Width="20"
                                          Margin="0 0 5 0"/>
-                </StackPanel>
-                <Rectangle Stroke="Black"
+                    </StackPanel>
+                    <Rectangle Stroke="Black"
                        HorizontalAlignment="Right"
                        VerticalAlignment="Top"
                        Width="190" Height="35"
                        Margin="0 5 10 0"/>
 
 
-                <UniformGrid Grid.Row="1"
-                             Columns="2">
-                    <dragablz:TabablzControl>
-                        <TabItem Header="Добавить пользователя">
+                    <Grid Grid.Row="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+
+
+                        <Grid>
                             <StackPanel Margin="10">
-                                <TextBox x:Name="tbLogin"
-                                     Style="{StaticResource MaterialDesignFilledTextFieldTextBox}"
-                                     VerticalAlignment="Top"
-                                     Margin="0 10"
-                                     CaretBrush="{DynamicResource Black}"
-                                     materialDesign:HintAssist.Hint="Логин"
-                                     materialDesign:HintAssist.Foreground="{DynamicResource Black}"
-                                     materialDesign:TextFieldAssist.UnderlineBrush="{DynamicResource Orange}"/>
-                                <TextBox x:Name="tbPassword"
-                                      Style="{StaticResource MaterialDesignFilledTextFieldTextBox}"
-                                      VerticalAlignment="Top"
-                                      Margin="0 10"
-                                      CaretBrush="{DynamicResource Black}"
-                                      materialDesign:HintAssist.Hint="Пароль"
-                                      materialDesign:HintAssist.Foreground="{DynamicResource Black}"
-                                      materialDesign:TextFieldAssist.UnderlineBrush="{DynamicResource Orange}"/>
-                                <ComboBox x:Name="cbRole"
-                                      materialDesign:HintAssist.Hint="Роль"
-                                      materialDesign:HintAssist.Foreground="{DynamicResource Black}"
-                                      materialDesign:TextFieldAssist.UnderlineBrush="{DynamicResource Orange}"
-                                      MinWidth="72"
-                                      Margin="15 10"
-                                      ItemsSource="{Binding LongListToTestComboVirtualization}"
-                                      Style="{StaticResource MaterialDesignFloatingHintComboBox}">
-                                    <ComboBox.ItemsPanel>
-                                        <ItemsPanelTemplate>
-                                            <VirtualizingStackPanel />
-                                        </ItemsPanelTemplate>
-                                    </ComboBox.ItemsPanel>
-                                </ComboBox>
-                                <Button x:Name="btnAddUser"
-                                    Content="Добавить пользователя"
-                                    Style="{DynamicResource ActionButton}"
-                                    Width="250"
-                                    Margin="0 15"
-                                    Click="btnAddUser_Click"/>
-                            </StackPanel>
-                        </TabItem>
-                        <TabItem Header="Изменить пользователя">
-                            <StackPanel Margin="10">
-                                <TextBox x:Name="tbEditLogin"
-                                     Style="{StaticResource MaterialDesignFilledTextFieldTextBox}"
-                                     Text="{Binding SelectedItem.Login, ElementName=dgUser}"
-                                     VerticalAlignment="Top"
-                                     Margin="0 10"
-                                     CaretBrush="{DynamicResource Black}"
-                                     materialDesign:HintAssist.Hint="Логин"
-                                     materialDesign:HintAssist.Foreground="{DynamicResource Black}"
-                                     materialDesign:TextFieldAssist.UnderlineBrush="{DynamicResource Orange}"/>
-                                <TextBox x:Name="tbEditPassword"
-                                     Style="{StaticResource MaterialDesignFilledTextFieldTextBox}"
-                                     Text="{Binding SelectedItem.Password, ElementName=dgUser}"
-                                     VerticalAlignment="Top"
-                                     Margin="0 10"
-                                     CaretBrush="{DynamicResource Black}" materialDesign:HintAssist.Hint="Пароль"
-                                     materialDesign:HintAssist.Foreground="{DynamicResource Black}"
-                                     materialDesign:TextFieldAssist.UnderlineBrush="{DynamicResource Orange}"/>
-                                <ComboBox x:Name="cbEditRole"
+                                <ComboBox x:Name="cbLogin"
                                       Text="{Binding SelectedItem.NameRole, ElementName=dgUser}"
                                       materialDesign:HintAssist.Hint="Роль"
                                       materialDesign:HintAssist.Foreground="{DynamicResource Black}"
                                       materialDesign:TextFieldAssist.UnderlineBrush="{DynamicResource Orange}"
                                       MinWidth="72"
-                                      Margin="15 10"
+                                      Margin="15 15"
                                       ItemsSource="{Binding LongListToTestComboVirtualization}"
                                       Style="{StaticResource MaterialDesignFloatingHintComboBox}">
                                     <ComboBox.ItemsPanel>
@@ -271,103 +218,119 @@
                                         </ItemsPanelTemplate>
                                     </ComboBox.ItemsPanel>
                                 </ComboBox>
-                                <Button x:Name="btnEditUser"
-                                    IsEnabled="False"
-                                    Content="Изменить пользователя"
+                                <TextBox x:Name="tbFirstName"
+                                      Style="{StaticResource MaterialDesignFilledTextFieldTextBox}"
+                                      VerticalAlignment="Top"
+                                      Margin="0 5"
+                                      CaretBrush="{DynamicResource Black}"
+                                      materialDesign:HintAssist.Hint="Имя"
+                                      materialDesign:HintAssist.Foreground="{DynamicResource Black}"
+                                      materialDesign:TextFieldAssist.UnderlineBrush="{DynamicResource Orange}"/>
+                                <TextBox x:Name="tbLastName"
+                                      Style="{StaticResource MaterialDesignFilledTextFieldTextBox}"
+                                      VerticalAlignment="Top"
+                                      Margin="0 5"
+                                      CaretBrush="{DynamicResource Black}"
+                                      materialDesign:HintAssist.Hint="Фамилия"
+                                      materialDesign:HintAssist.Foreground="{DynamicResource Black}"
+                                      materialDesign:TextFieldAssist.UnderlineBrush="{DynamicResource Orange}"/>
+                                <TextBox x:Name="tbNumberPhone"
+                                      Style="{StaticResource MaterialDesignFilledTextFieldTextBox}"
+                                      VerticalAlignment="Top"
+                                      Margin="0 5"
+                                      CaretBrush="{DynamicResource Black}"
+                                      materialDesign:HintAssist.Hint="Номер телефона"
+                                      materialDesign:HintAssist.Foreground="{DynamicResource Black}"
+                                      materialDesign:TextFieldAssist.UnderlineBrush="{DynamicResource Orange}"/>
+                                <TextBox x:Name="tbEmail"
+                                      Style="{StaticResource MaterialDesignFilledTextFieldTextBox}"
+                                      VerticalAlignment="Top"
+                                      Margin="0 5"
+                                      CaretBrush="{DynamicResource Black}"
+                                      materialDesign:HintAssist.Hint="Email"
+                                      materialDesign:HintAssist.Foreground="{DynamicResource Black}"
+                                      materialDesign:TextFieldAssist.UnderlineBrush="{DynamicResource Orange}"/>
+                                <Button x:Name="btnAddUser"
+                                    Content="Добавить пользователя"
                                     Style="{DynamicResource ActionButton}"
                                     Width="250"
-                                    Margin="0 15"
+                                    Margin="0 5"
+                                    Click="btnAddUser_Click"/>
+                            </StackPanel>
+                        </Grid>
+                        <Grid Grid.Column="1">
+                            <StackPanel Margin="10">
+                                <ComboBox x:Name="cbEditLogin"
+                                      Text="{Binding SelectedItem.NameRole, ElementName=dgUser}"
+                                      materialDesign:HintAssist.Hint="Логин"
+                                      materialDesign:HintAssist.Foreground="{DynamicResource Black}"
+                                      materialDesign:TextFieldAssist.UnderlineBrush="{DynamicResource Orange}"
+                                      MinWidth="72"
+                                      Margin="15 15"
+                                      ItemsSource="{Binding LongListToTestComboVirtualization}"
+                                      Style="{StaticResource MaterialDesignFloatingHintComboBox}">
+                                    <ComboBox.ItemsPanel>
+                                        <ItemsPanelTemplate>
+                                            <VirtualizingStackPanel />
+                                        </ItemsPanelTemplate>
+                                    </ComboBox.ItemsPanel>
+                                </ComboBox>
+                                <TextBox x:Name="tbEditFirstName"
+                                      Style="{StaticResource MaterialDesignFilledTextFieldTextBox}"
+                                      VerticalAlignment="Top"
+                                      Margin="0 5"
+                                      CaretBrush="{DynamicResource Black}"
+                                      materialDesign:HintAssist.Hint="Имя"
+                                      materialDesign:HintAssist.Foreground="{DynamicResource Black}"
+                                      materialDesign:TextFieldAssist.UnderlineBrush="{DynamicResource Orange}"/>
+                                <TextBox x:Name="tbEditLastName"
+                                      Style="{StaticResource MaterialDesignFilledTextFieldTextBox}"
+                                      VerticalAlignment="Top"
+                                      Margin="0 5"
+                                      CaretBrush="{DynamicResource Black}"
+                                      materialDesign:HintAssist.Hint="Фамилия"
+                                      materialDesign:HintAssist.Foreground="{DynamicResource Black}"
+                                      materialDesign:TextFieldAssist.UnderlineBrush="{DynamicResource Orange}"/>
+                                <TextBox x:Name="tbEditNumberPhone"
+                                      Style="{StaticResource MaterialDesignFilledTextFieldTextBox}"
+                                      VerticalAlignment="Top"
+                                      Margin="0 5"
+                                      CaretBrush="{DynamicResource Black}"
+                                      materialDesign:HintAssist.Hint="Номер телефона"
+                                      materialDesign:HintAssist.Foreground="{DynamicResource Black}"
+                                      materialDesign:TextFieldAssist.UnderlineBrush="{DynamicResource Orange}"/>
+                                <TextBox x:Name="tbEditEmail"
+                                      Style="{StaticResource MaterialDesignFilledTextFieldTextBox}"
+                                      VerticalAlignment="Top"
+                                      Margin="0 5"
+                                      CaretBrush="{DynamicResource Black}"
+                                      materialDesign:HintAssist.Hint="Email"
+                                      materialDesign:HintAssist.Foreground="{DynamicResource Black}"
+                                      materialDesign:TextFieldAssist.UnderlineBrush="{DynamicResource Orange}"/>
+                                <Button x:Name="btnEditUser"
+                                    Content="Добавить пользователя"
+                                    Style="{DynamicResource ActionButton}"
+                                    Width="250"
+                                    Margin="0 5"
                                     Click="btnEditUser_Click"/>
                             </StackPanel>
-                        </TabItem>
-                    </dragablz:TabablzControl>
-
-                    <materialDesign:DialogHost Style="{StaticResource MaterialDesignEmbeddedDialogHost}"
-                                           DialogMargin="8">
-                        <materialDesign:DialogHost.DialogContent>
-                            <StackPanel Margin="16">
-                                <TextBox x:Name="tbAddRole"
-                                     Style="{StaticResource MaterialDesignFilledTextFieldTextBox}"
-                                     VerticalAlignment="Top"
-                                     MaxWidth="400"
-                                     Text="{Binding dg}"
-                                     CaretBrush="{DynamicResource Black}"
-                                     materialDesign:HintAssist.Hint="Добавить роль"
-                                     materialDesign:HintAssist.Foreground="{DynamicResource Black}"
-                                        materialDesign:TextFieldAssist.UnderlineBrush="{DynamicResource Orange}"/>
-                                <StackPanel Orientation="Horizontal"
-                                            HorizontalAlignment="Right">
-                                    <Button x:Name="btnAddRole"
-                                        Style="{DynamicResource ActionButton}"
-                                        Margin="0 8 8 0"
-                                        Command="materialDesign:DialogHost.CloseDialogCommand"
-                                        Click="btnAddRole_Click">
-                                        Добавить
-                                    </Button>
-                                    <Button Style="{DynamicResource ActionButton}"
-                                        IsCancel="True"
-                                        Margin="0 8 8 0"
-                                        Command="materialDesign:DialogHost.CloseDialogCommand">
-                                        <Button.CommandParameter>
-                                            <system:Boolean xmlns:system="clr-namespace:System;assembly=mscorlib">
-                                                False
-                                            </system:Boolean>
-                                        </Button.CommandParameter>
-                                        Закрыть
-                                    </Button>
-                                </StackPanel>
-                            </StackPanel>
-                        </materialDesign:DialogHost.DialogContent>
-                        <Border BorderThickness="1"
-                            BorderBrush="Gray"
-                            ClipToBounds="True"
-                            HorizontalAlignment="Stretch">
-                            <Grid>
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="*" />
-                                    <RowDefinition Height="Auto" />
-                                </Grid.RowDefinitions>
-                                <ListBox x:Name="lbRole"/>
-
-                                <materialDesign:ColorZone Background="Gray"
-                                                      BorderBrush="Gray"
-                                                      Grid.Row="1"
-                                                      Effect="{DynamicResource MaterialDesignShadowDepth5}">
-                                    <TextBlock Margin="16"
-                                           Style="{DynamicResource TextBlock}"
-                                           HorizontalAlignment="Left">
-                                        Роли
-                                    </TextBlock>
-                                </materialDesign:ColorZone>
-                                <Button Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}"
-                                    Command="{x:Static materialDesign:DialogHost.OpenDialogCommand}"
-                                    VerticalAlignment="Bottom"
-                                    HorizontalAlignment="Right"
-                                    Grid.Row="0"
-                                    Margin="0 0 28 -20">
-                                    <materialDesign:PackIcon Kind="Plus"
-                                                         Height="22"
-                                                         Width="22" />
-                                </Button>
-                            </Grid>
-                        </Border>
-                    </materialDesign:DialogHost>
-                </UniformGrid>
+                        </Grid>
+                    </Grid>
 
 
-            </Grid>
-            <materialDesign:Snackbar x:Name="snack"
+                </Grid>
+                <materialDesign:Snackbar x:Name="snack"
                                  MessageQueue="{materialDesign:MessageQueue}"
                                  IsActive="False"
                                  Grid.Row="2">
-                <materialDesign:SnackbarMessage x:Name="snackMessage"
+                    <materialDesign:SnackbarMessage x:Name="snackMessage"
                                                 ActionContent="OK"/>
-            </materialDesign:Snackbar>
-
-            <!--<Border BorderBrush="{DynamicResource Black}"
+                </materialDesign:Snackbar>
+            </Grid>
+        </Grid>
+        <!--<Border BorderBrush="{DynamicResource Black}"
                 BorderThickness="1"
                 Grid.RowSpan="2"
                 Grid.ColumnSpan="2"/>-->
-        </Grid>
     </Grid>
 </Window>

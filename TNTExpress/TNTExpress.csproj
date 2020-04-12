@@ -82,8 +82,8 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>TNTExpressDataSet.xsd</DependentUpon>
     </Compile>
-    <Compile Include="Veiws\MangerView.xaml.cs">
-      <DependentUpon>MangerView.xaml</DependentUpon>
+    <Compile Include="Veiws\UserView.xaml.cs">
+      <DependentUpon>UserView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Windows\Autotification\WinAutorization.xaml.cs">
       <DependentUpon>WinAutorization.xaml</DependentUpon>
@@ -135,7 +135,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Veiws\MangerView.xaml">
+    <Page Include="Veiws\UserView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -21,9 +21,9 @@ using TNTExpress.Classes.SnackBarMessage;
 namespace TNTExpress.Veiws
 {
     /// <summary>
-    /// Interaction logic for MangerView.xaml
+    /// Interaction logic for UserView.xaml
     /// </summary>
-    public partial class MangerView : UserControl
+    public partial class UserView : UserControl
     {
         readonly SB sB;
         readonly CB comboBoxAddRole;
@@ -32,7 +32,7 @@ namespace TNTExpress.Veiws
         readonly DataBaseQuery dataBaseQuery;
         readonly MyListBox myListBox;
 
-        public MangerView()
+        public UserView()
         {
             InitializeComponent();
 
@@ -57,11 +57,8 @@ namespace TNTExpress.Veiws
             comboBoxAddRole.Loader("Role", "NameRole");
 
             comboBoxEditRole.Loader("Role", "NameRole");
-        }
 
-        private void btnAddRole_Click(object sender, RoutedEventArgs e)
-        {
-
+            btnGridAddUser.IsEnabled = false;
         }
 
         private void btnAddUser_Click(object sender, RoutedEventArgs e)
@@ -134,6 +131,22 @@ namespace TNTExpress.Veiws
             dataBaseQuery.SqlQuery("DELETE FROM dbo.[User] " +
                 $"WHERE [Login] = '{dG.FirstColumn}'", "Данные успешно удалены", "Ошибка");
             dG.Loader("SELECT * FROM dbo.[UserRole]");
+        }
+
+        private void btnGridAddUser_Click(object sender, RoutedEventArgs e)
+        {
+            btnGridAddUser.IsEnabled = false;
+            btnGridEditUser.IsEnabled = true;
+            gAddUser.Visibility = Visibility.Visible;
+            gEditUser.Visibility = Visibility.Hidden;
+        }
+
+        private void btnGridEditUser_Click(object sender, RoutedEventArgs e)
+        {
+            btnGridEditUser.IsEnabled = false;
+            btnGridAddUser.IsEnabled = true;
+            gEditUser.Visibility = Visibility.Visible;
+            gAddUser.Visibility = Visibility.Hidden;
         }
     }
 }
