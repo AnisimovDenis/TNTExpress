@@ -32,7 +32,7 @@
 
             <DataGrid x:Name="dgUser"
                       AutoGenerateColumns="False"
-                      IsReadOnly="True" SelectionChanged="dgUser_SelectionChanged">
+                      IsReadOnly="True">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Логин"
                                         Binding="{Binding Login}"
@@ -108,7 +108,9 @@
                     <Button x:Name="btnGridAddUser"
                             Style="{DynamicResource TabMenuButton}"
                             Content="Добавить пользователя"
-                            materialDesign:RippleAssist.IsDisabled="True" Click="btnGridAddUser_Click"/>
+                            materialDesign:RippleAssist.IsDisabled="True"
+                            IsEnabled="False"
+                            Click="btnGridAddUser_Click"/>
 
                     <Button x:Name="btnGridEditUser"
                             Style="{DynamicResource TabMenuButton}"
@@ -194,7 +196,6 @@
                                 </ComboBox.ItemsPanel>
                             </ComboBox>
                             <Button x:Name="btnEditUser"
-                                    IsEnabled="False"
                                     Content="Изменить пользователя"
                                     Style="{DynamicResource ActionButton}"
                                     Width="250"

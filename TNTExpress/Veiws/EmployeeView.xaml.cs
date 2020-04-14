@@ -72,8 +72,11 @@ namespace TNTExpress.Veiws
         {
             bool resultEmail = ExtraClass.IsValidString(tbEmail.Text, @"^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$");
             bool resultPhoneNumber = ExtraClass.IsValidString(tbPhoneNumber.Text, @"^\+\d{1}\(\d{3}\)\d{3}-\d{2}-\d{2}$");
-
-            if (string.IsNullOrEmpty(cbLogin.Text))
+            if (dgEmployee.SelectedItem is null)
+            {
+                sB.Info("Выберете строку для редактирования");
+            }
+            else if (string.IsNullOrEmpty(cbLogin.Text))
             {
                 sB.Info("Введите логин");
             }
@@ -125,7 +128,8 @@ namespace TNTExpress.Veiws
 
         private void dgEmployee_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            id = dG.FirstColumn;
+            if (dgEmployee.SelectedItem != null)
+                id = dG.FirstColumn;
             try
             {
                 connection.Open();
@@ -157,8 +161,6 @@ namespace TNTExpress.Veiws
         {
             bool resultEmail = ExtraClass.IsValidString(tbEditEmail.Text, @"^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$");
             bool resultPhoneNumber = ExtraClass.IsValidString(tbEditPhoneNumber.Text, @"^\+\d{1}\(\d{3}\)\d{3}-\d{2}-\d{2}$");
-
-            MessageBox.Show(dG.FirstColumn);
 
             if (string.IsNullOrEmpty(cbEditLogin.Text))
             {
@@ -197,7 +199,7 @@ namespace TNTExpress.Veiws
                 $"[LastName] = '{tbEditLastName.Text}'," +
                 $"[PhoneNumber] = '{tbEditPhoneNumber.Text}'," +
                 $"Email = '{tbEditEmail.Text}' " +
-                $"WHERE Id = {id}", "Данные успешно обновлены", "Уведомление");
+                $"WHERE Id = {id}", "Данные успешно обновлены", "Ошибка");
                 dG.Loader("SELECT * FROM dbo.[EmployeeUser]");
 
                 tbEditEmail.Clear();

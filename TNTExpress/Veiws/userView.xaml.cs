@@ -57,8 +57,6 @@ namespace TNTExpress.Veiws
             comboBoxAddRole.Loader("Role", "NameRole");
 
             comboBoxEditRole.Loader("Role", "NameRole");
-
-            btnGridAddUser.IsEnabled = false;
         }
 
         private void btnAddUser_Click(object sender, RoutedEventArgs e)
@@ -90,7 +88,11 @@ namespace TNTExpress.Veiws
 
         private void btnEditUser_Click(object sender, RoutedEventArgs e)
         {
-            if (string.IsNullOrEmpty(tbEditLogin.Text))
+            if (dgUser.SelectedItem is null)
+            {
+                sB.Info("Выберете строку для редактирования");
+            }
+            else if (string.IsNullOrEmpty(tbEditLogin.Text))
             {
                 sB.Info("Введите логин");
             }
@@ -113,11 +115,6 @@ namespace TNTExpress.Veiws
                 "Пользователь с таким логином уже есть");
                 dG.Loader("SELECT * FROM dbo.[UserRole]");
             }
-        }
-
-        private void dgUser_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            btnEditUser.IsEnabled = true;
         }
 
         private void tbSearch_TextChanged(object sender, TextChangedEventArgs e)
