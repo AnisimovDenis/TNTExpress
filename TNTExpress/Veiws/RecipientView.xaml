@@ -46,8 +46,15 @@
                                         MinWidth="150"/>
                         <DataGridTextColumn Header="Адрес"
                                         Binding="{Binding Address}"
-                                        Width="125"
-                                        MinWidth="125"/>
+                                        Width="200"
+                                        MinWidth="200">
+                            <DataGridTextColumn.ElementStyle>
+                                <Style>
+                                    <Setter Property="TextBlock.TextWrapping" Value="Wrap" />
+                                    <Setter Property="TextBlock.TextAlignment" Value="Center"/>
+                                </Style>
+                            </DataGridTextColumn.ElementStyle>
+                        </DataGridTextColumn>
                         <DataGridTextColumn Header="Номер телефона"
                                         Binding="{Binding PhoneNumber}"
                                         Width="130"

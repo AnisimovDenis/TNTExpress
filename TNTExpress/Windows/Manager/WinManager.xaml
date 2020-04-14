@@ -89,7 +89,7 @@
                 <Button x:Name="btnRecipient" Content="Адресат"
                         Style="{DynamicResource MainMenuButton}" Click="btnRecipient_Click"/>
                 <Button x:Name="btnSupplier" Content="Поставщики"
-                        Style="{DynamicResource MainMenuButton}"/>
+                        Style="{DynamicResource MainMenuButton}" Click="btnSupplier_Click"/>
                 <Button x:Name="btnProduct" Content="Продукты"
                         Style="{DynamicResource MainMenuButton}"/>
                 <Button x:Name="btnOrder" Content="Заказы"
@@ -117,7 +117,7 @@
               Grid.Column="1">
 
             <view:UserView x:Name="userView"
-                           Visibility="Visible"
+                           Visibility="Hidden"
                            Grid.Row="1"
                            Grid.Column="1"/>
 
@@ -133,6 +133,11 @@
 
             <view:RecipientView x:Name="recipientView"
                                Visibility="Hidden"
+                               Grid.Row="1"
+                               Grid.Column="1"/>
+
+            <view:SupplierView x:Name="supplierView"
+                               Visibility="Visible"
                                Grid.Row="1"
                                Grid.Column="1"/>
         </Grid>

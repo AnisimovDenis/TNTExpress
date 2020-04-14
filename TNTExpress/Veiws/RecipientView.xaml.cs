@@ -189,7 +189,7 @@ namespace TNTExpress.Veiws
                     $"[Email] = '{tbEditEmail.Text}'," +
                     $"[PhoneNumber] = '{tbEditPhoneNumber.Text}'" +
                     $"WHERE [Id] = '{id}'",
-                "Данные успешно добавлены", "Ошибка");
+                "Данные успешно изменены", "Ошибка");
                 tbEditAddress.Clear();
                 tbEditFirstName.Clear();
                 tbEditLastName.Clear();

@@ -52,14 +52,6 @@ namespace TNTExpress.Veiws
             comboBoxAddEmployee = new CB(cbLogin, snack, snackMessage);
 
             comboBoxEditEmployee = new CB(cbEditLogin, snack, snackMessage);
-
-            dG.Loader("SELECT * FROM dbo.[EmployeeUser]");
-
-            snackMessage.ActionClick += delegate { dG.CloseSnackbar(); };
-
-            comboBoxAddEmployee.Loader("User", "Login");
-
-            comboBoxEditEmployee.Loader("User", "Login");
         }
 
         private void tbSearch_TextChanged(object sender, TextChangedEventArgs e)
@@ -70,13 +62,8 @@ namespace TNTExpress.Veiws
 
         private void btnAddEmployee_Click(object sender, RoutedEventArgs e)
         {
-            bool resultEmail = ExtraClass.IsValidString(tbEmail.Text, @"^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$");
-            bool resultPhoneNumber = ExtraClass.IsValidString(tbPhoneNumber.Text, @"^\+\d{1}\(\d{3}\)\d{3}-\d{2}-\d{2}$");
-            if (dgEmployee.SelectedItem is null)
-            {
-                sB.Info("Выберете строку для редактирования");
-            }
-            else if (string.IsNullOrEmpty(cbLogin.Text))
+
+            if (string.IsNullOrEmpty(cbLogin.Text))
             {
                 sB.Info("Введите логин");
             }
@@ -96,14 +83,6 @@ namespace TNTExpress.Veiws
             {
                 sB.Info("Введите email");
             }
-            else if (resultEmail == false)
-            {
-                sB.Info("Email введен не корректно");
-            }
-            else if (resultPhoneNumber == false)
-            {
-                sB.Info("Телефон введен не корректно");
-            }
             else
             {
                 dataBaseQuery.SqlQuery("INSERT INTO dbo.[Employee] " +
@@ -115,7 +94,7 @@ namespace TNTExpress.Veiws
                 tbLastName.Clear();
                 tbEmail.Clear();
                 tbPhoneNumber.Clear();
-                dG.Loader("SELECT * FROM dbo.[Client]");
+                dG.Loader("SELECT * FROM dbo.[EmployeeUser]");
             }
         }
 
@@ -208,6 +187,17 @@ namespace TNTExpress.Veiws
                 tbEditLastName.Clear();
                 cbEditLogin.Text = null;
             }
+        }
+
+        private void UserControl_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
+        {
+            dG.Loader("SELECT * FROM dbo.[EmployeeUser]");
+
+            snackMessage.ActionClick += delegate { dG.CloseSnackbar(); };
+
+            comboBoxAddEmployee.Loader("User", "Login");
+
+            comboBoxEditEmployee.Loader("User", "Login");
         }
     }
 }

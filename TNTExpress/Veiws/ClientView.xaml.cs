@@ -46,9 +46,10 @@ namespace TNTExpress.Veiws
 
             dataBaseQuery = new DataBaseQuery(snack, snackMessage);
 
-            this.Loaded += delegate {
+            this.Loaded += delegate 
+            {
                 dG.Loader("SELECT Id, FirstName + N' ' + LastName as Client," +
-" Address, PhoneNumber, Email FROM dbo.Client");
+                    " Address, PhoneNumber, Email FROM dbo.Client");
             };
 
             snackMessage.ActionClick += delegate { dG.CloseSnackbar(); };
@@ -189,7 +190,7 @@ namespace TNTExpress.Veiws
                     $"[Email] = '{tbEditEmail.Text}'," +
                     $"[PhoneNumber] = '{tbEditPhoneNumber.Text}'" +
                     $"WHERE [Id] = '{id}'",
-                "Данные успешно добавлены", "Ошибка");
+                "Данные успешно изменены", "Ошибка");
                 tbEditAddress.Clear();
                 tbEditFirstName.Clear();
                 tbEditLastName.Clear();
