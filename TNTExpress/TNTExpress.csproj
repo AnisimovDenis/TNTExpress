@@ -82,6 +82,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>TNTExpressDataSet.xsd</DependentUpon>
     </Compile>
+    <Compile Include="Veiws\EmployeeView.xaml.cs">
+      <DependentUpon>EmployeeView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Veiws\UserView.xaml.cs">
       <DependentUpon>UserView.xaml</DependentUpon>
     </Compile>
@@ -132,6 +135,10 @@
   </ItemGroup>
   <ItemGroup>
     <Page Include="Resources\MainDictionary.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Veiws\EmployeeView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
