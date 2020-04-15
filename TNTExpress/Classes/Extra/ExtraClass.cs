@@ -37,6 +37,7 @@ namespace TNTExpress.Classes.Extra
         {
             Application.Current.Shutdown();
         }
+
         public static bool IsValidString(string str, string regexStr)
         {
             Regex regex = new Regex(regexStr);

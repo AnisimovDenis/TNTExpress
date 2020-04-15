@@ -15,10 +15,12 @@
         TextOptions.TextRenderingMode="Auto"
         Background="{DynamicResource MaterialDesignPaper}"
         FontFamily="{DynamicResource MaterialDesignFont}"
-        Title="Авторизация" Height="950" Width="1250"
-        WindowStartupLocation="CenterScreen"
+        Title="Авторизация"
         WindowStyle="None"
         ResizeMode="NoResize"
+        Height="1000"
+        Width="1700"
+        WindowStartupLocation="CenterScreen"
         Icon="/TNTExpress;component/Resources/TNTExpress_logo_menu.png">
     <Grid>
         <Grid.RowDefinitions>
@@ -90,8 +92,8 @@
                         Style="{DynamicResource MainMenuButton}" Click="btnRecipient_Click"/>
                 <Button x:Name="btnSupplier" Content="Поставщики"
                         Style="{DynamicResource MainMenuButton}" Click="btnSupplier_Click"/>
-                <Button x:Name="btnProduct" Content="Продукты"
-                        Style="{DynamicResource MainMenuButton}"/>
+                <Button x:Name="btnProduct" Content="Товары"
+                        Style="{DynamicResource MainMenuButton}" Click="btnProduct_Click"/>
                 <Button x:Name="btnOrder" Content="Заказы"
                         Style="{DynamicResource MainMenuButton}"/>
             </StackPanel>
@@ -137,7 +139,17 @@
                                Grid.Column="1"/>
 
             <view:SupplierView x:Name="supplierView"
-                               Visibility="Visible"
+                               Visibility="Hidden"
+                               Grid.Row="1"
+                               Grid.Column="1"/>
+
+            <view:ProductView x:Name="productView"
+                               Visibility="Hidden"
+                               Grid.Row="1"
+                               Grid.Column="1"/>
+
+            <view:OrderView x:Name="orderView"
+                               Visibility="Hidden"
                                Grid.Row="1"
                                Grid.Column="1"/>
         </Grid>

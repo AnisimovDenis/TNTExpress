@@ -55,8 +55,6 @@ namespace TNTExpress.Veiws
             comboBoxEditRole = new CB(cbEditRole, snack, snackMessage);
 
             sB = new SB(snack, snackMessage);
-
-            
         }
 
         private void btnAddUser_Click(object sender, RoutedEventArgs e)
@@ -128,22 +126,6 @@ namespace TNTExpress.Veiws
             dataBaseQuery.SqlQuery("DELETE FROM dbo.[User] " +
                 $"WHERE [Id] = '{id}'", "Данные успешно удалены", "Ошибка");
             dG.Loader("SELECT * FROM dbo.[UserRole]");
-        }
-
-        private void btnGridAddUser_Click(object sender, RoutedEventArgs e)
-        {
-            btnGridAddUser.IsEnabled = false;
-            btnGridEditUser.IsEnabled = true;
-            gAddUser.Visibility = Visibility.Visible;
-            gEditUser.Visibility = Visibility.Hidden;
-        }
-
-        private void btnGridEditUser_Click(object sender, RoutedEventArgs e)
-        {
-            btnGridEditUser.IsEnabled = false;
-            btnGridAddUser.IsEnabled = true;
-            gEditUser.Visibility = Visibility.Visible;
-            gAddUser.Visibility = Visibility.Hidden;
         }
 
         private void dgUser_SelectionChanged(object sender, SelectionChangedEventArgs e)

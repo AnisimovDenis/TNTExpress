@@ -41,9 +41,6 @@ namespace TNTExpress.Windows.Manager
             btnHidde.Click += delegate { ExtraClass.MinimizedWindow(this); };
 
             btnClose.Click += delegate { ExtraClass.Shutdown(); };
-
-
-            
         }
 
         private void btnUser_Click(object sender, RoutedEventArgs e)
@@ -52,6 +49,8 @@ namespace TNTExpress.Windows.Manager
             employeeView.Visibility = Visibility.Hidden;
             clientView.Visibility = Visibility.Hidden;
             supplierView.Visibility = Visibility.Hidden;
+            recipientView.Visibility = Visibility.Hidden;
+            productView.Visibility = Visibility.Hidden;
         }
 
         private void btnEmployee_Click(object sender, RoutedEventArgs e)
@@ -61,6 +60,7 @@ namespace TNTExpress.Windows.Manager
             clientView.Visibility = Visibility.Hidden;
             recipientView.Visibility = Visibility.Hidden;
             supplierView.Visibility = Visibility.Hidden;
+            productView.Visibility = Visibility.Hidden;
         }
 
         private void Client_Click(object sender, RoutedEventArgs e)
@@ -70,6 +70,7 @@ namespace TNTExpress.Windows.Manager
             employeeView.Visibility = Visibility.Hidden;
             recipientView.Visibility = Visibility.Hidden;
             supplierView.Visibility = Visibility.Hidden;
+            productView.Visibility = Visibility.Hidden;
         }
 
         private void btnRecipient_Click(object sender, RoutedEventArgs e)
@@ -79,6 +80,7 @@ namespace TNTExpress.Windows.Manager
             employeeView.Visibility = Visibility.Hidden;
             clientView.Visibility = Visibility.Hidden;
             supplierView.Visibility = Visibility.Hidden;
+            productView.Visibility = Visibility.Hidden;
         }
 
         private void btnSupplier_Click(object sender, RoutedEventArgs e)
@@ -88,6 +90,17 @@ namespace TNTExpress.Windows.Manager
             userView.Visibility = Visibility.Hidden;
             employeeView.Visibility = Visibility.Hidden;
             clientView.Visibility = Visibility.Hidden;
+            productView.Visibility = Visibility.Hidden;
+        }
+
+        private void btnProduct_Click(object sender, RoutedEventArgs e)
+        {
+            productView.Visibility = Visibility.Visible;
+            recipientView.Visibility = Visibility.Hidden;
+            userView.Visibility = Visibility.Hidden;
+            employeeView.Visibility = Visibility.Hidden;
+            clientView.Visibility = Visibility.Hidden;
+            supplierView.Visibility = Visibility.Hidden;
         }
     }
 }
