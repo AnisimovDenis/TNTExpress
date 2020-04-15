@@ -6,14 +6,14 @@
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:local="clrnamespace:TNTExpress.Veiws"
              mc:Ignorable="d" 
-             d:DesignHeight="950" d:DesignWidth="1600"
+             d:DesignHeight="1000" d:DesignWidth="1600"
              TextElement.Foreground="{DynamicResource MaterialDesignBody}"
              TextElement.FontWeight="Regular"
              TextElement.FontSize="13"
              TextOptions.TextFormattingMode="Ideal"
              TextOptions.TextRenderingMode="Auto"
              Background="{DynamicResource MaterialDesignPaper}"
-             FontFamily="{DynamicResource MaterialDesignFont}">
+             FontFamily="{DynamicResource MaterialDesignFont}" IsVisibleChanged="UserControl_IsVisibleChanged">
     <Grid>
         <Grid x:Name="gClient">
             <Grid.RowDefinitions>
@@ -32,54 +32,75 @@
             <Grid Grid.Row="1">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*"/>
-                    <RowDefinition Height="455"/>
+                    <RowDefinition Height="425"/>
                 </Grid.RowDefinitions>
 
                 <DataGrid x:Name="dgOrder"
                               AutoGenerateColumns="False"
                               IsReadOnly="True" 
-                              SelectionChanged="dgSupplier_SelectionChanged">
+                              SelectionChanged="dgOrder_SelectionChanged">
                     <DataGrid.Columns>
+                        <DataGridTextColumn Header="Сотрудник"
+                                        Binding="{Binding Employee}"
+                                        Width="150"
+                                        MinWidth="150"/>
                         <DataGridTextColumn Header="Клиент"
                                         Binding="{Binding Client}"
-                                        Width="135"
-                                        MinWidth="135"/>
+                                        Width="150"
+                                        MinWidth="150"/>
                         <DataGridTextColumn Header="Адресат"
                                         Binding="{Binding Recipient}"
                                         Width="150"
                                         MinWidth="150"/>
                         <DataGridTextColumn Header="Поставщики"
                                         Binding="{Binding SupplierName}"
-                                        Width="130"
-                                        MinWidth="135"/>
+                                        Width="150"
+                                        MinWidth="150">
+                            <DataGridTextColumn.ElementStyle>
+                                <Style>
+                                    <Setter Property="TextBlock.TextWrapping" Value="Wrap" />
+                                    <Setter Property="TextBlock.TextAlignment" Value="Center"/>
+                                </Style>
+                            </DataGridTextColumn.ElementStyle>
+                        </DataGridTextColumn>
                         <DataGridTextColumn Header="Артикул товара"
                                         Binding="{Binding Article}"
-                                        Width="150"
-                                        MinWidth="150"/>
-                        <DataGridTextColumn Header="Сотрудник"
-                                        Binding="{Binding Employee}"
-                                        Width="125"
-                                        MinWidth="125"/>
+                                        Width="120"
+                                        MinWidth="120"/>
                         <DataGridTextColumn Header="ShippingAdress"
-                                        Binding="{Binding ShippingAdress}"
-                                        Width="150"
-                                        MinWidth="150"/>
+                                        Binding="{Binding ShippingAddress}"
+                                        Width="175"
+                                        MinWidth="175">
+                            <DataGridTextColumn.ElementStyle>
+                                <Style>
+                                    <Setter Property="TextBlock.TextWrapping" Value="Wrap" />
+                                    <Setter Property="TextBlock.TextAlignment" Value="Center"/>
+                                </Style>
+                            </DataGridTextColumn.ElementStyle>
+                        </DataGridTextColumn>
                         <DataGridTextColumn Header="Сортировочный центр"
                                         Binding="{Binding NameSortingCenter}"
-                                        Width="150"
-                                        MinWidth="150"/>
+                                        Width="165"
+                                        MinWidth="165"/>
                         <DataGridTextColumn Header="RecipientAddress"
                                         Binding="{Binding RecipientAddress}"
-                                        Width="150"
-                                        MinWidth="150"/>
-                        <DataGridTextColumn Header="NameOrderTimming"
-                                        Binding="{Binding NameOrderTimming}"
-                                        Width="150"
-                                        MinWidth="150"/>
+                                        Width="175"
+                                        MinWidth="175">
+                            <DataGridTextColumn.ElementStyle>
+                                <Style>
+                                    <Setter Property="TextBlock.TextWrapping" Value="Wrap" />
+                                    <Setter Property="TextBlock.TextAlignment" Value="Center"/>
+                                </Style>
+                            </DataGridTextColumn.ElementStyle>
+                        </DataGridTextColumn>
+                        <DataGridTextColumn Header="Срочность"
+                                        Binding="{Binding NameOrderTiming}"
+                                        Width="100"
+                                        MinWidth="100"/>
                         <DataGridTextColumn Header="Price"
                                         Binding="{Binding Price}"
                                         Width="*"
-                                        MinWidth="150"/>
+                                        MinWidth="300"/>
                     </DataGrid.Columns>
                     <DataGrid.ContextMenu>
                         <ContextMenu>
@@ -94,15 +115,15 @@
                         Orientation="Horizontal"
                         Margin="0 0 10 0">
                     <TextBox x:Name="tbSearch"
-                                 Width="150"
-                                 Height="25"
-                                 Margin="10"
-                                 CaretBrush="{DynamicResource Black}"
-                                 materialDesign:HintAssist.Hint="Поиск товар"
-                                 materialDesign:HintAssist.Foreground="{DynamicResource Black}"
-                                 materialDesign:TextFieldAssist.UnderlineBrush="{DynamicResource Transparent}"
-                                 BorderBrush="Transparent"
-                                 TextChanged="tbSearch_TextChanged"/>
+                            Width="150"
+                            Height="25"
+                            Margin="10"
+                            CaretBrush="{DynamicResource Black}"
+                            materialDesign:HintAssist.Hint="Поиск заказ"
+                            materialDesign:HintAssist.Foreground="{DynamicResource Black}"
+                            materialDesign:TextFieldAssist.UnderlineBrush="{DynamicResource Transparent}"
+                            BorderBrush="Transparent"
+                            TextChanged="tbSearch_TextChanged"/>
                     <materialDesign:PackIcon Kind="Search"
                                          VerticalAlignment="Center"
                                          HorizontalAlignment="Center"
@@ -119,7 +140,7 @@
 
                 <Grid Grid.Row="1">
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition />
+                        <ColumnDefinition Width="2*"/>
                         <ColumnDefinition />
                     </Grid.ColumnDefinitions>
 
@@ -134,51 +155,43 @@
                                        Grid.RowSpan="2"/>
 
                         <Rectangle Fill="Gray"
-                                       Height="25"/>
+                                       Height="50"/>
 
-                        <TextBlock Style="{DynamicResource TextBlock}"
-                                       Text="Добавление товар"/>
+                        <UniformGrid Columns="2"
+                                     Rows="0">
+                            <Button x:Name="btnGridAddOrder"
+                                    Content="Добавить заказ"
+                                    Style="{DynamicResource TabMenuButton}"
+                                    materialDesign:RippleAssist.IsDisabled="True"
+                                    IsEnabled="False" Click="btnGridAddOrder_Click"/>
+                            <Button x:Name="btnGridEditOrder"
+                                    Content="Изменить заказ"
+                                    Style="{DynamicResource TabMenuButton}"
+                                    materialDesign:RippleAssist.IsDisabled="True" Click="btnGridEditOrder_Click"/>
+                        </UniformGrid>
 
-                        <StackPanel Margin="10"
-                                        Grid.Row="1">
-                            <TextBox x:Name="tbArticle"
-                                      Style="{StaticResource MaterialDesignFilledTextFieldTextBox}"
-                                      VerticalAlignment="Top"
-                                      Margin="0 2"
-                                      CaretBrush="{DynamicResource Black}"
-                                      materialDesign:HintAssist.Hint="Артикул"
-                                      materialDesign:HintAssist.Foreground="{DynamicResource Black}"
-                                      materialDesign:TextFieldAssist.UnderlineBrush="{DynamicResource Orange}"/>
-                            <TextBox x:Name="tbName"
-                                      Style="{StaticResource MaterialDesignFilledTextFieldTextBox}"
-                                      VerticalAlignment="Top"
-                                      Margin="0 2"
-                                      CaretBrush="{DynamicResource Black}"
-                                      materialDesign:HintAssist.Hint="Наименование"
-                                      materialDesign:HintAssist.Foreground="{DynamicResource Black}"
-                                      materialDesign:TextFieldAssist.UnderlineBrush="{DynamicResource Orange}"/>
-                            <TextBox x:Name="tbDimensions"
-                                      Style="{StaticResource MaterialDesignFilledTextFieldTextBox}"
-                                      VerticalAlignment="Top"
-                                      Margin="0 2"
-                                      CaretBrush="{DynamicResource Black}"
-                                      materialDesign:HintAssist.Hint="Габариты"
-                                      materialDesign:HintAssist.Foreground="{DynamicResource Black}"
-                                      materialDesign:TextFieldAssist.UnderlineBrush="{DynamicResource Orange}"/>
-                            <TextBox x:Name="tbWeight"
-                                      Style="{StaticResource MaterialDesignFilledTextFieldTextBox}"
-                                      VerticalAlignment="Top"
-                                      Margin="0 2"
-                                      CaretBrush="{DynamicResource Black}"
-                                      materialDesign:HintAssist.Hint="Вес"
-                                      materialDesign:HintAssist.Foreground="{DynamicResource Black}"
-                                      materialDesign:TextFieldAssist.UnderlineBrush="{DynamicResource Orange}"/>
-                            <ComboBox x:Name="cbStrength"
-                                      materialDesign:HintAssist.Hint="Прочность"
+                        <Grid x:Name="gAddOrder"
+                              Margin="10"
+                              Grid.Row="1">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="auto"/>
+                                <RowDefinition Height="auto"/>
+                                <RowDefinition Height="auto"/>
+                                <RowDefinition Height="auto"/>
+                                <RowDefinition Height="auto"/>
+                                <RowDefinition Height="auto"/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition />
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+
+                            <ComboBox x:Name="cbEmployee"
+                                      Grid.Row="0"
+                                      Margin="15 5"
+                                      materialDesign:HintAssist.Hint="Сотрудник"
                                       materialDesign:HintAssist.Foreground="{DynamicResource Black}"
                                       materialDesign:TextFieldAssist.UnderlineBrush="{DynamicResource Orange}"
-                                      MinWidth="72"
-                                      Margin="15 10"
                                       ItemsSource="{Binding LongListToTestComboVirtualization}"
                                       Style="{StaticResource MaterialDesignFloatingHintComboBox}">
                                 <ComboBox.ItemsPanel>
@@ -187,99 +200,393 @@
                                     </ItemsPanelTemplate>
                                 </ComboBox.ItemsPanel>
                             </ComboBox>
-                            <TextBox x:Name="tbFeatures"
+                            
+                            <ComboBox x:Name="cbClient"
+                                      Grid.Row="1"
+                                      materialDesign:HintAssist.Hint="Клиент"
+                                      materialDesign:HintAssist.Foreground="{DynamicResource Black}"
+                                      materialDesign:TextFieldAssist.UnderlineBrush="{DynamicResource Orange}"
+                                      ItemsSource="{Binding LongListToTestComboVirtualization}"
+                                      Margin="15 5"
+                                      Style="{StaticResource MaterialDesignFloatingHintComboBox}">
+                                <ComboBox.ItemsPanel>
+                                    <ItemsPanelTemplate>
+                                        <VirtualizingStackPanel />
+                                    </ItemsPanelTemplate>
+                                </ComboBox.ItemsPanel>
+                            </ComboBox>
+
+                            <ComboBox x:Name="cbRecipient"
+                                      Grid.Row="2"
+                                      Margin="15 5"
+                                      materialDesign:HintAssist.Hint="Адресат"
+                                      materialDesign:HintAssist.Foreground="{DynamicResource Black}"
+                                      materialDesign:TextFieldAssist.UnderlineBrush="{DynamicResource Orange}"
+                                      ItemsSource="{Binding LongListToTestComboVirtualization}"
+                                      Style="{StaticResource MaterialDesignFloatingHintComboBox}">
+                                <ComboBox.ItemsPanel>
+                                    <ItemsPanelTemplate>
+                                        <VirtualizingStackPanel />
+                                    </ItemsPanelTemplate>
+                                </ComboBox.ItemsPanel>
+                            </ComboBox>
+
+                            <ComboBox x:Name="cbSupplier"
+                                      Grid.Row="3"
+                                      Margin="15 5"
+                                      materialDesign:HintAssist.Hint="Поставщик"
+                                      materialDesign:HintAssist.Foreground="{DynamicResource Black}"
+                                      materialDesign:TextFieldAssist.UnderlineBrush="{DynamicResource Orange}"
+                                      ItemsSource="{Binding LongListToTestComboVirtualization}"
+                                      Style="{StaticResource MaterialDesignFloatingHintComboBox}">
+                                <ComboBox.ItemsPanel>
+                                    <ItemsPanelTemplate>
+                                        <VirtualizingStackPanel />
+                                    </ItemsPanelTemplate>
+                                </ComboBox.ItemsPanel>
+                            </ComboBox>
+
+                            <ComboBox x:Name="cbArticle"
+                                      Grid.Row="4"
+                                      Margin="15 5"
+                                      materialDesign:HintAssist.Hint="Артикул товара"
+                                      materialDesign:HintAssist.Foreground="{DynamicResource Black}"
+                                      materialDesign:TextFieldAssist.UnderlineBrush="{DynamicResource Orange}"
+                                      ItemsSource="{Binding LongListToTestComboVirtualization}"
+                                      Style="{StaticResource MaterialDesignFloatingHintComboBox}">
+                                <ComboBox.ItemsPanel>
+                                    <ItemsPanelTemplate>
+                                        <VirtualizingStackPanel />
+                                    </ItemsPanelTemplate>
+                                </ComboBox.ItemsPanel>
+                            </ComboBox>
+
+                            <TextBox x:Name="tbShippingAddress"
+                                     Grid.Row="0"
+                                     Grid.Column="2"
                                       Style="{StaticResource MaterialDesignFilledTextFieldTextBox}"
                                       VerticalAlignment="Top"
-                                      Margin="0 2"
+                                      Margin="0 5"
                                       CaretBrush="{DynamicResource Black}"
-                                      materialDesign:HintAssist.Hint="Особенности"
+                                      materialDesign:HintAssist.Hint="Адрес отправки"
                                       materialDesign:HintAssist.Foreground="{DynamicResource Black}"
                                       materialDesign:TextFieldAssist.UnderlineBrush="{DynamicResource Orange}"/>
-                            <Button x:Name="btnAddEmployee"
-                                    Content="Добавить товар"
+
+                            <ComboBox x:Name="cbSortingCenter"
+                                      Grid.Row="1"
+                                      Grid.Column="2"
+                                      Margin="15 5"
+                                      materialDesign:HintAssist.Hint="Сортировочный центр"
+                                      materialDesign:HintAssist.Foreground="{DynamicResource Black}"
+                                      materialDesign:TextFieldAssist.UnderlineBrush="{DynamicResource Orange}"
+                                      ItemsSource="{Binding LongListToTestComboVirtualization}"
+                                      Style="{StaticResource MaterialDesignFloatingHintComboBox}">
+                                <ComboBox.ItemsPanel>
+                                    <ItemsPanelTemplate>
+                                        <VirtualizingStackPanel />
+                                    </ItemsPanelTemplate>
+                                </ComboBox.ItemsPanel>
+                            </ComboBox>
+
+                            <TextBox x:Name="tbRecipientAddress"
+                                     Grid.Row="2"
+                                     Grid.Column="2"
+                                      Style="{StaticResource MaterialDesignFilledTextFieldTextBox}"
+                                      VerticalAlignment="Top"
+                                      Margin="0 5"
+                                      CaretBrush="{DynamicResource Black}"
+                                      materialDesign:HintAssist.Hint="Адрес "
+                                      materialDesign:HintAssist.Foreground="{DynamicResource Black}"
+                                      materialDesign:TextFieldAssist.UnderlineBrush="{DynamicResource Orange}"/>
+
+                            <ComboBox x:Name="cbNameOrderTiming"
+                                      Grid.Row="3"
+                                      Grid.Column="2"
+                                      Margin="15 5"
+                                      materialDesign:HintAssist.Hint="Срочность"
+                                      materialDesign:HintAssist.Foreground="{DynamicResource Black}"
+                                      materialDesign:TextFieldAssist.UnderlineBrush="{DynamicResource Orange}"
+                                      ItemsSource="{Binding LongListToTestComboVirtualization}"
+                                      Style="{StaticResource MaterialDesignFloatingHintComboBox}">
+                                <ComboBox.ItemsPanel>
+                                    <ItemsPanelTemplate>
+                                        <VirtualizingStackPanel />
+                                    </ItemsPanelTemplate>
+                                </ComboBox.ItemsPanel>
+                            </ComboBox>
+
+                            <TextBox x:Name="tbPrice"
+                                     Grid.Row="4"
+                                     Grid.Column="2"
+                                     Style="{StaticResource MaterialDesignFilledTextFieldTextBox}"
+                                     VerticalAlignment="Top"
+                                     Margin="0 5"
+                                     CaretBrush="{DynamicResource Black}"
+                                     materialDesign:HintAssist.Hint="Цена"
+                                     materialDesign:HintAssist.Foreground="{DynamicResource Black}"
+                                     materialDesign:TextFieldAssist.UnderlineBrush="{DynamicResource Orange}"/>
+
+                            <Button x:Name="btnAddOrder"
+                                    Grid.Row="5"
+                                    Grid.ColumnSpan="2"
+                                    Content="Добавить заказ"
                                     Style="{DynamicResource ActionButton}"
-                                    Width="250"
-                                    Margin="0 2" Click="btnAddEmployee_Click"/>
-                        </StackPanel>
+                                    Width="250"/>
+                        </Grid>
+
+                        <Grid x:Name="gEditOrder"
+                              Margin="10"
+                              Grid.Row="1"
+                              Visibility="Hidden">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="auto"/>
+                                <RowDefinition Height="auto"/>
+                                <RowDefinition Height="auto"/>
+                                <RowDefinition Height="auto"/>
+                                <RowDefinition Height="auto"/>
+                                <RowDefinition Height="auto"/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition />
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+
+                            <ComboBox x:Name="cbEditClient"
+                                      materialDesign:HintAssist.Hint="Клиент"
+                                      materialDesign:HintAssist.Foreground="{DynamicResource Black}"
+                                      materialDesign:TextFieldAssist.UnderlineBrush="{DynamicResource Orange}"
+                                      Margin="15 5"
+                                      ItemsSource="{Binding LongListToTestComboVirtualization}"
+                                      Style="{StaticResource MaterialDesignFloatingHintComboBox}">
+                                <ComboBox.ItemsPanel>
+                                    <ItemsPanelTemplate>
+                                        <VirtualizingStackPanel />
+                                    </ItemsPanelTemplate>
+                                </ComboBox.ItemsPanel>
+                            </ComboBox>
+
+                            <ComboBox x:Name="cbEditRecipient"
+                                      Grid.Row="1"
+                                      materialDesign:HintAssist.Hint="Адресат"
+                                      materialDesign:HintAssist.Foreground="{DynamicResource Black}"
+                                      materialDesign:TextFieldAssist.UnderlineBrush="{DynamicResource Orange}"
+                                      Margin="15 5"
+                                      ItemsSource="{Binding LongListToTestComboVirtualization}"
+                                      Style="{StaticResource MaterialDesignFloatingHintComboBox}">
+                                <ComboBox.ItemsPanel>
+                                    <ItemsPanelTemplate>
+                                        <VirtualizingStackPanel />
+                                    </ItemsPanelTemplate>
+                                </ComboBox.ItemsPanel>
+                            </ComboBox>
+
+                            <ComboBox x:Name="cbEditSupplier"
+                                      Grid.Row="2"
+                                      materialDesign:HintAssist.Hint="Поставщики"
+                                      materialDesign:HintAssist.Foreground="{DynamicResource Black}"
+                                      materialDesign:TextFieldAssist.UnderlineBrush="{DynamicResource Orange}"
+                                      Margin="15 5"
+                                      ItemsSource="{Binding LongListToTestComboVirtualization}"
+                                      Style="{StaticResource MaterialDesignFloatingHintComboBox}">
+                                <ComboBox.ItemsPanel>
+                                    <ItemsPanelTemplate>
+                                        <VirtualizingStackPanel />
+                                    </ItemsPanelTemplate>
+                                </ComboBox.ItemsPanel>
+                            </ComboBox>
+
+                            <ComboBox x:Name="cbEditArticle"
+                                      Grid.Row="3"
+                                      materialDesign:HintAssist.Hint="Поставщики"
+                                      materialDesign:HintAssist.Foreground="{DynamicResource Black}"
+                                      materialDesign:TextFieldAssist.UnderlineBrush="{DynamicResource Orange}"
+                                      Margin="15 5"
+                                      ItemsSource="{Binding LongListToTestComboVirtualization}"
+                                      Style="{StaticResource MaterialDesignFloatingHintComboBox}">
+                                <ComboBox.ItemsPanel>
+                                    <ItemsPanelTemplate>
+                                        <VirtualizingStackPanel />
+                                    </ItemsPanelTemplate>
+                                </ComboBox.ItemsPanel>
+                            </ComboBox>
+
+                            <ComboBox x:Name="cbEditEmployee"
+                                      Grid.Row="4"
+                                      materialDesign:HintAssist.Hint="Поставщики"
+                                      materialDesign:HintAssist.Foreground="{DynamicResource Black}"
+                                      materialDesign:TextFieldAssist.UnderlineBrush="{DynamicResource Orange}"
+                                      Margin="15 5"
+                                      ItemsSource="{Binding LongListToTestComboVirtualization}"
+                                      Style="{StaticResource MaterialDesignFloatingHintComboBox}">
+                                <ComboBox.ItemsPanel>
+                                    <ItemsPanelTemplate>
+                                        <VirtualizingStackPanel />
+                                    </ItemsPanelTemplate>
+                                </ComboBox.ItemsPanel>
+                            </ComboBox>
+
+                            <TextBox x:Name="tbEditShippingAddress"
+                                     Grid.Row="0"
+                                     Grid.Column="1"
+                                      Style="{StaticResource MaterialDesignFilledTextFieldTextBox}"
+                                      VerticalAlignment="Top"
+                                      Margin="0 5"
+                                      CaretBrush="{DynamicResource Black}"
+                                      materialDesign:HintAssist.Hint="Адрес отправки"
+                                      materialDesign:HintAssist.Foreground="{DynamicResource Black}"
+                                      materialDesign:TextFieldAssist.UnderlineBrush="{DynamicResource Orange}"/>
+
+                            <ComboBox x:Name="cbEditSortingCenter"
+                                      Grid.Row="1"
+                                      Grid.Column="1"
+                                      materialDesign:HintAssist.Hint="Сортировочный центр"
+                                      materialDesign:HintAssist.Foreground="{DynamicResource Black}"
+                                      materialDesign:TextFieldAssist.UnderlineBrush="{DynamicResource Orange}"
+                                      Margin="15 5"
+                                      ItemsSource="{Binding LongListToTestComboVirtualization}"
+                                      Style="{StaticResource MaterialDesignFloatingHintComboBox}">
+                                <ComboBox.ItemsPanel>
+                                    <ItemsPanelTemplate>
+                                        <VirtualizingStackPanel />
+                                    </ItemsPanelTemplate>
+                                </ComboBox.ItemsPanel>
+                            </ComboBox>
+
+                            <TextBox x:Name="tbEditRecipientAddress"
+                                     Grid.Row="2"
+                                     Grid.Column="1"
+                                      Style="{StaticResource MaterialDesignFilledTextFieldTextBox}"
+                                      VerticalAlignment="Top"
+                                      Margin="0 5"
+                                      CaretBrush="{DynamicResource Black}"
+                                      materialDesign:HintAssist.Hint="Адрес "
+                                      materialDesign:HintAssist.Foreground="{DynamicResource Black}"
+                                      materialDesign:TextFieldAssist.UnderlineBrush="{DynamicResource Orange}"/>
+
+                            <ComboBox x:Name="cbEditNameOrderTiming"
+                                      Grid.Row="3"
+                                      Grid.Column="1"
+                                      materialDesign:HintAssist.Hint="Срочность"
+                                      materialDesign:HintAssist.Foreground="{DynamicResource Black}"
+                                      materialDesign:TextFieldAssist.UnderlineBrush="{DynamicResource Orange}"
+                                      Margin="15 5"
+                                      ItemsSource="{Binding LongListToTestComboVirtualization}"
+                                      Style="{StaticResource MaterialDesignFloatingHintComboBox}">
+                                <ComboBox.ItemsPanel>
+                                    <ItemsPanelTemplate>
+                                        <VirtualizingStackPanel />
+                                    </ItemsPanelTemplate>
+                                </ComboBox.ItemsPanel>
+                            </ComboBox>
+
+                            <TextBox x:Name="tbEditPrice"
+                                     Grid.Row="4"
+                                     Grid.Column="1"
+                                     Style="{StaticResource MaterialDesignFilledTextFieldTextBox}"
+                                     VerticalAlignment="Top"
+                                     Margin="0 5"
+                                     CaretBrush="{DynamicResource Black}"
+                                     materialDesign:HintAssist.Hint="Цена"
+                                     materialDesign:HintAssist.Foreground="{DynamicResource Black}"
+                                     materialDesign:TextFieldAssist.UnderlineBrush="{DynamicResource Orange}"/>
+
+                            <Button x:Name="btnEditOrder"
+                                    Grid.Row="5"
+                                    Grid.ColumnSpan="2"
+                                    Content="Изменить заказ"
+                                    Style="{DynamicResource ActionButton}"
+                                    Width="250"/>
+                        </Grid>
                     </Grid>
+
                     <Grid Grid.Column="1">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="auto"/>
                             <RowDefinition />
                         </Grid.RowDefinitions>
 
-                        <Rectangle Stroke="Gray"
-                                       Grid.RowSpan="2"/>
-
                         <Rectangle Fill="Gray"
-                                       Height="25"/>
+                                   Stroke="Gray"
+                                   Height="50"/>
 
-                        <TextBlock Style="{DynamicResource TextBlock}"
-                                       Text="Изменение товар"/>
+                        <TextBlock x:Name="tbList"
+                                    Style="{DynamicResource TextBlock}"
+                                    Text="Сортировочный центр"
+                                    Grid.Column="1"/>
 
-                        <StackPanel Margin="10"
-                                        Grid.Row="1">
-                            <TextBox x:Name="tbEditArticle"
-                                      Style="{StaticResource MaterialDesignFilledTextFieldTextBox}"
-                                      VerticalAlignment="Top"
-                                      Margin="0 2"
-                                      CaretBrush="{DynamicResource Black}"
-                                      materialDesign:HintAssist.Hint="Артикул"
-                                      materialDesign:HintAssist.Foreground="{DynamicResource Black}"
-                                      materialDesign:TextFieldAssist.UnderlineBrush="{DynamicResource Orange}"/>
-                            <TextBox x:Name="tbEditName"
-                                      Style="{StaticResource MaterialDesignFilledTextFieldTextBox}"
-                                      VerticalAlignment="Top"
-                                      Margin="0 2"
-                                      CaretBrush="{DynamicResource Black}"
-                                      materialDesign:HintAssist.Hint="Наименование"
-                                      materialDesign:HintAssist.Foreground="{DynamicResource Black}"
-                                      materialDesign:TextFieldAssist.UnderlineBrush="{DynamicResource Orange}"/>
-                            <TextBox x:Name="tbEditDimensions"
-                                      Style="{StaticResource MaterialDesignFilledTextFieldTextBox}"
-                                      VerticalAlignment="Top"
-                                      Margin="0 2"
-                                      CaretBrush="{DynamicResource Black}"
-                                      materialDesign:HintAssist.Hint="Габариты"
-                                      materialDesign:HintAssist.Foreground="{DynamicResource Black}"
-                                      materialDesign:TextFieldAssist.UnderlineBrush="{DynamicResource Orange}"/>
-                            <TextBox x:Name="tbEditWeight"
-                                      Style="{StaticResource MaterialDesignFilledTextFieldTextBox}"
-                                      VerticalAlignment="Top"
-                                      Margin="0 2"
-                                      CaretBrush="{DynamicResource Black}"
-                                      materialDesign:HintAssist.Hint="Вес"
-                                      materialDesign:HintAssist.Foreground="{DynamicResource Black}"
-                                      materialDesign:TextFieldAssist.UnderlineBrush="{DynamicResource Orange}"/>
-                            <ComboBox x:Name="cbEditStrength"
-                                      materialDesign:HintAssist.Hint="Прочность"
-                                      materialDesign:HintAssist.Foreground="{DynamicResource Black}"
-                                      materialDesign:TextFieldAssist.UnderlineBrush="{DynamicResource Orange}"
-                                      MinWidth="72"
-                                      Margin="15 10"
-                                      ItemsSource="{Binding LongListToTestComboVirtualization}"
-                                      Style="{StaticResource MaterialDesignFloatingHintComboBox}">
-                                <ComboBox.ItemsPanel>
-                                    <ItemsPanelTemplate>
-                                        <VirtualizingStackPanel />
-                                    </ItemsPanelTemplate>
-                                </ComboBox.ItemsPanel>
-                            </ComboBox>
-                            <TextBox x:Name="tbEditFeatures"
-                                      Style="{StaticResource MaterialDesignFilledTextFieldTextBox}"
-                                      VerticalAlignment="Top"
-                                      Margin="0 2"
-                                      CaretBrush="{DynamicResource Black}"
-                                      materialDesign:HintAssist.Hint="Особенности"
-                                      materialDesign:HintAssist.Foreground="{DynamicResource Black}"
-                                      materialDesign:TextFieldAssist.UnderlineBrush="{DynamicResource Orange}"/>
-                            <Button x:Name="btnEditEmployee"
-                                    Content="Добавить товар"
-                                    Style="{DynamicResource ActionButton}"
-                                    Width="250"
-                                    Margin="0 2" Click="btnEditEmployee_Click"/>
-                        </StackPanel>
+
+                            <materialDesign:DialogHost Grid.Row="1"
+                                                   Style="{StaticResource MaterialDesignEmbeddedDialogHost}"
+                                                   DialogMargin="8">
+                            <materialDesign:DialogHost.DialogContent>
+                                <StackPanel Margin="16">
+                                    <TextBox x:Name="tbSortingCenter"
+                                             Grid.Row="1"
+                                             Margin="0 8 0 0"
+                                             VerticalAlignment="Bottom"
+                                             Style="{DynamicResource MaterialDesignFloatingHintTextBox}"
+                                             CaretBrush="Black"
+                                             materialDesign:HintAssist.Hint="Логин"
+                                             materialDesign:HintAssist.Foreground="{DynamicResource Orange}"
+                                             materialDesign:TextFieldAssist.UnderlineBrush="{DynamicResource Orange}"
+                                             materialDesign:TextFieldAssist.HasClearButton="True"/>
+                                    <StackPanel
+                                                Orientation="Horizontal"
+                                                HorizontalAlignment="Right">
+                                        <Button Style="{StaticResource ActionButton}"
+                                                x:Name="btnAddSortingCenter"
+                                              IsDefault="True"
+                                              Margin="0 8 8 0"
+                                              Command="materialDesign:DialogHost.CloseDialogCommand"
+                                                Click="btnAddSortingCenter_Click">
+                                            <Button.CommandParameter>
+                                                <system:Boolean xmlns:system="clr-namespace:System;assembly=mscorlib">
+                                                    True
+                                                </system:Boolean>
+                                            </Button.CommandParameter>
+                                            Добавить
+                                        </Button>
+                                        <Button Style="{StaticResource ActionButton}"
+                                              IsCancel="True"
+                                              Margin="0 8 8 0"
+                                              Command="materialDesign:DialogHost.CloseDialogCommand">
+                                            <Button.CommandParameter>
+                                                <system:Boolean xmlns:system="clr-namespace:System;assembly=mscorlib">
+                                                    False
+                                                </system:Boolean>
+                                            </Button.CommandParameter>
+                                            Отмена
+                                        </Button>
+                                    </StackPanel>
+                                </StackPanel>
+                            </materialDesign:DialogHost.DialogContent>
+
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*" />
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+                                
+                                <ListBox x:Name="lbSortingCenter"/>
+
+                                <Button Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}"
+                                        Command="{x:Static materialDesign:DialogHost.OpenDialogCommand}"
+                                        VerticalAlignment="Bottom"
+                                        HorizontalAlignment="Right"
+                                        Grid.Row="0"
+                                        Background="LightCoral"
+                                        BorderBrush="Black"
+                                        Margin="20">
+                                    <materialDesign:PackIcon
+                                              Kind="Plus"
+                                              Height="22"
+                                              Width="22" />
+                                </Button>
+                            </Grid>
+                        </materialDesign:DialogHost>
                     </Grid>
+                    
+
                 </Grid>
             </Grid>
             <materialDesign:Snackbar x:Name="snack"

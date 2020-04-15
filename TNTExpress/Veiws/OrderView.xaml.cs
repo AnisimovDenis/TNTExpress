@@ -15,6 +15,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using TNTExpress.Classes;
 using TNTExpress.Classes.DataBaseWork;
+using TNTExpress.Classes.ListWork;
 using TNTExpress.Classes.SnackBarMessage;
 
 namespace TNTExpress.Veiws
@@ -33,6 +34,8 @@ namespace TNTExpress.Veiws
         SB sB;
         DG dG;
         DataBaseQuery dataBaseQuery;
+        MyListBox lb;
+
         string id;
 
         public OrderView()
@@ -42,35 +45,79 @@ namespace TNTExpress.Veiws
 
             sB = new SB(snack, snackMessage);
 
-            dataBaseQuery = new DataBaseQuery(snack, snackMessage);
+            lb = new MyListBox(lbSortingCenter, snack, snackMessage);
 
-            this.Loaded += delegate
-            {
-                dG.Loader("SELECT * FROM dbo.[ProductStrength]");
-            };
+            dataBaseQuery = new DataBaseQuery(snack, snackMessage);
 
             snackMessage.ActionClick += delegate { dG.CloseSnackbar(); };
         }
 
-        private void dgSupplier_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void tbSearch_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            dG.Loader("SELECT * FROM dbo.[ProductStrength] " +
+                $"WHERE [Name] LIKE '%{tbSearch.Text}%'");
+        }
+
+        private void MenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            dataBaseQuery.SqlQuery("DELETE FROM dbo.[Product] " +
+                $"WHERE [Id] = {id}", "Данные успешно удалены", "Ошибка");
+            dG.Loader("SELECT * FROM dbo.ProductStrength");
+        }
+
+        private void btnGridEditOrder_Click(object sender, RoutedEventArgs e)
+        {
+            btnGridEditOrder.IsEnabled = false;
+            btnGridAddOrder.IsEnabled = true;
+            gEditOrder.Visibility = Visibility.Visible;
+            gAddOrder.Visibility = Visibility.Hidden;
+        }
+
+        private void btnGridAddOrder_Click(object sender, RoutedEventArgs e)
+        {
+            btnGridEditOrder.IsEnabled = true;
+            btnGridAddOrder.IsEnabled = false;
+            gEditOrder.Visibility = Visibility.Hidden;
+            gAddOrder.Visibility = Visibility.Visible;
+        }
+
+        private void UserControl_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
+        {
+            dG.Loader("SELECT * FROM dbo.[OrderView]");
+            lb.Loader("SortingCenter", "NameSortingCenter");
+        }
+
+        private void btnAddSortingCenter_Click(object sender, RoutedEventArgs e)
+        {
+            dataBaseQuery.SqlQuery("INSERT INTO dbo.[SortingCenter] " +
+                $"VALUES('{tbSortingCenter.Text}')",
+                "Данные успешно добавлены", "Такой сортировочный центр уже есть");
+            lb.Loader("SortingCenter", "NameSortingCenter");
+        }
+
+        private void dgOrder_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (dgOrder.SelectedItem != null)
                 id = dG.FirstColumn;
             try
             {
                 connection.Open();
-                cmd = new SqlCommand($"SELECT * FROM dbo.[ProductStrength]" +
+                cmd = new SqlCommand($"SELECT * FROM dbo.[OrderView]" +
                     $"WHERE[Id] = {id}", connection);
                 reader = cmd.ExecuteReader();
                 reader.Read();
                 if (reader.HasRows)
                 {
-                    tbEditArticle.Text = reader[1].ToString();
-                    tbEditName.Text = reader[2].ToString();
-                    tbEditDimensions.Text = reader[3].ToString();
-                    tbEditWeight.Text = reader[4].ToString();
-                    cbEditStrength.Text = reader[5].ToString();
-                    tbEditFeatures.Text = reader[6].ToString();
+                    cbEditEmployee.Text = reader[1].ToString();
+                    cbEditClient.Text = reader[2].ToString();
+                    cbEditRecipient.Text = reader[3].ToString();
+                    cbEditSupplier.Text = reader[4].ToString();
+                    cbEditArticle.Text = reader[5].ToString();
+                    tbEditShippingAddress.Text = reader[6].ToString();
+                    cbEditSortingCenter.Text = reader[7].ToString();
+                    tbEditRecipientAddress.Text = reader[8].ToString();
+                    cbEditSortingCenter.Text = reader[9].ToString();
+                    tbEditPrice.Text = reader[10].ToString();
                 }
             }
             catch (SqlException sqlExc)
@@ -81,93 +128,6 @@ namespace TNTExpress.Veiws
             {
                 connection.Close();
             }
-        }
-
-        private void tbSearch_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            dG.Loader("SELECT * FROM dbo.[ProductStrength] " +
-                $"WHERE [Name] LIKE '%{tbSearch.Text}%'");
-        }
-
-        private void btnAddEmployee_Click(object sender, RoutedEventArgs e)
-        {
-
-            if (string.IsNullOrEmpty(tbArticle.Text))
-            {
-                sB.Info("Введите артикул");
-            }
-            else if (string.IsNullOrEmpty(tbName.Text))
-            {
-                sB.Info("Введите наименование");
-            }
-            else if (string.IsNullOrEmpty(tbDimensions.Text))
-            {
-                sB.Info("Введите габариты");
-            }
-            else if (string.IsNullOrEmpty(tbWeight.Text))
-            {
-                sB.Info("Введите размер");
-            }
-            else if (string.IsNullOrEmpty(cbStrength.Text))
-            {
-                sB.Info("Введите вес");
-            }
-            else if (string.IsNullOrEmpty(tbFeatures.Text))
-            {
-                sB.Info("Введите особенности");
-            }
-            else
-            {
-                dataBaseQuery.SqlQuery("INSERT INTO dbo.[Product]" +
-                    $"VALUES ('{tbArticle.Text}', '{tbName.Text}', '{tbDimensions.Text}', '{tbWeight.Text}'," +
-                    $"(SELECT Id FROM dbo.[Strength] WHERE [NameStrength] = '{cbStrength.Text}'), " +
-                    $"'{tbFeatures.Text}')",
-                "Данные успешно добавлены", "Ошибка");
-                dG.Loader("SELECT * FROM dbo.[ProductStrength]");
-
-            }
-        }
-
-        private void btnEditEmployee_Click(object sender, RoutedEventArgs e)
-        {
-
-            if (string.IsNullOrEmpty(tbEditArticle.Text))
-            {
-                sB.Info("Введите артикул");
-            }
-            else if (string.IsNullOrEmpty(tbEditName.Text))
-            {
-                sB.Info("Введите наименование");
-            }
-            else if (string.IsNullOrEmpty(tbEditDimensions.Text))
-            {
-                sB.Info("Введите габариты");
-            }
-            else if (string.IsNullOrEmpty(tbEditWeight.Text))
-            {
-                sB.Info("Введите размер");
-            }
-            else if (string.IsNullOrEmpty(cbEditStrength.Text))
-            {
-                sB.Info("Введите вес");
-            }
-            else if (string.IsNullOrEmpty(tbEditFeatures.Text))
-            {
-                sB.Info("Введите особенности");
-            }
-            else
-            {
-                dataBaseQuery.SqlQuery("UPDATE dbo.[Supplier]",
-                "Данные успешно изменены", "Ошибка");
-                dG.Loader("SELECT * FROM dbo.[ProductStrength]");
-            }
-        }
-
-        private void MenuItem_Click(object sender, RoutedEventArgs e)
-        {
-            dataBaseQuery.SqlQuery("DELETE FROM dbo.[Product] " +
-                $"WHERE [Id] = {id}", "Данные успешно удалены", "Ошибка");
-            dG.Loader("SELECT * FROM dbo.ProductStrength");
         }
     }
 }

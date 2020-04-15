@@ -81,7 +81,8 @@
                        HorizontalAlignment="Right"
                        VerticalAlignment="Top"
                        Width="190" Height="35"
-                       Margin="0 5 10 0" RadiusY="6.5" RadiusX="6.5"/>
+                       Margin="0 5 10 0" 
+                       RadiusY="10" RadiusX="10"/>
 
 
             <Grid Grid.Row="1">
@@ -92,15 +93,15 @@
                 </Grid.ColumnDefinitions>
 
 
-                    <Rectangle Stroke="Gray"
+                <Rectangle Stroke="Gray"
                                Grid.RowSpan="2"
                                Grid.Column="0"/>
 
-                    <Rectangle Stroke="Gray"
+                <Rectangle Stroke="Gray"
                                Grid.Column="1"/>
 
 
-                    <Grid x:Name="gAddUser">
+                <Grid x:Name="gAddUser">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="auto"/>
                         <RowDefinition />
@@ -117,7 +118,7 @@
 
                     <StackPanel Margin="10"
                                 Grid.Row="1">
-                            <TextBox x:Name="tbLogin"
+                        <TextBox x:Name="tbLogin"
                                      Style="{StaticResource MaterialDesignFilledTextFieldTextBox}"
                                      VerticalAlignment="Top"
                                      Margin="0 10"
@@ -125,7 +126,7 @@
                                      materialDesign:HintAssist.Hint="Логин"
                                      materialDesign:HintAssist.Foreground="{DynamicResource Black}"
                                      materialDesign:TextFieldAssist.UnderlineBrush="{DynamicResource Orange}"/>
-                            <TextBox x:Name="tbPassword"
+                        <TextBox x:Name="tbPassword"
                                       Style="{StaticResource MaterialDesignFilledTextFieldTextBox}"
                                       VerticalAlignment="Top"
                                       Margin="0 10"
@@ -133,7 +134,7 @@
                                       materialDesign:HintAssist.Hint="Пароль"
                                       materialDesign:HintAssist.Foreground="{DynamicResource Black}"
                                       materialDesign:TextFieldAssist.UnderlineBrush="{DynamicResource Orange}"/>
-                            <ComboBox x:Name="cbRole"
+                        <ComboBox x:Name="cbRole"
                                       materialDesign:HintAssist.Hint="Роль"
                                       materialDesign:HintAssist.Foreground="{DynamicResource Black}"
                                       materialDesign:TextFieldAssist.UnderlineBrush="{DynamicResource Orange}"
@@ -141,20 +142,20 @@
                                       Margin="15 10"
                                       ItemsSource="{Binding LongListToTestComboVirtualization}"
                                       Style="{StaticResource MaterialDesignFloatingHintComboBox}">
-                                <ComboBox.ItemsPanel>
-                                    <ItemsPanelTemplate>
-                                        <VirtualizingStackPanel />
-                                    </ItemsPanelTemplate>
-                                </ComboBox.ItemsPanel>
-                            </ComboBox>
-                            <Button x:Name="btnAddUser"
+                            <ComboBox.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <VirtualizingStackPanel />
+                                </ItemsPanelTemplate>
+                            </ComboBox.ItemsPanel>
+                        </ComboBox>
+                        <Button x:Name="btnAddUser"
                                     Content="Добавить пользователя"
                                     Style="{DynamicResource ActionButton}"
                                     Width="250"
                                     Margin="0 10"
                                     Click="btnAddUser_Click"/>
-                        </StackPanel>
-                    </Grid>
+                    </StackPanel>
+                </Grid>
                 <Grid x:Name="gEditUser"
                           Grid.Column="1">
                     <Grid.RowDefinitions>
@@ -170,7 +171,7 @@
 
                     <TextBlock Style="{DynamicResource TextBlock}"
                                        Text="Изменение товар"/>
-                    
+
                     <StackPanel Margin="10"
                                 Grid.Row="1">
                         <TextBox x:Name="tbEditLogin"

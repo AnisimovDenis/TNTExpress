@@ -39,13 +39,21 @@
     </Style>
 
     <Style x:Key="TabMenuButton" TargetType="Button" BasedOn="{StaticResource MaterialDesignRaisedAccentButton}">
-        <Setter Property="Height" Value="50"/>
+        <Setter Property="Width" Value="250"/>
         <Setter Property="Height" Value="25"/>
         <Setter Property="Margin" Value="5"/>
         <Setter Property="Background" Value="LightCoral"/>
         <Setter Property="BorderBrush" Value="Black"/>
     </Style>
-    
+
+    <Style x:Key="ExtraTabMenuButton" TargetType="Button" BasedOn="{StaticResource MaterialDesignFloatingActionMiniDarkButton}">
+        <Setter Property="Width" Value="30"/>
+        <Setter Property="Height" Value="30"/>
+        <Setter Property="Margin" Value="5"/>
+        <Setter Property="Background" Value="LightCoral"/>
+        <Setter Property="BorderBrush" Value="Black"/>
+    </Style>
+
     <Style x:Key="ActionButton" TargetType="Button" BasedOn="{StaticResource MaterialDesignRaisedButton}">
         <Setter Property="Height" Value="25"/>
         <Setter Property="Width" Value="125"/>

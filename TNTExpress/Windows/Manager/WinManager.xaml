@@ -19,7 +19,7 @@
         WindowStyle="None"
         ResizeMode="NoResize"
         Height="1000"
-        Width="1700"
+        Width="1800"
         WindowStartupLocation="CenterScreen"
         Icon="/TNTExpress;component/Resources/TNTExpress_logo_menu.png">
     <Grid>
@@ -149,7 +149,7 @@
                                Grid.Column="1"/>
 
             <view:OrderView x:Name="orderView"
-                               Visibility="Hidden"
+                               Visibility="Visible"
                                Grid.Row="1"
                                Grid.Column="1"/>
         </Grid>
