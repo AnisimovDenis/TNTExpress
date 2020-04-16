@@ -6,7 +6,7 @@
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:local="clrnamespace:TNTExpress.Veiws"
              mc:Ignorable="d" 
-             d:DesignHeight="1000" d:DesignWidth="1600"
+             d:DesignHeight="1000" d:DesignWidth="1650"
              TextElement.Foreground="{DynamicResource MaterialDesignBody}"
              TextElement.FontWeight="Regular"
              TextElement.FontSize="13"
@@ -65,9 +65,9 @@
                         </DataGridTextColumn>
                         <DataGridTextColumn Header="Артикул товара"
                                         Binding="{Binding Article}"
-                                        Width="120"
-                                        MinWidth="120"/>
-                        <DataGridTextColumn Header="ShippingAdress"
+                                        Width="140"
+                                        MinWidth="140"/>
+                        <DataGridTextColumn Header="Адрес отправки"
                                         Binding="{Binding ShippingAddress}"
                                         Width="175"
                                         MinWidth="175">
@@ -80,12 +80,12 @@
                         </DataGridTextColumn>
                         <DataGridTextColumn Header="Сортировочный центр"
                                         Binding="{Binding NameSortingCenter}"
-                                        Width="165"
-                                        MinWidth="165"/>
-                        <DataGridTextColumn Header="RecipientAddress"
-                                        Binding="{Binding RecipientAddress}"
                                         Width="175"
-                                        MinWidth="175">
+                                        MinWidth="175"/>
+                        <DataGridTextColumn Header="Адрес доставки"
+                                        Binding="{Binding RecipientAddress}"
+                                        Width="185"
+                                        MinWidth="185">
                             <DataGridTextColumn.ElementStyle>
                                 <Style>
                                     <Setter Property="TextBlock.TextWrapping" Value="Wrap" />
@@ -93,7 +93,7 @@
                                 </Style>
                             </DataGridTextColumn.ElementStyle>
                         </DataGridTextColumn>
-                        <DataGridTextColumn Header="Срочность"
+                        <DataGridTextColumn Header="Сроки"
                                         Binding="{Binding NameOrderTiming}"
                                         Width="100"
                                         MinWidth="100"/>
@@ -296,7 +296,7 @@
                                       VerticalAlignment="Top"
                                       Margin="0 5"
                                       CaretBrush="{DynamicResource Black}"
-                                      materialDesign:HintAssist.Hint="Адрес "
+                                      materialDesign:HintAssist.Hint="Адрес доставки"
                                       materialDesign:HintAssist.Foreground="{DynamicResource Black}"
                                       materialDesign:TextFieldAssist.UnderlineBrush="{DynamicResource Orange}"/>
 
@@ -304,7 +304,7 @@
                                       Grid.Row="3"
                                       Grid.Column="2"
                                       Margin="15 5"
-                                      materialDesign:HintAssist.Hint="Срочность"
+                                      materialDesign:HintAssist.Hint="Сроки"
                                       materialDesign:HintAssist.Foreground="{DynamicResource Black}"
                                       materialDesign:TextFieldAssist.UnderlineBrush="{DynamicResource Orange}"
                                       ItemsSource="{Binding LongListToTestComboVirtualization}"
