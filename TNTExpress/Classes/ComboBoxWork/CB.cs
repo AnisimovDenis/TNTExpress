@@ -34,7 +34,7 @@ namespace TNTExpress.Classes.ComboBoxWork
             {
                 connection.Open();
 
-                string sqlCommand = $"SELECT [{column}] FROM dbo.[{table}]";
+                string sqlCommand = $"SELECT {column} FROM dbo.[{table}]";
                 cmd = new SqlCommand(sqlCommand, connection);
                 reader = cmd.ExecuteReader();
 

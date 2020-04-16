@@ -95,7 +95,7 @@
                 <Button x:Name="btnProduct" Content="Товары"
                         Style="{DynamicResource MainMenuButton}" Click="btnProduct_Click"/>
                 <Button x:Name="btnOrder" Content="Заказы"
-                        Style="{DynamicResource MainMenuButton}"/>
+                        Style="{DynamicResource MainMenuButton}" Click="btnOrder_Click"/>
             </StackPanel>
 
             <UniformGrid Grid.Row="2"

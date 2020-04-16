@@ -331,7 +331,7 @@
                                     Grid.ColumnSpan="2"
                                     Content="Добавить заказ"
                                     Style="{DynamicResource ActionButton}"
-                                    Width="250"/>
+                                    Width="250" Click="btnAddOrder_Click"/>
                         </Grid>
 
                         <Grid x:Name="gEditOrder"
@@ -351,11 +351,12 @@
                                 <ColumnDefinition />
                             </Grid.ColumnDefinitions>
 
-                            <ComboBox x:Name="cbEditClient"
-                                      materialDesign:HintAssist.Hint="Клиент"
+                            <ComboBox x:Name="cbEditEmployee"
+                                      Grid.Row="0"
+                                      Margin="15 5"
+                                      materialDesign:HintAssist.Hint="Сотрудник"
                                       materialDesign:HintAssist.Foreground="{DynamicResource Black}"
                                       materialDesign:TextFieldAssist.UnderlineBrush="{DynamicResource Orange}"
-                                      Margin="15 5"
                                       ItemsSource="{Binding LongListToTestComboVirtualization}"
                                       Style="{StaticResource MaterialDesignFloatingHintComboBox}">
                                 <ComboBox.ItemsPanel>
@@ -365,12 +366,27 @@
                                 </ComboBox.ItemsPanel>
                             </ComboBox>
 
-                            <ComboBox x:Name="cbEditRecipient"
+                            <ComboBox x:Name="cbEditClient"
                                       Grid.Row="1"
+                                      materialDesign:HintAssist.Hint="Клиент"
+                                      materialDesign:HintAssist.Foreground="{DynamicResource Black}"
+                                      materialDesign:TextFieldAssist.UnderlineBrush="{DynamicResource Orange}"
+                                      ItemsSource="{Binding LongListToTestComboVirtualization}"
+                                      Margin="15 5"
+                                      Style="{StaticResource MaterialDesignFloatingHintComboBox}">
+                                <ComboBox.ItemsPanel>
+                                    <ItemsPanelTemplate>
+                                        <VirtualizingStackPanel />
+                                    </ItemsPanelTemplate>
+                                </ComboBox.ItemsPanel>
+                            </ComboBox>
+
+                            <ComboBox x:Name="cbEditRecipient"
+                                      Grid.Row="2"
+                                      Margin="15 5"
                                       materialDesign:HintAssist.Hint="Адресат"
                                       materialDesign:HintAssist.Foreground="{DynamicResource Black}"
                                       materialDesign:TextFieldAssist.UnderlineBrush="{DynamicResource Orange}"
-                                      Margin="15 5"
                                       ItemsSource="{Binding LongListToTestComboVirtualization}"
                                       Style="{StaticResource MaterialDesignFloatingHintComboBox}">
                                 <ComboBox.ItemsPanel>
@@ -381,11 +397,11 @@
                             </ComboBox>
 
                             <ComboBox x:Name="cbEditSupplier"
-                                      Grid.Row="2"
-                                      materialDesign:HintAssist.Hint="Поставщики"
+                                      Grid.Row="3"
+                                      Margin="15 5"
+                                      materialDesign:HintAssist.Hint="Поставщик"
                                       materialDesign:HintAssist.Foreground="{DynamicResource Black}"
                                       materialDesign:TextFieldAssist.UnderlineBrush="{DynamicResource Orange}"
-                                      Margin="15 5"
                                       ItemsSource="{Binding LongListToTestComboVirtualization}"
                                       Style="{StaticResource MaterialDesignFloatingHintComboBox}">
                                 <ComboBox.ItemsPanel>
@@ -396,26 +412,11 @@
                             </ComboBox>
 
                             <ComboBox x:Name="cbEditArticle"
-                                      Grid.Row="3"
-                                      materialDesign:HintAssist.Hint="Поставщики"
-                                      materialDesign:HintAssist.Foreground="{DynamicResource Black}"
-                                      materialDesign:TextFieldAssist.UnderlineBrush="{DynamicResource Orange}"
-                                      Margin="15 5"
-                                      ItemsSource="{Binding LongListToTestComboVirtualization}"
-                                      Style="{StaticResource MaterialDesignFloatingHintComboBox}">
-                                <ComboBox.ItemsPanel>
-                                    <ItemsPanelTemplate>
-                                        <VirtualizingStackPanel />
-                                    </ItemsPanelTemplate>
-                                </ComboBox.ItemsPanel>
-                            </ComboBox>
-
-                            <ComboBox x:Name="cbEditEmployee"
                                       Grid.Row="4"
-                                      materialDesign:HintAssist.Hint="Поставщики"
+                                      Margin="15 5"
+                                      materialDesign:HintAssist.Hint="Артикул товара"
                                       materialDesign:HintAssist.Foreground="{DynamicResource Black}"
                                       materialDesign:TextFieldAssist.UnderlineBrush="{DynamicResource Orange}"
-                                      Margin="15 5"
                                       ItemsSource="{Binding LongListToTestComboVirtualization}"
                                       Style="{StaticResource MaterialDesignFloatingHintComboBox}">
                                 <ComboBox.ItemsPanel>
@@ -427,7 +428,7 @@
 
                             <TextBox x:Name="tbEditShippingAddress"
                                      Grid.Row="0"
-                                     Grid.Column="1"
+                                     Grid.Column="2"
                                       Style="{StaticResource MaterialDesignFilledTextFieldTextBox}"
                                       VerticalAlignment="Top"
                                       Margin="0 5"
@@ -438,11 +439,11 @@
 
                             <ComboBox x:Name="cbEditSortingCenter"
                                       Grid.Row="1"
-                                      Grid.Column="1"
+                                      Grid.Column="2"
+                                      Margin="15 5"
                                       materialDesign:HintAssist.Hint="Сортировочный центр"
                                       materialDesign:HintAssist.Foreground="{DynamicResource Black}"
                                       materialDesign:TextFieldAssist.UnderlineBrush="{DynamicResource Orange}"
-                                      Margin="15 5"
                                       ItemsSource="{Binding LongListToTestComboVirtualization}"
                                       Style="{StaticResource MaterialDesignFloatingHintComboBox}">
                                 <ComboBox.ItemsPanel>
@@ -454,7 +455,7 @@
 
                             <TextBox x:Name="tbEditRecipientAddress"
                                      Grid.Row="2"
-                                     Grid.Column="1"
+                                     Grid.Column="2"
                                       Style="{StaticResource MaterialDesignFilledTextFieldTextBox}"
                                       VerticalAlignment="Top"
                                       Margin="0 5"
@@ -465,11 +466,11 @@
 
                             <ComboBox x:Name="cbEditNameOrderTiming"
                                       Grid.Row="3"
-                                      Grid.Column="1"
+                                      Grid.Column="2"
+                                      Margin="15 5"
                                       materialDesign:HintAssist.Hint="Срочность"
                                       materialDesign:HintAssist.Foreground="{DynamicResource Black}"
                                       materialDesign:TextFieldAssist.UnderlineBrush="{DynamicResource Orange}"
-                                      Margin="15 5"
                                       ItemsSource="{Binding LongListToTestComboVirtualization}"
                                       Style="{StaticResource MaterialDesignFloatingHintComboBox}">
                                 <ComboBox.ItemsPanel>
@@ -481,7 +482,7 @@
 
                             <TextBox x:Name="tbEditPrice"
                                      Grid.Row="4"
-                                     Grid.Column="1"
+                                     Grid.Column="2"
                                      Style="{StaticResource MaterialDesignFilledTextFieldTextBox}"
                                      VerticalAlignment="Top"
                                      Margin="0 5"
@@ -495,7 +496,8 @@
                                     Grid.ColumnSpan="2"
                                     Content="Изменить заказ"
                                     Style="{DynamicResource ActionButton}"
-                                    Width="250"/>
+                                    Width="250"
+                                    Click="btnEditOrder_Click"/>
                         </Grid>
                     </Grid>
 
