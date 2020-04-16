@@ -15,7 +15,7 @@
              Background="{DynamicResource MaterialDesignPaper}"
              FontFamily="{DynamicResource MaterialDesignFont}">
     <Grid>
-        <Grid x:Name="gClient">
+        <Grid x:Name="gProduct">
             <Grid.RowDefinitions>
                 <RowDefinition Height="75"/>
                 <RowDefinition />
@@ -35,10 +35,10 @@
                     <RowDefinition Height="455"/>
                 </Grid.RowDefinitions>
 
-                <DataGrid x:Name="dgSupplier"
+                <DataGrid x:Name="dgProduct"
                               AutoGenerateColumns="False"
                               IsReadOnly="True" 
-                              SelectionChanged="dgSupplier_SelectionChanged">
+                              SelectionChanged="dgProduct_SelectionChanged">
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="Артикул"
                                         Binding="{Binding Article}"
@@ -98,7 +98,8 @@
                        HorizontalAlignment="Right"
                        VerticalAlignment="Top"
                        Width="190" Height="35"
-                       Margin="0 5 10 0"/>
+                       Margin="0 5 10 0" 
+                       RadiusY="10" RadiusX="10"/>
 
 
                 <Grid Grid.Row="1">
@@ -179,11 +180,11 @@
                                       materialDesign:HintAssist.Hint="Особенности"
                                       materialDesign:HintAssist.Foreground="{DynamicResource Black}"
                                       materialDesign:TextFieldAssist.UnderlineBrush="{DynamicResource Orange}"/>
-                            <Button x:Name="btnAddEmployee"
+                            <Button x:Name="btnAddProduct"
                                     Content="Добавить товар"
                                     Style="{DynamicResource ActionButton}"
                                     Width="250"
-                                    Margin="0 2" Click="btnAddEmployee_Click"/>
+                                    Margin="0 2" Click="btnAddProduct_Click"/>
                         </StackPanel>
                     </Grid>
                     <Grid Grid.Column="1">
@@ -257,11 +258,11 @@
                                       materialDesign:HintAssist.Hint="Особенности"
                                       materialDesign:HintAssist.Foreground="{DynamicResource Black}"
                                       materialDesign:TextFieldAssist.UnderlineBrush="{DynamicResource Orange}"/>
-                            <Button x:Name="btnEditEmployee"
-                                    Content="Добавить товар"
+                            <Button x:Name="btnEditProduct"
+                                    Content="Изменить товар"
                                     Style="{DynamicResource ActionButton}"
                                     Width="250"
-                                    Margin="0 2" Click="btnEditEmployee_Click"/>
+                                    Margin="0 2" Click="btnEditProduct_Click"/>
                         </StackPanel>
                     </Grid>
                 </Grid>

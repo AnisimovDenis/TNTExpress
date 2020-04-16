@@ -141,7 +141,11 @@ namespace TNTExpress.Veiws
             bool resultEmail = ExtraClass.IsValidString(tbEditEmail.Text, @"^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$");
             bool resultPhoneNumber = ExtraClass.IsValidString(tbEditPhoneNumber.Text, @"^\+\d{1}\(\d{3}\)\d{3}-\d{2}-\d{2}$");
 
-            if (string.IsNullOrEmpty(cbEditLogin.Text))
+            if (dgEmployee.SelectedItem is null)
+            {
+                sB.Info("Выберете строку для редактирования");
+            }
+            else if (string.IsNullOrEmpty(cbEditLogin.Text))
             {
                 sB.Info("Введите логин");
             }

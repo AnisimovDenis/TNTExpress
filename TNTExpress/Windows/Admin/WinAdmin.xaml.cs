@@ -21,16 +21,16 @@ using TNTExpress.Classes.SnackBarMessage;
 using TNTExpress.Veiws;
 using TNTExpress.Windows.Autotification;
 
-namespace TNTExpress.Windows.Manager
+namespace TNTExpress.Windows.Admin
 {
     /// <summary>
-    /// Логика взаимодействия для WinManager.xaml
+    /// Логика взаимодействия для WinAdmin.xaml
     /// </summary>
-    public partial class WinManager : Window
+    public partial class WinAdmin : Window
     {
         
 
-        public WinManager()
+        public WinAdmin()
         {
             InitializeComponent();
 

@@ -92,7 +92,7 @@ namespace TNTExpress.Veiws
                 $"[LastName] LIKE '%{tbSearch.Text}%'");
         }
 
-        private void btnAddEmployee_Click(object sender, RoutedEventArgs e)
+        private void btnAddRecipient_Click(object sender, RoutedEventArgs e)
         {
             bool resultEmail = ExtraClass.IsValidString(tbEmail.Text, @"^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$");
             bool resultPhoneNumber = ExtraClass.IsValidString(tbPhoneNumber.Text, @"^\+\d{1}\(\d{3}\)\d{3}-\d{2}-\d{2}$");
@@ -143,7 +143,7 @@ namespace TNTExpress.Veiws
 
         }
 
-        private void btnEditEmployee_Click(object sender, RoutedEventArgs e)
+        private void btnEditRecipient_Click(object sender, RoutedEventArgs e)
         {
             bool resultEmail = ExtraClass.IsValidString(tbEditEmail.Text, @"^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$");
             bool resultPhoneNumber = ExtraClass.IsValidString(tbEditPhoneNumber.Text, @"^\+\d{1}\(\d{3}\)\d{3}-\d{2}-\d{2}$");

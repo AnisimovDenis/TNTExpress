@@ -92,7 +92,8 @@
                        HorizontalAlignment="Right"
                        VerticalAlignment="Top"
                        Width="190" Height="35"
-                       Margin="0 5 10 0"/>
+                       Margin="0 5 10 0" 
+                       RadiusY="10" RadiusX="10"/>
 
 
             <Grid Grid.Row="1">
@@ -167,7 +168,7 @@
                                       materialDesign:HintAssist.Foreground="{DynamicResource Black}"
                                       materialDesign:TextFieldAssist.UnderlineBrush="{DynamicResource Orange}"/>
                         <Button x:Name="btnAddEmployee"
-                                    Content="Добавить пользователя"
+                                    Content="Добавить сотрудника"
                                     Style="{DynamicResource ActionButton}"
                                     Width="250"
                                     Margin="0 2" Click="btnAddEmployee_Click"/>
@@ -237,7 +238,7 @@
                                       materialDesign:HintAssist.Foreground="{DynamicResource Black}"
                                       materialDesign:TextFieldAssist.UnderlineBrush="{DynamicResource Orange}"/>
                         <Button x:Name="btnEditEmployee"
-                                    Content="Изменить пользователя"
+                                    Content="Изменить сотрудника"
                                     Style="{DynamicResource ActionButton}"
                                     Width="250"
                                     Margin="0 2"

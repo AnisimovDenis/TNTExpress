@@ -12,8 +12,9 @@
              TextOptions.TextFormattingMode="Ideal"
              TextOptions.TextRenderingMode="Auto"
              Background="{DynamicResource MaterialDesignPaper}"
-             FontFamily="{DynamicResource MaterialDesignFont}" Loaded="UserControl_Loaded">
-    <Grid>
+             FontFamily="{DynamicResource MaterialDesignFont}"
+             Loaded="UserControl_Loaded">
+    <Grid x:Name="gUser">
         <Grid.RowDefinitions>
             <RowDefinition Height="75"/>
             <RowDefinition />
@@ -215,38 +216,6 @@
                 <materialDesign:DialogHost Style="{StaticResource MaterialDesignEmbeddedDialogHost}"
                                            DialogMargin="8"
                                            Grid.Column="2">
-                    <materialDesign:DialogHost.DialogContent>
-                        <StackPanel Margin="16">
-                            <TextBox x:Name="tbAddRole"
-                                     Style="{StaticResource MaterialDesignFilledTextFieldTextBox}"
-                                     VerticalAlignment="Top"
-                                     Text="{Binding dg}"
-                                     CaretBrush="{DynamicResource Black}"
-                                     materialDesign:HintAssist.Hint="Добавить роль"
-                                     materialDesign:HintAssist.Foreground="{DynamicResource Black}"
-                                        materialDesign:TextFieldAssist.UnderlineBrush="{DynamicResource Orange}"/>
-                            <StackPanel Orientation="Horizontal"
-                                            HorizontalAlignment="Right">
-                                <Button x:Name="btnAddRole"
-                                        Style="{DynamicResource ActionButton}"
-                                        Margin="0 8 8 0"
-                                        Command="materialDesign:DialogHost.CloseDialogCommand">
-                                    Добавить
-                                </Button>
-                                <Button Style="{DynamicResource ActionButton}"
-                                        IsCancel="True"
-                                        Margin="0 8 8 0"
-                                        Command="materialDesign:DialogHost.CloseDialogCommand">
-                                    <Button.CommandParameter>
-                                        <system:Boolean xmlns:system="clr-namespace:System;assembly=mscorlib">
-                                            False
-                                        </system:Boolean>
-                                    </Button.CommandParameter>
-                                    Закрыть
-                                </Button>
-                            </StackPanel>
-                        </StackPanel>
-                    </materialDesign:DialogHost.DialogContent>
                     <Border BorderThickness="1"
                             BorderBrush="Gray"
                             ClipToBounds="True"
@@ -268,18 +237,6 @@
                                         Роли
                                 </TextBlock>
                             </materialDesign:ColorZone>
-                            <Button Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}"
-                                    Command="{x:Static materialDesign:DialogHost.OpenDialogCommand}"
-                                    Background="LightCoral"
-                                    BorderBrush="Black"
-                                    VerticalAlignment="Bottom"
-                                    HorizontalAlignment="Right"
-                                    Grid.Row="0"
-                                    Margin="0 0 28 -20">
-                                <materialDesign:PackIcon Kind="Plus"
-                                                         Height="22"
-                                                         Width="22" />
-                            </Button>
                         </Grid>
                     </Border>
                 </materialDesign:DialogHost>

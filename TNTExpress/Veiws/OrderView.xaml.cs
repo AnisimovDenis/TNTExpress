@@ -97,15 +97,15 @@ namespace TNTExpress.Veiws
 
         private void tbSearch_TextChanged(object sender, TextChangedEventArgs e)
         {
-            dG.Loader("SELECT * FROM dbo.[ProductStrength] " +
-                $"WHERE [Name] LIKE '%{tbSearch.Text}%'");
+            dG.Loader("SELECT * FROM dbo.[OrderView] " +
+                $"WHERE [Article] LIKE '%{tbSearch.Text}%'");
         }
 
         private void MenuItem_Click(object sender, RoutedEventArgs e)
         {
-            dataBaseQuery.SqlQuery("DELETE FROM dbo.[Product] " +
+            dataBaseQuery.SqlQuery("DELETE FROM dbo.[Order] " +
                 $"WHERE [Id] = {id}", "Данные успешно удалены", "Ошибка");
-            dG.Loader("SELECT * FROM dbo.ProductStrength");
+            dG.Loader("SELECT * FROM dbo.[OrderView]");
         }
 
         private void btnGridEditOrder_Click(object sender, RoutedEventArgs e)
@@ -289,7 +289,11 @@ namespace TNTExpress.Veiws
 
         private void btnEditOrder_Click(object sender, RoutedEventArgs e)
         {
-            if (string.IsNullOrEmpty(cbEditEmployee.Text))
+            if (dgOrder.SelectedItem is null)
+            {
+                sB.Info("Выберете строку для редактирования");
+            }
+            else if (string.IsNullOrEmpty(cbEditEmployee.Text))
             {
                 sB.Info("Введите сотрудника");
             }
@@ -380,6 +384,15 @@ namespace TNTExpress.Veiws
                     dG.Loader("SELECT * FROM dbo.[OrderView]");
                 }
             }
+        }
+
+        private void MenuItem_Click_ListBox(object sender, RoutedEventArgs e)
+        {
+            dataBaseQuery.SqlQuery("DELETE FROM dbo.[SortingCenter] " +
+                $"WHERE [NameSortingCenter] = '{lbSortingCenter.SelectedItem}'", "Данные успешно удалены", "Ошибка");
+            lb.Loader("SortingCenter", "NameSortingCenter");
+            comboBoxEditSortingCenter.Loader("SortingCenter", "NameSortingCenter");
+            comboBoxSortingCenter.Loader("SortingCenter", "NameSortingCenter");
         }
     }
 }

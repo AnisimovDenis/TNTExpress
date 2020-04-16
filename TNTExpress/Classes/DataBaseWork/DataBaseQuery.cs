@@ -33,7 +33,7 @@ namespace TNTExpress.Classes.DataBaseWork
                 cmd.ExecuteNonQuery();
                 sB.Info(infoSuccess);
             }
-            catch (Exception ex)
+            catch
             {
                 sB.Info(exceptionMessage);
             }

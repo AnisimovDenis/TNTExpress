@@ -43,7 +43,7 @@ namespace TNTExpress.Veiws
         {
             InitializeComponent();
 
-            dG = new DG(dgSupplier, snack, snackMessage);
+            dG = new DG(dgProduct, snack, snackMessage);
 
             sB = new SB(snack, snackMessage);
 
@@ -65,9 +65,9 @@ namespace TNTExpress.Veiws
             snackMessage.ActionClick += delegate { dG.CloseSnackbar(); };
         }
 
-        private void dgSupplier_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void dgProduct_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (dgSupplier.SelectedItem != null)
+            if (dgProduct.SelectedItem != null)
                 id = dG.FirstColumn;
             try
             {
@@ -102,7 +102,7 @@ namespace TNTExpress.Veiws
                 $"WHERE [Name] LIKE '%{tbSearch.Text}%'");
         }
 
-        private void btnAddEmployee_Click(object sender, RoutedEventArgs e)
+        private void btnAddProduct_Click(object sender, RoutedEventArgs e)
         {
 
             if (string.IsNullOrEmpty(tbArticle.Text))
@@ -141,10 +141,14 @@ namespace TNTExpress.Veiws
             }
         }
 
-        private void btnEditEmployee_Click(object sender, RoutedEventArgs e)
+        private void btnEditProduct_Click(object sender, RoutedEventArgs e)
         {
 
-            if (string.IsNullOrEmpty(tbEditArticle.Text))
+            if (dgProduct.SelectedItem is null)
+            {
+                sB.Info("Выберете строку для редактирования");
+            }
+            else if (string.IsNullOrEmpty(tbEditArticle.Text))
             {
                 sB.Info("Введите артикул");
             }
@@ -170,7 +174,7 @@ namespace TNTExpress.Veiws
             }
             else
             {
-                dataBaseQuery.SqlQuery("UPDATE dbo.[Supplier]",
+                dataBaseQuery.SqlQuery("UPDATE dbo.[Product]",
                 "Данные успешно изменены", "Ошибка");
                 dG.Loader("SELECT * FROM dbo.[ProductStrength]");
             }

@@ -106,8 +106,8 @@
     <Compile Include="Windows\Autotification\WinAutorization.xaml.cs">
       <DependentUpon>WinAutorization.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Windows\Manager\WinManager.xaml.cs">
-      <DependentUpon>WinManager.xaml</DependentUpon>
+    <Compile Include="Windows\Admin\WinAdmin.xaml.cs">
+      <DependentUpon>WinAdmin.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -185,7 +185,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Windows\Manager\WinManager.xaml">
+    <Page Include="Windows\Admin\WinAdmin.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

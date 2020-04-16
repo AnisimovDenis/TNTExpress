@@ -15,7 +15,7 @@
              Background="{DynamicResource MaterialDesignPaper}"
              FontFamily="{DynamicResource MaterialDesignFont}" IsVisibleChanged="UserControl_IsVisibleChanged">
     <Grid>
-        <Grid x:Name="gClient">
+        <Grid x:Name="gOrder">
             <Grid.RowDefinitions>
                 <RowDefinition Height="75"/>
                 <RowDefinition />
@@ -135,7 +135,8 @@
                        HorizontalAlignment="Right"
                        VerticalAlignment="Top"
                        Width="190" Height="35"
-                       Margin="0 5 10 0"/>
+                       Margin="0 5 10 0" 
+                       RadiusY="10" RadiusX="10"/>
 
 
                 <Grid Grid.Row="1">
@@ -511,6 +512,9 @@
                                    Stroke="Gray"
                                    Height="50"/>
 
+                        <Rectangle Stroke="Gray"
+                                   Grid.RowSpan="2"/>
+
                         <TextBlock x:Name="tbList"
                                     Style="{DynamicResource TextBlock}"
                                     Text="Сортировочный центр"
@@ -568,8 +572,15 @@
                                     <RowDefinition Height="*" />
                                     <RowDefinition Height="Auto" />
                                 </Grid.RowDefinitions>
-                                
-                                <ListBox x:Name="lbSortingCenter"/>
+
+                                <ListBox x:Name="lbSortingCenter">
+                                    <ListBox.ContextMenu>
+                                        <ContextMenu>
+                                            <MenuItem Header="Удалить"
+                                                      Click="MenuItem_Click_ListBox"/>
+                                        </ContextMenu>
+                                    </ListBox.ContextMenu>
+                                </ListBox>
 
                                 <Button Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}"
                                         Command="{x:Static materialDesign:DialogHost.OpenDialogCommand}"

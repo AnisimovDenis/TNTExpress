@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using TNTExpress.Classes.SnackBarMessage;
-using TNTExpress.Windows.Manager;
+using TNTExpress.Windows.Admin;
 
 namespace TNTExpress.Classes.AutorizationWork
 {
@@ -66,7 +66,7 @@ namespace TNTExpress.Classes.AutorizationWork
                         switch (role)
                         {
                             case "3":
-                                WinManager winManager = new WinManager();
+                                WinAdmin winManager = new WinAdmin();
                                 winManager.Show();
                                 window.Close();
                                 break;
