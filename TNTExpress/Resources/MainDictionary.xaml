@@ -6,12 +6,7 @@
         <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Defaults.xaml" />
         <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Primary/MaterialDesignColor.DeepPurple.xaml" />
         <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Accent/MaterialDesignColor.Lime.xaml" />
-        <ResourceDictionary Source="pack://application:,,,/Dragablz;component/Themes/materialdesign.xaml" />
     </ResourceDictionary.MergedDictionaries>
-
-    <Style TargetType="{x:Type dragablz:TabablzControl}" BasedOn="{StaticResource MaterialDesignTabablzControlStyle}">
-        <Setter Property="BorderBrush" Value="Gray"/>
-    </Style>
 
     <SolidColorBrush x:Key="Orange" Color="Orange"/>
     <SolidColorBrush x:Key="MightOrange" Color="#FFFFBC41"/>
@@ -37,10 +32,26 @@
 
     <Style x:Key="MainMenuButton" TargetType="Button" BasedOn="{StaticResource MaterialDesignRaisedButton}">
         <Setter Property="Height" Value="90"/>
-        <Setter Property="Width" Value="150"/>
+        <Setter Property="Width" Value="125"/>
         <Setter Property="Margin" Value="3 10"/>
         <Setter Property="Background" Value="{StaticResource Orange}"/>
         <Setter Property="BorderBrush" Value="{StaticResource Black}"/>
+    </Style>
+
+    <Style x:Key="TabMenuButton" TargetType="Button" BasedOn="{StaticResource MaterialDesignRaisedAccentButton}">
+        <Setter Property="Width" Value="250"/>
+        <Setter Property="Height" Value="25"/>
+        <Setter Property="Margin" Value="5"/>
+        <Setter Property="Background" Value="LightCoral"/>
+        <Setter Property="BorderBrush" Value="Black"/>
+    </Style>
+
+    <Style x:Key="ExtraTabMenuButton" TargetType="Button" BasedOn="{StaticResource MaterialDesignFloatingActionMiniDarkButton}">
+        <Setter Property="Width" Value="30"/>
+        <Setter Property="Height" Value="30"/>
+        <Setter Property="Margin" Value="5"/>
+        <Setter Property="Background" Value="LightCoral"/>
+        <Setter Property="BorderBrush" Value="Black"/>
     </Style>
 
     <Style x:Key="ActionButton" TargetType="Button" BasedOn="{StaticResource MaterialDesignRaisedButton}">
@@ -58,7 +69,7 @@
         <Setter Property="HorizontalAlignment" Value="Center"/>
     </Style>
 
-    <Style x:Key="TextBlock" TargetType="TextBlock" BasedOn="{StaticResource MaterialDesignHeadline6TextBlock}">
+    <Style x:Key="TextBlock" TargetType="TextBlock" BasedOn="{StaticResource MaterialDesignSubtitle2TextBlock}">
         <Setter Property="VerticalAlignment" Value="Center"/>
         <Setter Property="HorizontalAlignment" Value="Center"/>
         <Setter Property="Foreground" Value="White"/>

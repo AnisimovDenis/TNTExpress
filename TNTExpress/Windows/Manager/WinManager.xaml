@@ -15,10 +15,12 @@
         TextOptions.TextRenderingMode="Auto"
         Background="{DynamicResource MaterialDesignPaper}"
         FontFamily="{DynamicResource MaterialDesignFont}"
-        Title="Авторизация" Height="750" Width="900"
-        WindowStartupLocation="CenterScreen"
+        Title="Авторизация"
         WindowStyle="None"
         ResizeMode="NoResize"
+        Height="1000"
+        Width="1800"
+        WindowStartupLocation="CenterScreen"
         Icon="/TNTExpress;component/Resources/TNTExpress_logo_menu.png">
     <Grid>
         <Grid.RowDefinitions>
@@ -68,26 +70,32 @@
             <Grid Background="{DynamicResource MightOrange}">
                 <Image x:Name="imgLogo" 
                    Source="/TNTExpress;component/Resources/TNTExpress_logo.png"
-                   Width="150"
+                   Width="125"
                    Height="75"/>
             </Grid>
 
             <StackPanel Grid.Row="1">
                 <Button x:Name="btnUser"
- Style="{DynamicResource MainMenuButton}">
+                        Style="{DynamicResource MainMenuButton}" Click="btnUser_Click">
                     <TextBlock TextAlignment="Center">
                         Пользователи
                         <LineBreak/>
                         системы
                     </TextBlock>
                 </Button>
-                
+
                 <Button x:Name="btnEmployee" Content="Сотрудники"
-                        Style="{DynamicResource MainMenuButton}"/>
-                <Button Content="Парковка"
-                        Style="{DynamicResource MainMenuButton}"/>
-                <Button Content="Морковка"
-                        Style="{DynamicResource MainMenuButton}"/>
+                        Style="{DynamicResource MainMenuButton}" Click="btnEmployee_Click"/>
+                <Button x:Name="btnClient" Content="Клиент"
+                        Style="{DynamicResource MainMenuButton}" Click="Client_Click"/>
+                <Button x:Name="btnRecipient" Content="Адресат"
+                        Style="{DynamicResource MainMenuButton}" Click="btnRecipient_Click"/>
+                <Button x:Name="btnSupplier" Content="Поставщики"
+                        Style="{DynamicResource MainMenuButton}" Click="btnSupplier_Click"/>
+                <Button x:Name="btnProduct" Content="Товары"
+                        Style="{DynamicResource MainMenuButton}" Click="btnProduct_Click"/>
+                <Button x:Name="btnOrder" Content="Заказы"
+                        Style="{DynamicResource MainMenuButton}" Click="btnOrder_Click"/>
             </StackPanel>
 
             <UniformGrid Grid.Row="2"
@@ -110,22 +118,41 @@
         <Grid Grid.Row="1"
               Grid.Column="1">
 
-            <view:MangerView x:Name="managerView"
-                             Visibility="Hidden"
-                             Grid.Row="1"
-                             Grid.Column="1"/>
-            
-            
+            <view:UserView x:Name="userView"
+                           Visibility="Hidden"
+                           Grid.Row="1"
+                           Grid.Column="1"/>
 
-            <materialDesign:Snackbar x:Name="snack"
-                                     MessageQueue="{materialDesign:MessageQueue}"
-                                     IsActive="False"
-                                     Grid.Row="2">
-                <materialDesign:SnackbarMessage x:Name="snackMessage"
-                                                ActionContent="OK"/>
-            </materialDesign:Snackbar>
+            <view:EmployeeView x:Name="employeeView"
+                               Visibility="Hidden"
+                               Grid.Row="1"
+                               Grid.Column="1"/>
+
+            <view:ClientView x:Name="clientView"
+                               Visibility="Hidden"
+                               Grid.Row="1"
+                               Grid.Column="1"/>
+
+            <view:RecipientView x:Name="recipientView"
+                               Visibility="Hidden"
+                               Grid.Row="1"
+                               Grid.Column="1"/>
+
+            <view:SupplierView x:Name="supplierView"
+                               Visibility="Hidden"
+                               Grid.Row="1"
+                               Grid.Column="1"/>
+
+            <view:ProductView x:Name="productView"
+                               Visibility="Hidden"
+                               Grid.Row="1"
+                               Grid.Column="1"/>
+
+            <view:OrderView x:Name="orderView"
+                               Visibility="Visible"
+                               Grid.Row="1"
+                               Grid.Column="1"/>
         </Grid>
-
         <!--<Border BorderBrush="{DynamicResource Black}"
                 BorderThickness="1"
                 Grid.RowSpan="2"

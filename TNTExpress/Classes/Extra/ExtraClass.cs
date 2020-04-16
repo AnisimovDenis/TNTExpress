@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using TNTExpress.Windows.Autotification;
@@ -24,7 +25,7 @@ namespace TNTExpress.Classes.Extra
                     window.Close();
                     break;
             }
-            
+
         }
 
         public static void MinimizedWindow(Window window)
@@ -35,6 +36,12 @@ namespace TNTExpress.Classes.Extra
         public static void Shutdown()
         {
             Application.Current.Shutdown();
+        }
+
+        public static bool IsValidString(string str, string regexStr)
+        {
+            Regex regex = new Regex(regexStr);
+            return regex.IsMatch(str);
         }
     }
 }
