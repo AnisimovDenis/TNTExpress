@@ -51,10 +51,6 @@
                               IsReadOnly="True" 
                               SelectionChanged="dgOrder_SelectionChanged">
                     <DataGrid.Columns>
-                        <DataGridTextColumn Header="Сотрудник"
-                                        Binding="{Binding Employee}"
-                                        Width="150"
-                                        MinWidth="150"/>
                         <DataGridTextColumn Header="Клиент"
                                         Binding="{Binding Client}"
                                         Width="150"
@@ -530,7 +526,7 @@
                                              VerticalAlignment="Bottom"
                                              Style="{DynamicResource MaterialDesignFloatingHintTextBox}"
                                              CaretBrush="Black"
-                                             materialDesign:HintAssist.Hint="Логин"
+                                             materialDesign:HintAssist.Hint="Сортировочный центр"
                                              materialDesign:HintAssist.Foreground="{DynamicResource Orange}"
                                              materialDesign:TextFieldAssist.UnderlineBrush="{DynamicResource Orange}"
                                              materialDesign:TextFieldAssist.HasClearButton="True"/>

@@ -123,7 +123,8 @@ namespace TNTExpress.Veiws.Employee
 
         private void UserControl_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
         {
-            dG.Loader("SELECT * FROM dbo.[OrderView]");
+            dG.Loader("SELECT * FROM dbo.[OrderView] " +
+                $"WHERE [IdUser] = '{App.IdUser}'");
             lb.Loader("SortingCenter", "NameSortingCenter");
 
             comboBoxClient.Loader("Client", "FirstName + ' ' + LastName");
@@ -402,8 +403,8 @@ namespace TNTExpress.Veiws.Employee
             try
             {
                 connection.Open();
-                cmd = new SqlCommand("SELECT [Employee] FROM dbo.[OrderView] " +
-                    $"WHERE [IdUser] = '3'", connection);
+                cmd = new SqlCommand("SELECT [FirstName] + N' ' + [LastName] FROM dbo.[Employee] " +
+                    $"WHERE [IdUser] = '{App.IdUser}'", connection);
                 reader = cmd.ExecuteReader();
                 reader.Read();
 

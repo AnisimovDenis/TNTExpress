@@ -72,7 +72,7 @@ namespace TNTExpress.Classes.AutorizationWork
                                 winEmployee.Show();
                                 window.Close();
                                 break;
-                            case "3":
+                            case "1":
                                 WinAdmin winAdmin = new WinAdmin();
                                 winAdmin.Show();
                                 window.Close();

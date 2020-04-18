@@ -85,7 +85,7 @@
                          Height="25"
                          Margin="10"
                          CaretBrush="{DynamicResource Black}"
-                         materialDesign:HintAssist.Hint="Поиск сотрудника"
+                         materialDesign:HintAssist.Hint="Сортировочный центр"
                          materialDesign:HintAssist.Foreground="{DynamicResource Black}"
                          materialDesign:TextFieldAssist.UnderlineBrush="{DynamicResource Transparent}"
                          BorderBrush="Transparent"
