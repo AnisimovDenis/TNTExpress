@@ -13,14 +13,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using TNTExpress.Classes.Extra;
 
-namespace TNTExpress.Windows.Manager
+namespace TNTExpress.Windows.Employee
 {
     /// <summary>
-    /// Interaction logic for WinManager.xaml
+    /// Interaction logic for WinEmployee.xaml
     /// </summary>
-    public partial class WinManager : Window
+    public partial class WinEmployee : Window
     {
-        public WinManager()
+        public WinEmployee()
         {
             InitializeComponent();
 

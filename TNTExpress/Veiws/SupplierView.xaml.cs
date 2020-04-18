@@ -191,5 +191,10 @@ namespace TNTExpress.Veiws
                 $"WHERE [Id] = {id}", "Данные успешно удалены", "Ошибка");
             dG.Loader("SELECT * FROM dbo.Supplier");
         }
+
+        private void btnExcel_Click(object sender, RoutedEventArgs e)
+        {
+            ExcelClass.ConvertToExcel(dgSupplier);
+        }
     }
 }

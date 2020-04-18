@@ -86,7 +86,7 @@ namespace TNTExpress.Veiws
             else
             {
                 dataBaseQuery.SqlQuery("INSERT INTO dbo.[Employee] " +
-                    $"VALUES ((SELECT Id FROM dbo.[User] WHERE [Login] = '{cbLogin.Text}'), '{tbFirstName.Text}', '{tbLastName.Text}'," +
+                    $"VALUES ((SELECT Id FROM dbo.[User] WHERE [Id] = '{cbLogin.Text}'), '{tbFirstName.Text}', '{tbLastName.Text}'," +
                     $"'{tbPhoneNumber.Text}', '{tbEmail.Text}')",
                     "Данные успешно добавлены", "Пользователь с данным логином уже есть");
                 cbLogin.Text = null;
@@ -112,7 +112,7 @@ namespace TNTExpress.Veiws
             try
             {
                 connection.Open();
-                cmd = new SqlCommand($"SELECT (SELECT [Login] FROM dbo.[User] WHERE Id = IdUser), " +
+                cmd = new SqlCommand($"SELECT (SELECT [Id] FROM dbo.[User] WHERE Id = Id), " +
                     $"FirstName, LastName, PhoneNumber, Email FROM dbo.[Employee]" +
                     $"WHERE[Id] = {id}", connection);
                 reader = cmd.ExecuteReader();
@@ -176,8 +176,8 @@ namespace TNTExpress.Veiws
             else
             {
                 dataBaseQuery.SqlQuery("UPDATE dbo.[Employee] " +
-                "SET [IdUser] = (SELECT Id FROM dbo.[User] " +
-                $"WHERE [Login] = '{cbEditLogin.Text}')," +
+                "SET [Id] = (SELECT Id FROM dbo.[User] " +
+                $"WHERE [Id] = '{cbEditLogin.Text}')," +
                 $"[FirstName] = '{tbEditFirstName.Text}'," +
                 $"[LastName] = '{tbEditLastName.Text}'," +
                 $"[PhoneNumber] = '{tbEditPhoneNumber.Text}'," +
@@ -199,9 +199,14 @@ namespace TNTExpress.Veiws
 
             snackMessage.ActionClick += delegate { dG.CloseSnackbar(); };
 
-            comboBoxAddEmployee.Loader("User", "Login");
+            comboBoxAddEmployee.Loader("User", "Id");
 
-            comboBoxEditEmployee.Loader("User", "Login");
+            comboBoxEditEmployee.Loader("User", "Id");
+        }
+
+        private void btnExcel_Click(object sender, RoutedEventArgs e)
+        {
+            ExcelClass.ConvertToExcel(dgEmployee);
         }
     }
 }

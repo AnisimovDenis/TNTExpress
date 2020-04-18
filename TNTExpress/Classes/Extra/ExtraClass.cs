@@ -5,6 +5,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls;
 using TNTExpress.Windows.Autotification;
 
 namespace TNTExpress.Classes.Extra

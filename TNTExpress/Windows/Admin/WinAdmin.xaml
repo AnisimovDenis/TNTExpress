@@ -118,7 +118,7 @@
               Grid.Column="1">
 
             <view:UserView x:Name="userView"
-                           Visibility="Hidden"
+                           Visibility="Visible"
                            Grid.Row="1"
                            Grid.Column="1"/>
 
@@ -148,7 +148,7 @@
                                Grid.Column="1"/>
 
             <view:OrderView x:Name="orderView"
-                               Visibility="Visible"
+                               Visibility="Hidden"
                                Grid.Row="1"
                                Grid.Column="1"/>
         </Grid>

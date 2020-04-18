@@ -16,6 +16,7 @@ using System.Windows.Shapes;
 using TNTExpress.Classes;
 using TNTExpress.Classes.ComboBoxWork;
 using TNTExpress.Classes.DataBaseWork;
+using TNTExpress.Classes.Extra;
 using TNTExpress.Classes.ListWork;
 using TNTExpress.Classes.SnackBarMessage;
 
@@ -73,7 +74,7 @@ namespace TNTExpress.Veiws
             }
             else
             {
-                dataBaseQuery.SqlQuery("INSERT INTO dbo.[User] (Login, Password, IdRole) " +
+                dataBaseQuery.SqlQuery("INSERT INTO dbo.[User] (Id, Password, IdRole) " +
                 $"VALUES ('{tbLogin.Text}', '{tbPassword.Text}', (SELECT Id FROM dbo.[Role] " +
                 $"WHERE NameRole = '{cbRole.Text}'))", "Данные успешно добавлены",
                 "Пользователь с таким логином уже есть");
@@ -105,7 +106,7 @@ namespace TNTExpress.Veiws
             else
             {
                 dataBaseQuery.SqlQuery("UPDATE dbo.[User] " +
-                $"SET [Login] = '{tbEditLogin.Text}'," +
+                $"SET [Id] = '{tbEditLogin.Text}'," +
                 $"[Password] = '{tbEditPassword.Text}'," +
                 $"[IdRole] = (SELECT Id FROM dbo.[Role] " +
                 $"WHERE NameRole = '{cbEditRole.Text}')" +
@@ -118,7 +119,7 @@ namespace TNTExpress.Veiws
         private void tbSearch_TextChanged(object sender, TextChangedEventArgs e)
         {
             dG.Loader("SELECT * FROM dbo.[UserRole] " +
-                $"WHERE [Login] LIKE '{tbSearch.Text}%'");
+                $"WHERE [Id] LIKE '{tbSearch.Text}%'");
         }
 
         private void MenuItem_Click(object sender, RoutedEventArgs e)
@@ -167,6 +168,11 @@ namespace TNTExpress.Veiws
             comboBoxAddRole.Loader("Role", "NameRole");
 
             comboBoxEditRole.Loader("Role", "NameRole");
+        }
+
+        private void btnExcel_Click(object sender, RoutedEventArgs e)
+        {
+            ExcelClass.ConvertToExcel(dgUser);
         }
     }
 }

@@ -24,7 +24,16 @@
                    Style="{DynamicResource TextBlockHeadLine}">
                 Сотрудники
         </TextBlock>
-
+        <Button x:Name="btnExcel"
+                Style="{DynamicResource TabMenuButton}"
+                VerticalAlignment="Bottom"
+                HorizontalAlignment="Right"
+                Width="190"
+                Height="35"
+                Content="Перенести в excel"
+                materialDesign:ButtonAssist.CornerRadius="10"
+                materialDesign:ShadowAssist.ShadowDepth="Depth0"
+                Margin="0,0,10,0" Click="btnExcel_Click"/>
 
 
 

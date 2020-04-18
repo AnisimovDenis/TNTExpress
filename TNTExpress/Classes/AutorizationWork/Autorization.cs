@@ -9,6 +9,7 @@ using System.Windows;
 using System.Windows.Controls;
 using TNTExpress.Classes.SnackBarMessage;
 using TNTExpress.Windows.Admin;
+using TNTExpress.Windows.Employee;
 
 namespace TNTExpress.Classes.AutorizationWork
 {
@@ -49,13 +50,14 @@ namespace TNTExpress.Classes.AutorizationWork
                 else
                 {
                     connection.Open();
-                    cmd = new SqlCommand("SELECT [Password], [IdRole] FROM [User] " +
+                    cmd = new SqlCommand("SELECT [Id], [Password], [IdRole] FROM dbo.[User] " +
                         $"WHERE [Login] = '{login}'", connection);
                     reader = cmd.ExecuteReader();
                     reader.Read();
 
-                    string password = reader[0].ToString();
-                    string role = reader[1].ToString();
+                    App.IdUser = reader[0].ToString();
+                    string password = reader[1].ToString();
+                    string role = reader[2].ToString();
 
                     if (passwordBox.Password != password)
                     {
@@ -65,9 +67,14 @@ namespace TNTExpress.Classes.AutorizationWork
                     {
                         switch (role)
                         {
+                            case "2":
+                                WinEmployee winEmployee = new WinEmployee();
+                                winEmployee.Show();
+                                window.Close();
+                                break;
                             case "3":
-                                WinAdmin winManager = new WinAdmin();
-                                winManager.Show();
+                                WinAdmin winAdmin = new WinAdmin();
+                                winAdmin.Show();
                                 window.Close();
                                 break;
                         }

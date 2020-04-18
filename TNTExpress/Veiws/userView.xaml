@@ -25,6 +25,17 @@
                 Пользователи системы
         </TextBlock>
 
+        <Button x:Name="btnExcel"
+                Style="{DynamicResource TabMenuButton}"
+                VerticalAlignment="Bottom"
+                HorizontalAlignment="Right"
+                Width="190"
+                Height="35"
+                Content="Перенести в excel"
+                materialDesign:ButtonAssist.CornerRadius="10"
+                materialDesign:ShadowAssist.ShadowDepth="Depth0"
+                Margin="0,0,10,0" Click="btnExcel_Click"/>
+
         <Grid Grid.Row="1">
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"/>
@@ -66,7 +77,7 @@
                          Height="25"
                          Margin="10"
                          CaretBrush="{DynamicResource Black}"
-                         materialDesign:HintAssist.Hint="Поиск по логину"
+                         materialDesign:HintAssist.Hint="Поиск пользователя"
                          materialDesign:HintAssist.Foreground="{DynamicResource Black}"
                          materialDesign:TextFieldAssist.UnderlineBrush="{DynamicResource Transparent}"
                          BorderBrush="Transparent"

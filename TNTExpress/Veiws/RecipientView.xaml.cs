@@ -212,6 +212,11 @@ namespace TNTExpress.Veiws
             tbEditEmail.Clear();
             tbEditPhoneNumber.Clear();
         }
+
+        private void btnExcel_Click(object sender, RoutedEventArgs e)
+        {
+            ExcelClass.ConvertToExcel(dgRecipient);
+        }
     }
 }
 
