@@ -240,6 +240,8 @@ namespace TNTExpress.Veiws
                 firstNameEmployee = employee[0];
                 lastNameEmployee = employee[1];
 
+                MessageBox.Show(lastNameEmployee);
+
                 string firstNameClient = "";
                 string lastNameClient = "";
                 string[] client = cbClient.Text.Split(new char[] { ' ' });
@@ -276,6 +278,7 @@ namespace TNTExpress.Veiws
                         $"NULL)", connection);
                     cmd.Parameters.AddWithValue("Price", double.Parse(tbPrice.Text));
                     cmd.ExecuteNonQuery();
+                    sB.Info("Данные успешно добавлены");
                 }
                 catch (Exception ex)
                 {

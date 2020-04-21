@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,28 +11,18 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using TNTExpress.Classes;
-using TNTExpress.Classes.ComboBoxWork;
-using TNTExpress.Classes.DataBaseWork;
 using TNTExpress.Classes.Extra;
-using TNTExpress.Classes.ListWork;
-using TNTExpress.Classes.SnackBarMessage;
-using TNTExpress.Veiws;
-using TNTExpress.Windows.Autotification;
 
-namespace TNTExpress.Windows.Admin
+namespace TNTExpress.Windows.Director
 {
     /// <summary>
-    /// Логика взаимодействия для WinAdmin.xaml
+    /// Interaction logic for WinDirector.xaml
     /// </summary>
-    public partial class WinAdmin : Window
+    public partial class WinDirector : Window
     {
-        
-
-        public WinAdmin()
+        public WinDirector()
         {
             InitializeComponent();
-
             tbDragger.MouseDown += delegate { this.DragMove(); };
 
             btnReference.Click += delegate { ExtraClass.Reference(); };
@@ -45,21 +34,10 @@ namespace TNTExpress.Windows.Admin
             btnClose.Click += delegate { ExtraClass.Shutdown(); };
         }
 
-        private void btnUser_Click(object sender, RoutedEventArgs e)
-        {
-            userView.Visibility = Visibility.Visible;
-            employeeView.Visibility = Visibility.Hidden;
-            clientView.Visibility = Visibility.Hidden;
-            supplierView.Visibility = Visibility.Hidden;
-            recipientView.Visibility = Visibility.Hidden;
-            productView.Visibility = Visibility.Hidden;
-            orderView.Visibility = Visibility.Hidden;
-        }
 
         private void btnEmployee_Click(object sender, RoutedEventArgs e)
         {
             employeeView.Visibility = Visibility.Visible;
-            userView.Visibility = Visibility.Hidden;
             clientView.Visibility = Visibility.Hidden;
             recipientView.Visibility = Visibility.Hidden;
             supplierView.Visibility = Visibility.Hidden;
@@ -70,7 +48,6 @@ namespace TNTExpress.Windows.Admin
         private void Client_Click(object sender, RoutedEventArgs e)
         {
             clientView.Visibility = Visibility.Visible;
-            userView.Visibility = Visibility.Hidden;
             employeeView.Visibility = Visibility.Hidden;
             recipientView.Visibility = Visibility.Hidden;
             supplierView.Visibility = Visibility.Hidden;
@@ -81,7 +58,6 @@ namespace TNTExpress.Windows.Admin
         private void btnRecipient_Click(object sender, RoutedEventArgs e)
         {
             recipientView.Visibility = Visibility.Visible;
-            userView.Visibility = Visibility.Hidden;
             employeeView.Visibility = Visibility.Hidden;
             clientView.Visibility = Visibility.Hidden;
             supplierView.Visibility = Visibility.Hidden;
@@ -93,7 +69,6 @@ namespace TNTExpress.Windows.Admin
         {
             supplierView.Visibility = Visibility.Visible;
             recipientView.Visibility = Visibility.Hidden;
-            userView.Visibility = Visibility.Hidden;
             employeeView.Visibility = Visibility.Hidden;
             clientView.Visibility = Visibility.Hidden;
             productView.Visibility = Visibility.Hidden;
@@ -104,7 +79,6 @@ namespace TNTExpress.Windows.Admin
         {
             productView.Visibility = Visibility.Visible;
             recipientView.Visibility = Visibility.Hidden;
-            userView.Visibility = Visibility.Hidden;
             employeeView.Visibility = Visibility.Hidden;
             clientView.Visibility = Visibility.Hidden;
             supplierView.Visibility = Visibility.Hidden;
@@ -116,7 +90,6 @@ namespace TNTExpress.Windows.Admin
             orderView.Visibility = Visibility.Visible;
             productView.Visibility = Visibility.Hidden;
             recipientView.Visibility = Visibility.Hidden;
-            userView.Visibility = Visibility.Hidden;
             employeeView.Visibility = Visibility.Hidden;
             clientView.Visibility = Visibility.Hidden;
             supplierView.Visibility = Visibility.Hidden;

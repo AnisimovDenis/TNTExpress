@@ -68,7 +68,7 @@
 
             <Grid Background="{DynamicResource MightOrange}">
                 <Image x:Name="imgLogo" 
-                   Source="/TNTExpress;component/Resources/TNTExpress_logo.png"
+                   Source="/TNTExpress;component/Resources/TNT_logo_express.ico"
                    Width="125"
                    Height="75"/>
             </Grid>
@@ -95,7 +95,8 @@
                                              Height="25"
                                              Width="30"/>
                 </Button>
-                <Button Style="{DynamicResource ExtraMenuButton}">
+                <Button x:Name="btnReference" 
+                        Style="{DynamicResource ExtraMenuButton}">
                     <materialDesign:PackIcon Kind="QuestionMarkRhombusOutline"
                                              Height="25"
                                              Width="30"/>

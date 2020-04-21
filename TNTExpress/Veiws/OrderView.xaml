@@ -109,7 +109,7 @@
                                         Binding="{Binding NameOrderTiming}"
                                         Width="100"
                                         MinWidth="100"/>
-                        <DataGridTextColumn Header="Price"
+                        <DataGridTextColumn Header="Цена"
                                         Binding="{Binding Price}"
                                         Width="*"
                                         MinWidth="250"/>
@@ -473,7 +473,7 @@
                                       VerticalAlignment="Top"
                                       Margin="0 5"
                                       CaretBrush="{DynamicResource Black}"
-                                      materialDesign:HintAssist.Hint="Адрес "
+                                      materialDesign:HintAssist.Hint="Адрес доставки"
                                       materialDesign:HintAssist.Foreground="{DynamicResource Black}"
                                       materialDesign:TextFieldAssist.UnderlineBrush="{DynamicResource Orange}"/>
 
@@ -481,7 +481,7 @@
                                       Grid.Row="3"
                                       Grid.Column="2"
                                       Margin="15 5"
-                                      materialDesign:HintAssist.Hint="Срочность"
+                                      materialDesign:HintAssist.Hint="Сроки"
                                       materialDesign:HintAssist.Foreground="{DynamicResource Black}"
                                       materialDesign:TextFieldAssist.UnderlineBrush="{DynamicResource Orange}"
                                       ItemsSource="{Binding LongListToTestComboVirtualization}"
@@ -544,7 +544,7 @@
                                              VerticalAlignment="Bottom"
                                              Style="{DynamicResource MaterialDesignFloatingHintTextBox}"
                                              CaretBrush="Black"
-                                             materialDesign:HintAssist.Hint="Логин"
+                                             materialDesign:HintAssist.Hint="Сортировочный центр"
                                              materialDesign:HintAssist.Foreground="{DynamicResource Orange}"
                                              materialDesign:TextFieldAssist.UnderlineBrush="{DynamicResource Orange}"
                                              materialDesign:TextFieldAssist.HasClearButton="True"/>

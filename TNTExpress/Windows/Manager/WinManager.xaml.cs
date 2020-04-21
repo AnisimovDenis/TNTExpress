@@ -26,6 +26,8 @@ namespace TNTExpress.Windows.Manager
 
             tbDragger.MouseDown += delegate { this.DragMove(); };
 
+            btnReference.Click += delegate { ExtraClass.Reference(); };
+
             btnBack.Click += delegate { ExtraClass.OpenWinAutorization(this); };
 
             btnHidde.Click += delegate { ExtraClass.MinimizedWindow(this); };

@@ -1,0 +1,131 @@
+﻿<Window x:Class="TNTExpress.Windows.Reference.WinReference"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TNTExpress.Windows.Reference"
+        
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="13"
+        TextOptions.TextFormattingMode="Ideal"
+        TextOptions.TextRenderingMode="Auto"
+        Background="{DynamicResource MaterialDesignPaper}"
+        FontFamily="{DynamicResource MaterialDesignFont}"
+        Title="Авторизация" Height="400" Width="350"
+        WindowStartupLocation="CenterScreen"
+        WindowStyle="None"
+        ResizeMode="NoResize"
+        Icon="/TNTExpress;component/Resources/TNTExpress_logo_menu.png">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <Border Grid.Row="1"
+                Grid.RowSpan="2">
+            <Border.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FFD6D6D6" Offset="1"/>
+                    <GradientStop Color="#FFECECEC"/>
+                </LinearGradientBrush>
+            </Border.Background>
+        </Border>
+        
+        <Grid Height="30"
+              VerticalAlignment="Top"
+              Grid.ColumnSpan="2"
+              Background="{DynamicResource Orange}">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="auto"/>
+            </Grid.ColumnDefinitions>
+
+            <TextBlock x:Name="tbDragger"/>
+
+            <Button x:Name="btnClose"
+                        Grid.Column="2"
+                        Style="{DynamicResource SmallButtons}">
+                <materialDesign:PackIcon Kind="Close"/>
+            </Button>
+        </Grid>
+
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <Image x:Name="imgLogo" 
+                   Source="/TNTExpress;component/Resources/TNT_logo_express.ico"
+                   Width="90"
+                   Margin="5"/>
+            <TextBlock x:Name="tbHeadLine"
+                       Style="{DynamicResource TextBlockHeadLine}"
+                       Grid.ColumnSpan="2"> 
+                    Справка
+            </TextBlock>
+        </Grid>
+
+        <Grid Grid.Row="2">
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+
+            <TextBlock Text="Название программы:"
+                       Foreground="Black"
+                       Style="{DynamicResource TextBlock}"
+                       Margin="5"/>
+            <TextBlock Text="TNTExpress"
+                       Foreground="Black"
+                       Grid.Column="1"
+                       Style="{DynamicResource TextBlock}"
+                       Margin="5"/>
+
+            <TextBlock Text="Разработчик:"
+                       Foreground="Black"
+                       Grid.Row="1"
+                       Style="{DynamicResource TextBlock}"
+                       Margin="5"/>
+            <TextBlock Text="Анисимов Денис"
+                       Foreground="Black"
+                       Grid.Row="1"
+                       Grid.Column="1"
+                       Style="{DynamicResource TextBlock}"
+                       Margin="5"/>
+
+            <TextBlock Text="Почта разработчика:"
+                       Foreground="Black"
+                       Grid.Row="2"
+                       Style="{DynamicResource TextBlock}"
+                       Margin="5"/>
+            <TextBlock Text="den.anisimov.94@mail.ru"
+                       Foreground="Black"
+                       Grid.Row="2"
+                       Grid.Column="1"
+                       Style="{DynamicResource TextBlock}"
+                       Margin="5"/>
+
+            <TextBlock Text="© Анисимов Денис Андреевич"
+                       Foreground="Black"
+                       Grid.Row="3"
+                       Grid.ColumnSpan="2"
+                       Style="{DynamicResource TextBlock}"
+                       Margin="5"/>
+        </Grid>
+        
+        <Border BorderBrush="{DynamicResource Black}"
+                BorderThickness="1"
+                Grid.RowSpan="3"
+                Grid.ColumnSpan="2"/>
+    </Grid>
+</Window>

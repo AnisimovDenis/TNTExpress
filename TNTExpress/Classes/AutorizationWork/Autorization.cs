@@ -9,7 +9,9 @@ using System.Windows;
 using System.Windows.Controls;
 using TNTExpress.Classes.SnackBarMessage;
 using TNTExpress.Windows.Admin;
+using TNTExpress.Windows.Director;
 using TNTExpress.Windows.Employee;
+using TNTExpress.Windows.Manager;
 
 namespace TNTExpress.Classes.AutorizationWork
 {
@@ -67,6 +69,16 @@ namespace TNTExpress.Classes.AutorizationWork
                     {
                         switch (role)
                         {
+                            case "4":
+                                WinDirector winDirector = new WinDirector();
+                                winDirector.Show();
+                                window.Close();
+                                break;
+                            case "3":
+                                WinManager winManager = new WinManager();
+                                winManager.Show();
+                                window.Close();
+                                break;
                             case "2":
                                 WinEmployee winEmployee = new WinEmployee();
                                 winEmployee.Show();

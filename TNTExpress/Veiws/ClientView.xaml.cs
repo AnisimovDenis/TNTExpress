@@ -63,7 +63,7 @@ namespace TNTExpress.Veiws
             {
                 connection.Open();
                 cmd = new SqlCommand($"SELECT FirstName, LastName, PhoneNumber, Email, Address FROM dbo.[Client]" +
-                    $"WHERE[Id] = {id}", connection);
+                    $"WHERE [Id] = {id}", connection);
                 reader = cmd.ExecuteReader();
                 reader.Read();
                 if (reader.HasRows)
@@ -141,7 +141,6 @@ namespace TNTExpress.Veiws
                 dG.Loader("SELECT Id, FirstName + N' ' + LastName as Client," +
                 " Address, PhoneNumber, Email FROM dbo.Client");
             }
-
         }
 
         private void btnEditClient_Click(object sender, RoutedEventArgs e)

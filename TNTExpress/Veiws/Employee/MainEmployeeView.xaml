@@ -13,7 +13,8 @@
              TextOptions.TextRenderingMode="Auto"
              Background="{DynamicResource MaterialDesignPaper}"
              FontFamily="{DynamicResource MaterialDesignFont}" 
-             IsVisibleChanged="UserControl_IsVisibleChanged" Loaded="UserControl_Loaded">
+             IsVisibleChanged="UserControl_IsVisibleChanged" 
+             Loaded="UserControl_Loaded">
     <Grid>
         <Grid x:Name="gOrder">
             <Grid.RowDefinitions>
@@ -104,7 +105,7 @@
                                         Binding="{Binding NameOrderTiming}"
                                         Width="100"
                                         MinWidth="100"/>
-                        <DataGridTextColumn Header="Price"
+                        <DataGridTextColumn Header="Цена"
                                         Binding="{Binding Price}"
                                         Width="*"
                                         MinWidth="250"/>

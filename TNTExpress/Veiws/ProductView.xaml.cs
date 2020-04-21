@@ -119,11 +119,11 @@ namespace TNTExpress.Veiws
             }
             else if (string.IsNullOrEmpty(tbWeight.Text))
             {
-                sB.Info("Введите размер");
+                sB.Info("Введите вес");
             }
             else if (string.IsNullOrEmpty(cbStrength.Text))
             {
-                sB.Info("Введите вес");
+                sB.Info("Введите прочность");
             }
             else if (string.IsNullOrEmpty(tbFeatures.Text))
             {
@@ -162,11 +162,11 @@ namespace TNTExpress.Veiws
             }
             else if (string.IsNullOrEmpty(tbEditWeight.Text))
             {
-                sB.Info("Введите размер");
+                sB.Info("Введите вес");
             }
             else if (string.IsNullOrEmpty(cbEditStrength.Text))
             {
-                sB.Info("Введите вес");
+                sB.Info("Введите прочность");
             }
             else if (string.IsNullOrEmpty(tbEditFeatures.Text))
             {
@@ -174,8 +174,17 @@ namespace TNTExpress.Veiws
             }
             else
             {
-                dataBaseQuery.SqlQuery("UPDATE dbo.[Product]",
+                    dataBaseQuery.SqlQuery("UPDATE dbo.[Product] " +
+                    $"SET [Article] = '{tbEditArticle.Text}'," +
+                    $"[Name] = '{tbEditName.Text}'," +
+                    $"[Dimensions] = '{tbEditDimensions.Text}'," +
+                    $"[Weight] = '{tbEditWeight.Text}'," +
+                    $"[IdStrength] = (SELECT Id FROM dbo.[Strength] " +
+                    $"WHERE [NameStrength] = '{cbEditStrength.Text}')," +
+                    $"[Features] = '{tbEditFeatures.Text}'" +
+                    $"WHERE [Id] = {id}",
                 "Данные успешно изменены", "Ошибка");
+                
                 dG.Loader("SELECT * FROM dbo.[ProductStrength]");
             }
         }

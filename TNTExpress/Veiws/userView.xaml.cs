@@ -74,7 +74,7 @@ namespace TNTExpress.Veiws
             }
             else
             {
-                dataBaseQuery.SqlQuery("INSERT INTO dbo.[User] (Id, Password, IdRole) " +
+                dataBaseQuery.SqlQuery("INSERT INTO dbo.[User] (Login, Password, IdRole) " +
                 $"VALUES ('{tbLogin.Text}', '{tbPassword.Text}', (SELECT Id FROM dbo.[Role] " +
                 $"WHERE NameRole = '{cbRole.Text}'))", "Данные успешно добавлены",
                 "Пользователь с таким логином уже есть");
@@ -106,7 +106,7 @@ namespace TNTExpress.Veiws
             else
             {
                 dataBaseQuery.SqlQuery("UPDATE dbo.[User] " +
-                $"SET [Id] = '{tbEditLogin.Text}'," +
+                $"SET [Login] = '{tbEditLogin.Text}'," +
                 $"[Password] = '{tbEditPassword.Text}'," +
                 $"[IdRole] = (SELECT Id FROM dbo.[Role] " +
                 $"WHERE NameRole = '{cbEditRole.Text}')" +
@@ -119,7 +119,7 @@ namespace TNTExpress.Veiws
         private void tbSearch_TextChanged(object sender, TextChangedEventArgs e)
         {
             dG.Loader("SELECT * FROM dbo.[UserRole] " +
-                $"WHERE [Id] LIKE '{tbSearch.Text}%'");
+                $"WHERE [Login] LIKE '{tbSearch.Text}%'");
         }
 
         private void MenuItem_Click(object sender, RoutedEventArgs e)
