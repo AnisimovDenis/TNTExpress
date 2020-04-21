@@ -63,8 +63,8 @@
                         </DataGridTextColumn>
                         <DataGridTextColumn Header="Адрес"
                                         Binding="{Binding Address}"
-                                        Width="200"
-                                        MinWidth="200">
+                                        Width="250"
+                                        MinWidth="250">
                             <DataGridTextColumn.ElementStyle>
                                 <Style>
                                     <Setter Property="TextBlock.TextWrapping" Value="Wrap" />

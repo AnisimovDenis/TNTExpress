@@ -103,6 +103,11 @@ namespace TNTExpress.Veiws
             dataBaseQuery.SqlQuery("DELETE FROM dbo.[Employee] " +
                 $"WHERE [Id] = {id}", "Данные успешно удалены", "Ошибка");
             dG.Loader("SELECT * FROM dbo.[EmployeeUser]");
+            tbEditEmail.Clear();
+            tbEditPhoneNumber.Clear();
+            tbEditFirstName.Clear();
+            tbEditLastName.Clear();
+            cbEditLogin.Text = null;
         }
 
         private void dgEmployee_SelectionChanged(object sender, SelectionChangedEventArgs e)

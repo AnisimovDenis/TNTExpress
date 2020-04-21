@@ -138,6 +138,13 @@ namespace TNTExpress.Veiws
                 "Данные успешно добавлены", "Ошибка");
                 dG.Loader("SELECT * FROM dbo.[ProductStrength]");
 
+
+                tbArticle.Clear();
+                tbName.Clear();
+                tbDimensions.Clear();
+                tbWeight.Clear();
+                cbStrength.Text = null;
+                tbFeatures.Clear();
             }
         }
 
@@ -186,6 +193,13 @@ namespace TNTExpress.Veiws
                 "Данные успешно изменены", "Ошибка");
                 
                 dG.Loader("SELECT * FROM dbo.[ProductStrength]");
+
+                tbEditArticle.Clear();
+                tbEditName.Clear();
+                tbEditDimensions.Clear();
+                tbEditWeight.Clear();
+                cbEditStrength.Text = null;
+                tbEditFeatures.Clear();
             }
         }
 
@@ -194,6 +208,13 @@ namespace TNTExpress.Veiws
             dataBaseQuery.SqlQuery("DELETE FROM dbo.[Product] " +
                 $"WHERE [Id] = {id}", "Данные успешно удалены", "Ошибка");
             dG.Loader("SELECT * FROM dbo.ProductStrength");
+
+            tbEditArticle.Clear();
+            tbEditName.Clear();
+            tbEditDimensions.Clear();
+            tbEditWeight.Clear();
+            cbEditStrength.Text = null;
+            tbEditFeatures.Clear();
         }
 
         private void btnExcel_Click(object sender, RoutedEventArgs e)

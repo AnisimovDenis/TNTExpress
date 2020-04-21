@@ -91,6 +91,11 @@ namespace TNTExpress.Veiws
                 "Address, PhoneNumber, Email FROM dbo.Client " +
                 $"WHERE[FirstName] LIKE '%{tbSearch.Text}%' or" +
                 $"[LastName] LIKE '%{tbSearch.Text}%'");
+            tbEditAddress.Clear();
+            tbEditFirstName.Clear();
+            tbEditLastName.Clear();
+            tbEditEmail.Clear();
+            tbEditPhoneNumber.Clear();
         }
 
         private void btnAddClient_Click(object sender, RoutedEventArgs e)
@@ -190,13 +195,15 @@ namespace TNTExpress.Veiws
                     $"[PhoneNumber] = '{tbEditPhoneNumber.Text}'" +
                     $"WHERE [Id] = '{id}'",
                 "Данные успешно изменены", "Ошибка");
+                
+                dG.Loader("SELECT Id, FirstName + N' ' + LastName as Client," +
+                " Address, PhoneNumber, Email FROM dbo.Client");
+
                 tbEditAddress.Clear();
                 tbEditFirstName.Clear();
                 tbEditLastName.Clear();
                 tbEditEmail.Clear();
                 tbEditPhoneNumber.Clear();
-                dG.Loader("SELECT Id, FirstName + N' ' + LastName as Client," +
-                " Address, PhoneNumber, Email FROM dbo.Client");
             }
         }
 

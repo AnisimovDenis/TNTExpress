@@ -108,6 +108,17 @@ namespace TNTExpress.Veiws
             dataBaseQuery.SqlQuery("DELETE FROM dbo.[Order] " +
                 $"WHERE [Id] = {id}", "Данные успешно удалены", "Ошибка");
             dG.Loader("SELECT * FROM dbo.[OrderView]");
+
+            cbEditEmployee.Text = null;
+            cbEditClient.Text = null;
+            cbEditRecipient.Text = null;
+            cbEditSupplier.Text = null;
+            cbEditArticle.Text = null;
+            tbEditShippingAddress.Text = null;
+            cbEditSortingCenter.Text = null;
+            tbEditRecipientAddress.Clear();
+            cbEditNameOrderTiming.Text = null;
+            tbEditPrice.Clear();
         }
 
         private void btnGridEditOrder_Click(object sender, RoutedEventArgs e)
@@ -240,8 +251,6 @@ namespace TNTExpress.Veiws
                 firstNameEmployee = employee[0];
                 lastNameEmployee = employee[1];
 
-                MessageBox.Show(lastNameEmployee);
-
                 string firstNameClient = "";
                 string lastNameClient = "";
                 string[] client = cbClient.Text.Split(new char[] { ' ' });
@@ -279,6 +288,8 @@ namespace TNTExpress.Veiws
                     cmd.Parameters.AddWithValue("Price", double.Parse(tbPrice.Text));
                     cmd.ExecuteNonQuery();
                     sB.Info("Данные успешно добавлены");
+
+                    
                 }
                 catch (Exception ex)
                 {
@@ -288,6 +299,16 @@ namespace TNTExpress.Veiws
                 {
                     connection.Close();
                     dG.Loader("SELECT * FROM dbo.[OrderView]");
+                    cbEmployee.Text = null;
+                    cbClient.Text = null;
+                    cbRecipient.Text = null;
+                    cbSupplier.Text = null;
+                    cbArticle.Text = null;
+                    tbShippingAddress.Text = null;
+                    cbSortingCenter.Text = null;
+                    tbRecipientAddress.Clear();
+                    cbNameOrderTiming.Text = null;
+                    tbPrice.Clear();
                 }
             }
         }
@@ -378,6 +399,7 @@ namespace TNTExpress.Veiws
                         $"WHERE[Id] = '{id}'", connection);
                     cmd.Parameters.AddWithValue("Price", double.Parse(tbEditPrice.Text));
                     cmd.ExecuteNonQuery();
+                    sB.Info("Данные успешно изменены");
                 }
                 catch (Exception ex)
                 {
@@ -387,6 +409,16 @@ namespace TNTExpress.Veiws
                 {
                     connection.Close();
                     dG.Loader("SELECT * FROM dbo.[OrderView]");
+                    cbEditEmployee.Text = null;
+                    cbEditClient.Text = null;
+                    cbEditRecipient.Text = null;
+                    cbEditSupplier.Text = null;
+                    cbEditArticle.Text = null;
+                    tbEditShippingAddress.Text = null;
+                    cbEditSortingCenter.Text = null;
+                    tbEditRecipientAddress.Clear();
+                    cbEditNameOrderTiming.Text = null;
+                    tbEditPrice.Clear();
                 }
             }
         }
@@ -398,6 +430,8 @@ namespace TNTExpress.Veiws
             lb.Loader("SortingCenter", "NameSortingCenter");
             comboBoxEditSortingCenter.Loader("SortingCenter", "NameSortingCenter");
             comboBoxSortingCenter.Loader("SortingCenter", "NameSortingCenter");
+
+            
         }
 
         private void btnExcel_Click(object sender, RoutedEventArgs e)

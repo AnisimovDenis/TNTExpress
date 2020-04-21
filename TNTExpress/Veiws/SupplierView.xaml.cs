@@ -130,7 +130,14 @@ namespace TNTExpress.Veiws
                     $"'{tbPhoneNumber.Text}', '{tbEmail.Text}', " +
                     $"'{tbFieldOfActivity.Text}')",
                 "Данные успешно добавлены", "Ошибка");
+                
                 dG.Loader("SELECT * FROM dbo.[Supplier]");
+
+                tbName.Clear();
+                tbAddress.Clear();
+                tbPhoneNumber.Clear();
+                tbEmail.Clear();
+                tbFieldOfActivity.Clear();
             }
         }
 
@@ -182,6 +189,12 @@ namespace TNTExpress.Veiws
                     $"WHERE [Id] = '{id}'",
                 "Данные успешно изменены", "Ошибка");
                 dG.Loader("SELECT * FROM dbo.[Supplier]");
+
+                tbEditName.Clear();
+                tbEditAddress.Clear();
+                tbEditPhoneNumber.Clear();
+                tbEditEmail.Clear();
+                tbEditFieldOfActivity.Clear();
             }
         }
 
@@ -190,6 +203,12 @@ namespace TNTExpress.Veiws
             dataBaseQuery.SqlQuery("DELETE FROM dbo.[Supplier] " +
                 $"WHERE [Id] = {id}", "Данные успешно удалены", "Ошибка");
             dG.Loader("SELECT * FROM dbo.Supplier");
+
+            tbEditName.Clear();
+            tbEditAddress.Clear();
+            tbEditPhoneNumber.Clear();
+            tbEditEmail.Clear();
+            tbEditFieldOfActivity.Clear();
         }
 
         private void btnExcel_Click(object sender, RoutedEventArgs e)

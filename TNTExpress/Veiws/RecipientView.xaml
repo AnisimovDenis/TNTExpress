@@ -56,8 +56,8 @@
                                         MinWidth="150"/>
                         <DataGridTextColumn Header="Адрес"
                                         Binding="{Binding Address}"
-                                        Width="200"
-                                        MinWidth="200">
+                                        Width="300"
+                                        MinWidth="300">
                             <DataGridTextColumn.ElementStyle>
                                 <Style>
                                     <Setter Property="TextBlock.TextWrapping" Value="Wrap" />

@@ -178,13 +178,15 @@ namespace TNTExpress.Veiws
                     $"[PhoneNumber] = '{tbEditPhoneNumber.Text}'" +
                     $"WHERE [Id] = '{id}'",
                 "Данные успешно изменены", "Ошибка");
+                
+                dG.Loader("SELECT Id, FirstName + N' ' + LastName as Recipient," +
+                " Address, PhoneNumber, Email FROM dbo.Recipient");
+
                 tbEditAddress.Clear();
                 tbEditFirstName.Clear();
                 tbEditLastName.Clear();
                 tbEditEmail.Clear();
                 tbEditPhoneNumber.Clear();
-                dG.Loader("SELECT Id, FirstName + N' ' + LastName as Recipient," +
-                " Address, PhoneNumber, Email FROM dbo.Recipient");
             }
         }
 

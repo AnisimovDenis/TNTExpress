@@ -55,8 +55,8 @@
                                         MinWidth="135"/>
                         <DataGridTextColumn Header="Наименование"
                                         Binding="{Binding Name}"
-                                        Width="150"
-                                        MinWidth="150"/>
+                                        Width="200"
+                                        MinWidth="200"/>
                         <DataGridTextColumn Header="Габариты"
                                         Binding="{Binding Dimensions}"
                                         Width="130"

@@ -139,9 +139,9 @@
                                Grid.Row="1"
                                Grid.Column="1"/>
         </Grid>
-        <!--<Border BorderBrush="{DynamicResource Black}"
+        <Border BorderBrush="{DynamicResource Black}"
                 BorderThickness="1"
                 Grid.RowSpan="2"
-                Grid.ColumnSpan="2"/>-->
+                Grid.ColumnSpan="2"/>
     </Grid>
 </Window>
