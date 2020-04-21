@@ -15,7 +15,7 @@
              Background="{DynamicResource MaterialDesignPaper}"
              FontFamily="{DynamicResource MaterialDesignFont}">
     <Grid>
-        <Grid x:Name="gClient">
+        <Grid x:Name="gSupplier">
             <Grid.RowDefinitions>
                 <RowDefinition Height="75"/>
                 <RowDefinition />
@@ -26,6 +26,16 @@
                     Поставщики
             </TextBlock>
 
+            <Button x:Name="btnExcel"
+                Style="{DynamicResource TabMenuButton}"
+                VerticalAlignment="Bottom"
+                HorizontalAlignment="Right"
+                Width="190"
+                Height="35"
+                Content="Перенести в excel"
+                materialDesign:ButtonAssist.CornerRadius="10"
+                materialDesign:ShadowAssist.ShadowDepth="Depth0"
+                Margin="0,0,10,0" Click="btnExcel_Click"/>
 
 
 
@@ -53,8 +63,8 @@
                         </DataGridTextColumn>
                         <DataGridTextColumn Header="Адрес"
                                         Binding="{Binding Address}"
-                                        Width="200"
-                                        MinWidth="200">
+                                        Width="250"
+                                        MinWidth="250">
                             <DataGridTextColumn.ElementStyle>
                                 <Style>
                                     <Setter Property="TextBlock.TextWrapping" Value="Wrap" />
@@ -108,7 +118,8 @@
                        HorizontalAlignment="Right"
                        VerticalAlignment="Top"
                        Width="190" Height="35"
-                       Margin="0 5 10 0"/>
+                       Margin="0 5 10 0" 
+                       RadiusY="10" RadiusX="10"/>
 
 
                 <Grid Grid.Row="1">
@@ -175,11 +186,11 @@
                                       materialDesign:HintAssist.Hint="Область деятельности"
                                       materialDesign:HintAssist.Foreground="{DynamicResource Black}"
                                       materialDesign:TextFieldAssist.UnderlineBrush="{DynamicResource Orange}"/>
-                            <Button x:Name="btnAddEmployee"
+                            <Button x:Name="btnAddSupplier"
                                     Content="Добавить поставщика"
                                     Style="{DynamicResource ActionButton}"
                                     Width="250"
-                                    Margin="0 2" Click="btnAddEmployee_Click"/>
+                                    Margin="0 2" Click="btnAddSupplier_Click"/>
                         </StackPanel>
                     </Grid>
                     <Grid Grid.Column="1">
@@ -239,11 +250,11 @@
                                       materialDesign:HintAssist.Hint="Область деятельности"
                                       materialDesign:HintAssist.Foreground="{DynamicResource Black}"
                                       materialDesign:TextFieldAssist.UnderlineBrush="{DynamicResource Orange}"/>
-                            <Button x:Name="btnEditEmployee"
-                                    Content="Добавить поставщика"
+                            <Button x:Name="btnEditSupplier"
+                                    Content="Изменить поставщика"
                                     Style="{DynamicResource ActionButton}"
                                     Width="250"
-                                    Margin="0 2" Click="btnEditEmployee_Click"/>
+                                    Margin="0 2" Click="btnEditSupplier_Click"/>
                         </StackPanel>
                     </Grid>
                 </Grid>

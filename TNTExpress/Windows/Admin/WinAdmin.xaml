@@ -1,12 +1,11 @@
-﻿<Window x:Class="TNTExpress.Windows.Manager.WinManager"
+﻿<Window x:Class="TNTExpress.Windows.Admin.WinAdmin"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:TNTExpress.Windows.Manager"
+        xmlns:local="clr-namespace:TNTExpress.Windows.Admin"
         mc:Ignorable="d"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-        xmlns:dragablz="clr-namespace:Dragablz;assembly=Dragablz"
         xmlns:view="clr-namespace:TNTExpress.Veiws"
         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
         TextElement.FontWeight="Regular"
@@ -74,6 +73,17 @@
             </Grid>
 
             <StackPanel Grid.Row="1">
+                <Button x:Name="btnUser"
+                        Style="{DynamicResource MainMenuButton}" Click="btnUser_Click">
+                    <TextBlock TextAlignment="Center">
+                        Пользователи
+                        <LineBreak/>
+                        системы
+                    </TextBlock>
+                </Button>
+
+                <Button x:Name="btnEmployee" Content="Сотрудники"
+                        Style="{DynamicResource MainMenuButton}" Click="btnEmployee_Click"/>
                 <Button x:Name="btnClient" Content="Клиент"
                         Style="{DynamicResource MainMenuButton}" Click="Client_Click"/>
                 <Button x:Name="btnRecipient" Content="Адресат"
@@ -107,8 +117,18 @@
         <Grid Grid.Row="1"
               Grid.Column="1">
 
+            <view:UserView x:Name="userView"
+                           Visibility="Visible"
+                           Grid.Row="1"
+                           Grid.Column="1"/>
+
+            <view:EmployeeView x:Name="employeeView"
+                               Visibility="Hidden"
+                               Grid.Row="1"
+                               Grid.Column="1"/>
+
             <view:ClientView x:Name="clientView"
-                               Visibility="Visible"
+                               Visibility="Hidden"
                                Grid.Row="1"
                                Grid.Column="1"/>
 

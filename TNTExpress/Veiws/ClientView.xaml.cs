@@ -63,7 +63,7 @@ namespace TNTExpress.Veiws
             {
                 connection.Open();
                 cmd = new SqlCommand($"SELECT FirstName, LastName, PhoneNumber, Email, Address FROM dbo.[Client]" +
-                    $"WHERE[Id] = {id}", connection);
+                    $"WHERE [Id] = {id}", connection);
                 reader = cmd.ExecuteReader();
                 reader.Read();
                 if (reader.HasRows)
@@ -91,9 +91,14 @@ namespace TNTExpress.Veiws
                 "Address, PhoneNumber, Email FROM dbo.Client " +
                 $"WHERE[FirstName] LIKE '%{tbSearch.Text}%' or" +
                 $"[LastName] LIKE '%{tbSearch.Text}%'");
+            tbEditAddress.Clear();
+            tbEditFirstName.Clear();
+            tbEditLastName.Clear();
+            tbEditEmail.Clear();
+            tbEditPhoneNumber.Clear();
         }
 
-        private void btnAddEmployee_Click(object sender, RoutedEventArgs e)
+        private void btnAddClient_Click(object sender, RoutedEventArgs e)
         {
             bool resultEmail = ExtraClass.IsValidString(tbEmail.Text, @"^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$");
             bool resultPhoneNumber = ExtraClass.IsValidString(tbPhoneNumber.Text, @"^\+\d{1}\(\d{3}\)\d{3}-\d{2}-\d{2}$");
@@ -141,10 +146,9 @@ namespace TNTExpress.Veiws
                 dG.Loader("SELECT Id, FirstName + N' ' + LastName as Client," +
                 " Address, PhoneNumber, Email FROM dbo.Client");
             }
-
         }
 
-        private void btnEditEmployee_Click(object sender, RoutedEventArgs e)
+        private void btnEditClient_Click(object sender, RoutedEventArgs e)
         {
             bool resultEmail = ExtraClass.IsValidString(tbEditEmail.Text, @"^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$");
             bool resultPhoneNumber = ExtraClass.IsValidString(tbEditPhoneNumber.Text, @"^\+\d{1}\(\d{3}\)\d{3}-\d{2}-\d{2}$");
@@ -191,13 +195,15 @@ namespace TNTExpress.Veiws
                     $"[PhoneNumber] = '{tbEditPhoneNumber.Text}'" +
                     $"WHERE [Id] = '{id}'",
                 "Данные успешно изменены", "Ошибка");
+                
+                dG.Loader("SELECT Id, FirstName + N' ' + LastName as Client," +
+                " Address, PhoneNumber, Email FROM dbo.Client");
+
                 tbEditAddress.Clear();
                 tbEditFirstName.Clear();
                 tbEditLastName.Clear();
                 tbEditEmail.Clear();
                 tbEditPhoneNumber.Clear();
-                dG.Loader("SELECT Id, FirstName + N' ' + LastName as Client," +
-                " Address, PhoneNumber, Email FROM dbo.Client");
             }
         }
 
@@ -212,6 +218,11 @@ namespace TNTExpress.Veiws
             tbEditLastName.Clear();
             tbEditEmail.Clear();
             tbEditPhoneNumber.Clear();
+        }
+
+        private void btnExcel_Click(object sender, RoutedEventArgs e)
+        {
+            ExcelClass.ConvertToExcel(dgClient);
         }
     }
 }

@@ -20,12 +20,12 @@ using TNTExpress.Classes.Extra;
 using TNTExpress.Classes.ListWork;
 using TNTExpress.Classes.SnackBarMessage;
 
-namespace TNTExpress.Veiws
+namespace TNTExpress.Veiws.Employee
 {
     /// <summary>
-    /// Interaction logic for OrderView.xaml
+    /// Interaction logic for MainEmployeeView.xaml
     /// </summary>
-    public partial class OrderView : UserControl
+    public partial class MainEmployeeView : UserControl
     {
         SqlConnection connection =
                new SqlConnection(@"Data Source=DENIS-PC;
@@ -37,24 +37,21 @@ namespace TNTExpress.Veiws
         DG dG;
         DataBaseQuery dataBaseQuery;
         MyListBox lb;
-        CB comboBoxEmployee;
         CB comboBoxClient;
         CB comboBoxRecipient;
         CB comboBoxSupplier;
         CB comboBoxArticle;
         CB comboBoxSortingCenter;
         CB comboBoxNameOrderTiming;
-        CB comboBoxEditEmployee;
         CB comboBoxEditClient;
         CB comboBoxEditRecipient;
         CB comboBoxEditSupplier;
         CB comboBoxEditArticle;
         CB comboBoxEditSortingCenter;
         CB comboBoxEditNameOrderTiming;
-
         string id;
 
-        public OrderView()
+        public MainEmployeeView()
         {
             InitializeComponent();
 
@@ -63,8 +60,6 @@ namespace TNTExpress.Veiws
             sB = new SB(snack, snackMessage);
 
             lb = new MyListBox(lbSortingCenter, snack, snackMessage);
-
-            comboBoxEmployee = new CB(cbEmployee, snack, snackMessage);
 
             comboBoxClient = new CB(cbClient, snack, snackMessage);
 
@@ -78,8 +73,6 @@ namespace TNTExpress.Veiws
 
             comboBoxNameOrderTiming = new CB(cbNameOrderTiming, snack, snackMessage);
 
-            comboBoxEditEmployee = new CB(cbEditEmployee, snack, snackMessage);
-            
             comboBoxEditClient = new CB(cbEditClient, snack, snackMessage);
 
             comboBoxEditRecipient = new CB(cbEditRecipient, snack, snackMessage);
@@ -100,25 +93,16 @@ namespace TNTExpress.Veiws
         private void tbSearch_TextChanged(object sender, TextChangedEventArgs e)
         {
             dG.Loader("SELECT * FROM dbo.[OrderView] " +
-                $"WHERE [Article] LIKE '%{tbSearch.Text}%'");
+                $"WHERE [Article] LIKE '%{tbSearch.Text}%' " +
+                    $"and [Id] = '{App.IdUser}'");
         }
 
         private void MenuItem_Click(object sender, RoutedEventArgs e)
         {
             dataBaseQuery.SqlQuery("DELETE FROM dbo.[Order] " +
                 $"WHERE [Id] = {id}", "Данные успешно удалены", "Ошибка");
-            dG.Loader("SELECT * FROM dbo.[OrderView]");
-
-            cbEditEmployee.Text = null;
-            cbEditClient.Text = null;
-            cbEditRecipient.Text = null;
-            cbEditSupplier.Text = null;
-            cbEditArticle.Text = null;
-            tbEditShippingAddress.Text = null;
-            cbEditSortingCenter.Text = null;
-            tbEditRecipientAddress.Clear();
-            cbEditNameOrderTiming.Text = null;
-            tbEditPrice.Clear();
+            dG.Loader("SELECT * FROM dbo.[OrderView] " +
+                    $"and [Id] = '{App.IdUser}'");
         }
 
         private void btnGridEditOrder_Click(object sender, RoutedEventArgs e)
@@ -139,10 +123,9 @@ namespace TNTExpress.Veiws
 
         private void UserControl_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
         {
-            dG.Loader("SELECT * FROM dbo.[OrderView]");
+            dG.Loader("SELECT * FROM dbo.[OrderView] " +
+                $"WHERE [IdUser] = '{App.IdUser}'");
             lb.Loader("SortingCenter", "NameSortingCenter");
-
-            comboBoxEmployee.Loader("Employee", "FirstName + ' ' + LastName");
 
             comboBoxClient.Loader("Client", "FirstName + ' ' + LastName");
             comboBoxRecipient.Loader("Recipient", "FirstName + ' ' + LastName");
@@ -151,7 +134,6 @@ namespace TNTExpress.Veiws
             comboBoxSortingCenter.Loader("SortingCenter", "NameSortingCenter");
             comboBoxNameOrderTiming.Loader("OrderTiming", "NameOrderTiming");
 
-            comboBoxEditEmployee.Loader("Employee", "FirstName + ' ' + LastName");
             comboBoxEditClient.Loader("Client", "FirstName + ' ' + LastName");
             comboBoxEditRecipient.Loader("Recipient", "FirstName + ' ' + LastName");
             comboBoxEditSupplier.Loader("Supplier", "Name");
@@ -178,12 +160,13 @@ namespace TNTExpress.Veiws
             {
                 connection.Open();
                 cmd = new SqlCommand($"SELECT * FROM dbo.[OrderView]" +
-                    $"WHERE[Id] = {id}", connection);
+                    $"WHERE [Id] = {id} " +
+                    $"and [IdUser] = '{App.IdUser}'", connection);
                 reader = cmd.ExecuteReader();
                 reader.Read();
                 if (reader.HasRows)
                 {
-                    cbEditEmployee.Text = reader[1].ToString();
+                    tbEditEmployee.Text = reader[1].ToString();
                     cbEditClient.Text = reader[2].ToString();
                     cbEditRecipient.Text = reader[3].ToString();
                     cbEditSupplier.Text = reader[4].ToString();
@@ -207,7 +190,7 @@ namespace TNTExpress.Veiws
 
         private void btnAddOrder_Click(object sender, RoutedEventArgs e)
         {
-            if (string.IsNullOrEmpty(cbEmployee.Text))
+            if (string.IsNullOrEmpty(tbEmployee.Text))
             {
                 sB.Info("Введите сотрудника");
             }
@@ -247,7 +230,7 @@ namespace TNTExpress.Veiws
             {
                 string firstNameEmployee = "";
                 string lastNameEmployee = "";
-                string[] employee = cbEmployee.Text.Split(new char[] { ' ' });
+                string[] employee = tbEmployee.Text.Split(new char[] { ' ' });
                 firstNameEmployee = employee[0];
                 lastNameEmployee = employee[1];
 
@@ -287,9 +270,6 @@ namespace TNTExpress.Veiws
                         $"NULL)", connection);
                     cmd.Parameters.AddWithValue("Price", double.Parse(tbPrice.Text));
                     cmd.ExecuteNonQuery();
-                    sB.Info("Данные успешно добавлены");
-
-                    
                 }
                 catch (Exception ex)
                 {
@@ -298,17 +278,8 @@ namespace TNTExpress.Veiws
                 finally
                 {
                     connection.Close();
-                    dG.Loader("SELECT * FROM dbo.[OrderView]");
-                    cbEmployee.Text = null;
-                    cbClient.Text = null;
-                    cbRecipient.Text = null;
-                    cbSupplier.Text = null;
-                    cbArticle.Text = null;
-                    tbShippingAddress.Text = null;
-                    cbSortingCenter.Text = null;
-                    tbRecipientAddress.Clear();
-                    cbNameOrderTiming.Text = null;
-                    tbPrice.Clear();
+                    dG.Loader("SELECT * FROM dbo.[OrderView] " +
+                    $"Where [IdUser] = '{App.IdUser}'");
                 }
             }
         }
@@ -319,7 +290,7 @@ namespace TNTExpress.Veiws
             {
                 sB.Info("Выберете строку для редактирования");
             }
-            else if (string.IsNullOrEmpty(cbEditEmployee.Text))
+            else if (string.IsNullOrEmpty(tbEditEmployee.Text))
             {
                 sB.Info("Введите сотрудника");
             }
@@ -359,7 +330,7 @@ namespace TNTExpress.Veiws
             {
                 string firstNameEmployee = "";
                 string lastNameEmployee = "";
-                string[] employee = cbEditEmployee.Text.Split(new char[] { ' ' });
+                string[] employee = tbEditEmployee.Text.Split(new char[] { ' ' });
                 firstNameEmployee = employee[0];
                 lastNameEmployee = employee[1];
 
@@ -399,7 +370,6 @@ namespace TNTExpress.Veiws
                         $"WHERE[Id] = '{id}'", connection);
                     cmd.Parameters.AddWithValue("Price", double.Parse(tbEditPrice.Text));
                     cmd.ExecuteNonQuery();
-                    sB.Info("Данные успешно изменены");
                 }
                 catch (Exception ex)
                 {
@@ -408,17 +378,8 @@ namespace TNTExpress.Veiws
                 finally
                 {
                     connection.Close();
-                    dG.Loader("SELECT * FROM dbo.[OrderView]");
-                    cbEditEmployee.Text = null;
-                    cbEditClient.Text = null;
-                    cbEditRecipient.Text = null;
-                    cbEditSupplier.Text = null;
-                    cbEditArticle.Text = null;
-                    tbEditShippingAddress.Text = null;
-                    cbEditSortingCenter.Text = null;
-                    tbEditRecipientAddress.Clear();
-                    cbEditNameOrderTiming.Text = null;
-                    tbEditPrice.Clear();
+                    dG.Loader("SELECT * FROM dbo.[OrderView] " +
+                    $"WHERE [IdUser] = '{App.IdUser}'");
                 }
             }
         }
@@ -430,13 +391,34 @@ namespace TNTExpress.Veiws
             lb.Loader("SortingCenter", "NameSortingCenter");
             comboBoxEditSortingCenter.Loader("SortingCenter", "NameSortingCenter");
             comboBoxSortingCenter.Loader("SortingCenter", "NameSortingCenter");
-
-            
         }
 
         private void btnExcel_Click(object sender, RoutedEventArgs e)
         {
             ExcelClass.ConvertToExcel(dgOrder);
+        }
+
+        private void UserControl_Loaded(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                connection.Open();
+                cmd = new SqlCommand("SELECT [FirstName] + N' ' + [LastName] FROM dbo.[Employee] " +
+                    $"WHERE [IdUser] = '{App.IdUser}'", connection);
+                reader = cmd.ExecuteReader();
+                reader.Read();
+
+                tbEditEmployee.Text = reader[0].ToString();
+                tbEmployee.Text = reader[0].ToString();
+            }
+            catch (Exception ex)
+            {
+                sB.Info(ex.Message);
+            }
+            finally
+            {
+                connection.Close();
+            }
         }
     }
 }

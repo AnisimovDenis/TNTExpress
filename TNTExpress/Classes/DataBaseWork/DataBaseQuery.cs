@@ -36,6 +36,7 @@ namespace TNTExpress.Classes.DataBaseWork
             catch (Exception ex)
             {
                 sB.Info(exceptionMessage);
+                sB.Info(ex.Message);
             }
             finally
             {

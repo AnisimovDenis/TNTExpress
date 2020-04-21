@@ -5,7 +5,9 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls;
 using TNTExpress.Windows.Autotification;
+using TNTExpress.Windows.Reference;
 
 namespace TNTExpress.Classes.Extra
 {
@@ -42,6 +44,12 @@ namespace TNTExpress.Classes.Extra
         {
             Regex regex = new Regex(regexStr);
             return regex.IsMatch(str);
+        }
+
+        public static void Reference()
+        {
+            WinReference winReference = new WinReference();
+            winReference.ShowDialog();
         }
     }
 }

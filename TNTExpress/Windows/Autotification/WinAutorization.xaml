@@ -54,7 +54,7 @@
             </Grid>
 
             <Image x:Name="imgLogo" 
-                   Source="/TNTExpress;component/Resources/TNTExpress_logo.png"
+                   Source="/TNTExpress;component/Resources/TNT_logo_express.ico"
                    Width="150"
                    Height="75"
                    Margin="0 0 0 75"/>

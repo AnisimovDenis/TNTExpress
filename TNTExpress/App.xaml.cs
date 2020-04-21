@@ -13,5 +13,6 @@ namespace TNTExpress
     /// </summary>
     public partial class App : Application
     {
+        public static string IdUser { get; set; }
     }
 }

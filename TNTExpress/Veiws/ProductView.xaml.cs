@@ -43,7 +43,7 @@ namespace TNTExpress.Veiws
         {
             InitializeComponent();
 
-            dG = new DG(dgSupplier, snack, snackMessage);
+            dG = new DG(dgProduct, snack, snackMessage);
 
             sB = new SB(snack, snackMessage);
 
@@ -65,9 +65,9 @@ namespace TNTExpress.Veiws
             snackMessage.ActionClick += delegate { dG.CloseSnackbar(); };
         }
 
-        private void dgSupplier_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void dgProduct_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (dgSupplier.SelectedItem != null)
+            if (dgProduct.SelectedItem != null)
                 id = dG.FirstColumn;
             try
             {
@@ -102,7 +102,7 @@ namespace TNTExpress.Veiws
                 $"WHERE [Name] LIKE '%{tbSearch.Text}%'");
         }
 
-        private void btnAddEmployee_Click(object sender, RoutedEventArgs e)
+        private void btnAddProduct_Click(object sender, RoutedEventArgs e)
         {
 
             if (string.IsNullOrEmpty(tbArticle.Text))
@@ -119,11 +119,11 @@ namespace TNTExpress.Veiws
             }
             else if (string.IsNullOrEmpty(tbWeight.Text))
             {
-                sB.Info("Введите размер");
+                sB.Info("Введите вес");
             }
             else if (string.IsNullOrEmpty(cbStrength.Text))
             {
-                sB.Info("Введите вес");
+                sB.Info("Введите прочность");
             }
             else if (string.IsNullOrEmpty(tbFeatures.Text))
             {
@@ -138,13 +138,24 @@ namespace TNTExpress.Veiws
                 "Данные успешно добавлены", "Ошибка");
                 dG.Loader("SELECT * FROM dbo.[ProductStrength]");
 
+
+                tbArticle.Clear();
+                tbName.Clear();
+                tbDimensions.Clear();
+                tbWeight.Clear();
+                cbStrength.Text = null;
+                tbFeatures.Clear();
             }
         }
 
-        private void btnEditEmployee_Click(object sender, RoutedEventArgs e)
+        private void btnEditProduct_Click(object sender, RoutedEventArgs e)
         {
 
-            if (string.IsNullOrEmpty(tbEditArticle.Text))
+            if (dgProduct.SelectedItem is null)
+            {
+                sB.Info("Выберете строку для редактирования");
+            }
+            else if (string.IsNullOrEmpty(tbEditArticle.Text))
             {
                 sB.Info("Введите артикул");
             }
@@ -158,11 +169,11 @@ namespace TNTExpress.Veiws
             }
             else if (string.IsNullOrEmpty(tbEditWeight.Text))
             {
-                sB.Info("Введите размер");
+                sB.Info("Введите вес");
             }
             else if (string.IsNullOrEmpty(cbEditStrength.Text))
             {
-                sB.Info("Введите вес");
+                sB.Info("Введите прочность");
             }
             else if (string.IsNullOrEmpty(tbEditFeatures.Text))
             {
@@ -170,9 +181,25 @@ namespace TNTExpress.Veiws
             }
             else
             {
-                dataBaseQuery.SqlQuery("UPDATE dbo.[Supplier]",
+                    dataBaseQuery.SqlQuery("UPDATE dbo.[Product] " +
+                    $"SET [Article] = '{tbEditArticle.Text}'," +
+                    $"[Name] = '{tbEditName.Text}'," +
+                    $"[Dimensions] = '{tbEditDimensions.Text}'," +
+                    $"[Weight] = '{tbEditWeight.Text}'," +
+                    $"[IdStrength] = (SELECT Id FROM dbo.[Strength] " +
+                    $"WHERE [NameStrength] = '{cbEditStrength.Text}')," +
+                    $"[Features] = '{tbEditFeatures.Text}'" +
+                    $"WHERE [Id] = {id}",
                 "Данные успешно изменены", "Ошибка");
+                
                 dG.Loader("SELECT * FROM dbo.[ProductStrength]");
+
+                tbEditArticle.Clear();
+                tbEditName.Clear();
+                tbEditDimensions.Clear();
+                tbEditWeight.Clear();
+                cbEditStrength.Text = null;
+                tbEditFeatures.Clear();
             }
         }
 
@@ -181,6 +208,18 @@ namespace TNTExpress.Veiws
             dataBaseQuery.SqlQuery("DELETE FROM dbo.[Product] " +
                 $"WHERE [Id] = {id}", "Данные успешно удалены", "Ошибка");
             dG.Loader("SELECT * FROM dbo.ProductStrength");
+
+            tbEditArticle.Clear();
+            tbEditName.Clear();
+            tbEditDimensions.Clear();
+            tbEditWeight.Clear();
+            cbEditStrength.Text = null;
+            tbEditFeatures.Clear();
+        }
+
+        private void btnExcel_Click(object sender, RoutedEventArgs e)
+        {
+            ExcelClass.ConvertToExcel(dgProduct);
         }
     }
 }

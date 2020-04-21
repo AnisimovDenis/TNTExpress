@@ -13,17 +13,16 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using TNTExpress.Classes.Extra;
 
-namespace TNTExpress.Windows.Manager
+namespace TNTExpress.Windows.Director
 {
     /// <summary>
-    /// Interaction logic for WinManager.xaml
+    /// Interaction logic for WinDirector.xaml
     /// </summary>
-    public partial class WinManager : Window
+    public partial class WinDirector : Window
     {
-        public WinManager()
+        public WinDirector()
         {
             InitializeComponent();
-
             tbDragger.MouseDown += delegate { this.DragMove(); };
 
             btnReference.Click += delegate { ExtraClass.Reference(); };
@@ -35,9 +34,21 @@ namespace TNTExpress.Windows.Manager
             btnClose.Click += delegate { ExtraClass.Shutdown(); };
         }
 
+
+        private void btnEmployee_Click(object sender, RoutedEventArgs e)
+        {
+            employeeView.Visibility = Visibility.Visible;
+            clientView.Visibility = Visibility.Hidden;
+            recipientView.Visibility = Visibility.Hidden;
+            supplierView.Visibility = Visibility.Hidden;
+            productView.Visibility = Visibility.Hidden;
+            orderView.Visibility = Visibility.Hidden;
+        }
+
         private void Client_Click(object sender, RoutedEventArgs e)
         {
             clientView.Visibility = Visibility.Visible;
+            employeeView.Visibility = Visibility.Hidden;
             recipientView.Visibility = Visibility.Hidden;
             supplierView.Visibility = Visibility.Hidden;
             productView.Visibility = Visibility.Hidden;
@@ -47,6 +58,7 @@ namespace TNTExpress.Windows.Manager
         private void btnRecipient_Click(object sender, RoutedEventArgs e)
         {
             recipientView.Visibility = Visibility.Visible;
+            employeeView.Visibility = Visibility.Hidden;
             clientView.Visibility = Visibility.Hidden;
             supplierView.Visibility = Visibility.Hidden;
             productView.Visibility = Visibility.Hidden;
@@ -57,6 +69,7 @@ namespace TNTExpress.Windows.Manager
         {
             supplierView.Visibility = Visibility.Visible;
             recipientView.Visibility = Visibility.Hidden;
+            employeeView.Visibility = Visibility.Hidden;
             clientView.Visibility = Visibility.Hidden;
             productView.Visibility = Visibility.Hidden;
             orderView.Visibility = Visibility.Hidden;
@@ -66,6 +79,7 @@ namespace TNTExpress.Windows.Manager
         {
             productView.Visibility = Visibility.Visible;
             recipientView.Visibility = Visibility.Hidden;
+            employeeView.Visibility = Visibility.Hidden;
             clientView.Visibility = Visibility.Hidden;
             supplierView.Visibility = Visibility.Hidden;
             orderView.Visibility = Visibility.Hidden;
@@ -76,6 +90,7 @@ namespace TNTExpress.Windows.Manager
             orderView.Visibility = Visibility.Visible;
             productView.Visibility = Visibility.Hidden;
             recipientView.Visibility = Visibility.Hidden;
+            employeeView.Visibility = Visibility.Hidden;
             clientView.Visibility = Visibility.Hidden;
             supplierView.Visibility = Visibility.Hidden;
         }

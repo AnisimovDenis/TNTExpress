@@ -103,6 +103,11 @@ namespace TNTExpress.Veiws
             dataBaseQuery.SqlQuery("DELETE FROM dbo.[Employee] " +
                 $"WHERE [Id] = {id}", "Данные успешно удалены", "Ошибка");
             dG.Loader("SELECT * FROM dbo.[EmployeeUser]");
+            tbEditEmail.Clear();
+            tbEditPhoneNumber.Clear();
+            tbEditFirstName.Clear();
+            tbEditLastName.Clear();
+            cbEditLogin.Text = null;
         }
 
         private void dgEmployee_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -112,9 +117,10 @@ namespace TNTExpress.Veiws
             try
             {
                 connection.Open();
-                cmd = new SqlCommand($"SELECT (SELECT [Login] FROM dbo.[User] WHERE Id = IdUser), " +
+                cmd = new SqlCommand($"SELECT (SELECT [Login] FROM dbo.[User] " +
+                    $"WHERE IdUser = Id), " +
                     $"FirstName, LastName, PhoneNumber, Email FROM dbo.[Employee]" +
-                    $"WHERE[Id] = {id}", connection);
+                    $"WHERE [Id] = {id}", connection);
                 reader = cmd.ExecuteReader();
                 reader.Read();
                 if (reader.HasRows)
@@ -141,7 +147,11 @@ namespace TNTExpress.Veiws
             bool resultEmail = ExtraClass.IsValidString(tbEditEmail.Text, @"^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$");
             bool resultPhoneNumber = ExtraClass.IsValidString(tbEditPhoneNumber.Text, @"^\+\d{1}\(\d{3}\)\d{3}-\d{2}-\d{2}$");
 
-            if (string.IsNullOrEmpty(cbEditLogin.Text))
+            if (dgEmployee.SelectedItem is null)
+            {
+                sB.Info("Выберете строку для редактирования");
+            }
+            else if (string.IsNullOrEmpty(cbEditLogin.Text))
             {
                 sB.Info("Введите логин");
             }
@@ -198,6 +208,11 @@ namespace TNTExpress.Veiws
             comboBoxAddEmployee.Loader("User", "Login");
 
             comboBoxEditEmployee.Loader("User", "Login");
+        }
+
+        private void btnExcel_Click(object sender, RoutedEventArgs e)
+        {
+            ExcelClass.ConvertToExcel(dgEmployee);
         }
     }
 }

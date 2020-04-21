@@ -90,7 +90,7 @@ namespace TNTExpress.Veiws
                 $"WHERE [Name] LIKE '%{tbSearch.Text}%'");
         }
 
-        private void btnAddEmployee_Click(object sender, RoutedEventArgs e)
+        private void btnAddSupplier_Click(object sender, RoutedEventArgs e)
         {
             bool resultEmail = ExtraClass.IsValidString(tbEmail.Text, @"^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$");
             bool resultPhoneNumber = ExtraClass.IsValidString(tbPhoneNumber.Text, @"^\+\d{1}\(\d{3}\)\d{3}-\d{2}-\d{2}$");
@@ -130,11 +130,18 @@ namespace TNTExpress.Veiws
                     $"'{tbPhoneNumber.Text}', '{tbEmail.Text}', " +
                     $"'{tbFieldOfActivity.Text}')",
                 "Данные успешно добавлены", "Ошибка");
+                
                 dG.Loader("SELECT * FROM dbo.[Supplier]");
+
+                tbName.Clear();
+                tbAddress.Clear();
+                tbPhoneNumber.Clear();
+                tbEmail.Clear();
+                tbFieldOfActivity.Clear();
             }
         }
 
-        private void btnEditEmployee_Click(object sender, RoutedEventArgs e)
+        private void btnEditSupplier_Click(object sender, RoutedEventArgs e)
         {
             bool resultEmail = ExtraClass.IsValidString(tbEditEmail.Text, @"^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$");
             bool resultPhoneNumber = ExtraClass.IsValidString(tbEditPhoneNumber.Text, @"^\+\d{1}\(\d{3}\)\d{3}-\d{2}-\d{2}$");
@@ -182,6 +189,12 @@ namespace TNTExpress.Veiws
                     $"WHERE [Id] = '{id}'",
                 "Данные успешно изменены", "Ошибка");
                 dG.Loader("SELECT * FROM dbo.[Supplier]");
+
+                tbEditName.Clear();
+                tbEditAddress.Clear();
+                tbEditPhoneNumber.Clear();
+                tbEditEmail.Clear();
+                tbEditFieldOfActivity.Clear();
             }
         }
 
@@ -190,6 +203,17 @@ namespace TNTExpress.Veiws
             dataBaseQuery.SqlQuery("DELETE FROM dbo.[Supplier] " +
                 $"WHERE [Id] = {id}", "Данные успешно удалены", "Ошибка");
             dG.Loader("SELECT * FROM dbo.Supplier");
+
+            tbEditName.Clear();
+            tbEditAddress.Clear();
+            tbEditPhoneNumber.Clear();
+            tbEditEmail.Clear();
+            tbEditFieldOfActivity.Clear();
+        }
+
+        private void btnExcel_Click(object sender, RoutedEventArgs e)
+        {
+            ExcelClass.ConvertToExcel(dgSupplier);
         }
     }
 }

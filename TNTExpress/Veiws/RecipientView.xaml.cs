@@ -1,18 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Data.SqlClient;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using TNTExpress.Classes;
 using TNTExpress.Classes.DataBaseWork;
 using TNTExpress.Classes.Extra;
@@ -92,7 +80,7 @@ namespace TNTExpress.Veiws
                 $"[LastName] LIKE '%{tbSearch.Text}%'");
         }
 
-        private void btnAddEmployee_Click(object sender, RoutedEventArgs e)
+        private void btnAddRecipient_Click(object sender, RoutedEventArgs e)
         {
             bool resultEmail = ExtraClass.IsValidString(tbEmail.Text, @"^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$");
             bool resultPhoneNumber = ExtraClass.IsValidString(tbPhoneNumber.Text, @"^\+\d{1}\(\d{3}\)\d{3}-\d{2}-\d{2}$");
@@ -143,7 +131,7 @@ namespace TNTExpress.Veiws
 
         }
 
-        private void btnEditEmployee_Click(object sender, RoutedEventArgs e)
+        private void btnEditRecipient_Click(object sender, RoutedEventArgs e)
         {
             bool resultEmail = ExtraClass.IsValidString(tbEditEmail.Text, @"^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$");
             bool resultPhoneNumber = ExtraClass.IsValidString(tbEditPhoneNumber.Text, @"^\+\d{1}\(\d{3}\)\d{3}-\d{2}-\d{2}$");
@@ -190,13 +178,15 @@ namespace TNTExpress.Veiws
                     $"[PhoneNumber] = '{tbEditPhoneNumber.Text}'" +
                     $"WHERE [Id] = '{id}'",
                 "Данные успешно изменены", "Ошибка");
+                
+                dG.Loader("SELECT Id, FirstName + N' ' + LastName as Recipient," +
+                " Address, PhoneNumber, Email FROM dbo.Recipient");
+
                 tbEditAddress.Clear();
                 tbEditFirstName.Clear();
                 tbEditLastName.Clear();
                 tbEditEmail.Clear();
                 tbEditPhoneNumber.Clear();
-                dG.Loader("SELECT Id, FirstName + N' ' + LastName as Recipient," +
-                " Address, PhoneNumber, Email FROM dbo.Recipient");
             }
         }
 
@@ -211,6 +201,11 @@ namespace TNTExpress.Veiws
             tbEditLastName.Clear();
             tbEditEmail.Clear();
             tbEditPhoneNumber.Clear();
+        }
+
+        private void btnExcel_Click(object sender, RoutedEventArgs e)
+        {
+            ExcelClass.ConvertToExcel(dgRecipient);
         }
     }
 }

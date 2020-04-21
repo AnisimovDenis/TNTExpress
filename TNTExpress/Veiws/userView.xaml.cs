@@ -16,6 +16,7 @@ using System.Windows.Shapes;
 using TNTExpress.Classes;
 using TNTExpress.Classes.ComboBoxWork;
 using TNTExpress.Classes.DataBaseWork;
+using TNTExpress.Classes.Extra;
 using TNTExpress.Classes.ListWork;
 using TNTExpress.Classes.SnackBarMessage;
 
@@ -112,6 +113,9 @@ namespace TNTExpress.Veiws
                 $"WHERE [Id] = '{id}'", "Данные успешно изменены",
                 "Пользователь с таким логином уже есть");
                 dG.Loader("SELECT * FROM dbo.[UserRole]");
+                tbEditLogin.Clear();
+                tbEditPassword.Clear();
+                cbEditRole.Text = null;
             }
         }
 
@@ -126,12 +130,17 @@ namespace TNTExpress.Veiws
             dataBaseQuery.SqlQuery("DELETE FROM dbo.[User] " +
                 $"WHERE [Id] = '{id}'", "Данные успешно удалены", "Ошибка");
             dG.Loader("SELECT * FROM dbo.[UserRole]");
+            tbEditLogin.Clear();
+            tbEditPassword.Clear();
+            cbEditRole.SelectedItem = null;
         }
 
         private void dgUser_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (dgUser.SelectedItem != null)
+            {
                 id = dG.FirstColumn;
+            }
             try
             {
                 connection.Open();
@@ -167,6 +176,11 @@ namespace TNTExpress.Veiws
             comboBoxAddRole.Loader("Role", "NameRole");
 
             comboBoxEditRole.Loader("Role", "NameRole");
+        }
+
+        private void btnExcel_Click(object sender, RoutedEventArgs e)
+        {
+            ExcelClass.ConvertToExcel(dgUser);
         }
     }
 }
